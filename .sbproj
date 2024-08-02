@@ -1,8 +1,8 @@
 {
-  "Title": "Souls Box Dev",
+  "Title": "Souls Box 2",
   "Type": "game",
   "Org": "vincetp",
-  "Ident": "souls_box_dev",
+  "Ident": "souls_box_2",
   "Schema": 1,
   "IncludeSourceFiles": false,
   "Resources": "",
@@ -21,7 +21,7 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/testing.scene",
+    "StartupScene": "scenes/game.scene",
     "ProjectTemplate": null,
     "ControlModes": {
       "Keyboard": true,
@@ -54,27 +54,27 @@
           "GroupName": "Movement"
         },
         {
-          "Name": "Jump",
-          "KeyboardCode": "space",
-          "GamepadCode": "SwitchLeftMenu",
-          "GroupName": "Movement"
-        },
-        {
-          "Name": "Roll",
+          "Name": "sb_jump",
           "KeyboardCode": "space",
           "GamepadCode": "B",
           "GroupName": "Movement"
         },
         {
-          "Name": "Backstep",
+          "Name": "sb_roll",
           "KeyboardCode": "space",
-          "GamepadCode": "SwitchRightMenu",
+          "GamepadCode": "B",
           "GroupName": "Movement"
         },
         {
-          "Name": "Run_c",
-          "KeyboardCode": "ALT",
-          "GamepadCode": "Guide",
+          "Name": "sb_backstep",
+          "KeyboardCode": "space",
+          "GamepadCode": "B",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "sb_sprint",
+          "KeyboardCode": "SPACE",
+          "GamepadCode": "B",
           "GroupName": "Movement"
         },
         {
@@ -140,7 +140,7 @@
         {
           "Name": "General_Use",
           "KeyboardCode": "E",
-          "GamepadCode": "A",
+          "GamepadCode": "SwitchLeftMenu",
           "GroupName": "Other"
         },
         {
@@ -212,7 +212,7 @@
       ],
       "__guid": "2732d242-d0fe-464e-94e2-09cca95d148d"
     },
-    "LaunchMode": "Normal",
+    "LaunchMode": "Launcher",
     "Compiler": {
       "RootNamespace": "Sandbox",
       "DefineConstants": "SANDBOX;ADDON;DEBUG",
@@ -226,6 +226,6 @@
       ],
       "DistinctAssemblyReferences": []
     },
-    "MapStartupScene": "scenes/testing.scene"
+    "MapStartupScene": "scenes/game.scene"
   }
 }

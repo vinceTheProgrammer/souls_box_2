@@ -13,6 +13,8 @@ namespace SoulsBox
 	{
 		private Rotation LastMoveDirectionRotation;
 
+		public override CameraController CameraController { get => null; set => throw new NotImplementedException(); }
+
 		public override Vector3 GetMoveVector()
 		{
 			float _speed = 0.5f;

@@ -73,100 +73,717 @@
 						target_file = "models/citizen/prefabs/citizen_animationlist_visemes.vmdl_prefab"
 					},
 					{
-						_class = "AnimFile"
-						name = "roll_forward"
+						_class = "Folder"
+						name = "sb_anims"
 						children = 
 						[
 							{
-								_class = "ExtractMotion"
-								extract_tx = true
-								extract_ty = true
-								extract_tz = false
-								extract_rz = false
-								linear = false
-								quadratic = false
-								root_bone_name = "pelvis"
-								motion_type = "Single"
+								_class = "AnimFile"
+								name = "roll_forward"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 0
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 48
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll_end"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 24
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll_midway"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 34
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "can_interrupt"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 1
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 47
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll_end"
+										}
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/roll.fbx"
+								start_frame = -1
+								end_frame = 48
+								framerate = 48.0
+								take = 0
+								reverse = false
 							},
 							{
-								_class = "AnimAlign"
-								align_tx = true
-								align_ty = true
-								align_tz = false
-								align_rx = false
-								align_ry = false
-								align_rz = false
-								align_frame_type = "Number"
-								frame = 0
-								align_to_anim = "IdlePose_Default"
-								align_to_frame_type = "Number"
-								align_to_frame = 0
-								bone = "pelvis"
+								_class = "AnimFile"
+								name = "roll2"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 0
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 48
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_end"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 24
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_midway"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 34
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "can_interrupt"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 1
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 47
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_end"
+										}
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/roll2.fbx"
+								start_frame = -1
+								end_frame = 48
+								framerate = 48.0
+								take = 0
+								reverse = false
 							},
 							{
-								_class = "AnimOffset"
-								translation = [ 0.0, 0.0, -2.0 ]
-								rotation_xyz = [ 0.0, 0.0, 0.0 ]
+								_class = "AnimFile"
+								name = "running_jump"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -6.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 0
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "jump_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 25
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "jump_end"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 15
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "jump_midway"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 1
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "jump_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 24
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "jump_end"
+										}
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/running_jump.fbx"
+								start_frame = -1
+								end_frame = 25
+								framerate = -1.0
+								take = 0
+								reverse = false
 							},
 							{
-								_class = "AnimEvent"
-								event_class = "AE_GENERIC_EVENT"
-								event_frame = 0
-								event_keys = 
-								{
-									TypeName = ""
-									Int = 0
-									Float = 0.0
-									Vector = [ 0.0, 0.0, 0.0 ]
-									StringData = "roll_start"
-								}
+								_class = "AnimFile"
+								name = "backstep"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 0
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "backstep_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 44
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "backstep_end"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 24
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "backstep_midway"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 1
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "backstep_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 43
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "backstep_end"
+										}
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/backstep.fbx"
+								start_frame = -1
+								end_frame = 44
+								framerate = 48.0
+								take = 0
+								reverse = false
 							},
 							{
-								_class = "AnimEvent"
-								event_class = "AE_GENERIC_EVENT"
-								event_frame = 48
-								event_keys = 
-								{
-									TypeName = ""
-									Int = 0
-									Float = 0.0
-									Vector = [ 0.0, 0.0, 0.0 ]
-									StringData = "roll_end"
-								}
+								_class = "AnimFile"
+								name = "sword_combo"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/sword_combo.fbx"
+								start_frame = -1
+								end_frame = -1
+								framerate = -1.0
+								take = 0
+								reverse = false
 							},
 							{
-								_class = "AnimEvent"
-								event_class = "AE_GENERIC_EVENT"
-								event_frame = 24
-								event_keys = 
-								{
-									TypeName = ""
-									Int = 0
-									Float = 0.0
-									Vector = [ 0.0, 0.0, 0.0 ]
-									StringData = "roll_midway"
-								}
+								_class = "AnimFile"
+								name = "roll2_mirror"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 0
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 48
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_end"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 24
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_midway"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 34
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "can_interrupt"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 1
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_start"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 47
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "roll2_end"
+										}
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/roll2_mirror.fbx"
+								start_frame = -1
+								end_frame = 48
+								framerate = 48.0
+								take = 0
+								reverse = false
 							},
 						]
-						activity_name = ""
-						activity_weight = 1
-						weight_list_name = ""
-						fade_in_time = 0.2
-						fade_out_time = 0.2
-						looping = false
-						delta = false
-						worldSpace = false
-						hidden = false
-						anim_markup_ordered = false
-						disable_compression = false
-						disable_interpolation = false
-						enable_scale = false
-						source_filename = "animations/rolltest.fbxArmaturemixamo.comLayer0Retarget.fbx"
-						start_frame = -1
-						end_frame = 48
-						framerate = 48.0
-						take = 0
-						reverse = false
 					},
 				]
 				default_root_bone_name = "pelvis"

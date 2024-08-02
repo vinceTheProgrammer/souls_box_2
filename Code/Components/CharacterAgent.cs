@@ -4,7 +4,15 @@ namespace SoulsBox
 {
 	public abstract class CharacterAgent : Component
 	{
-		public bool roll { get; set; }
+		public abstract CameraController CameraController { get; set; }
+
+		public bool isRolling { get; set; }
+
+		public bool isJumping { get; set; }
+
+		public bool isSprinting { get; set; }
+
+		public bool isBackstepping { get; set; }
 
 		public abstract bool IsRunActive();
 
