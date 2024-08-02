@@ -77,14 +77,12 @@
               "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
               "component_type": "CitizenAnimationHelper"
             },
-            "BackstepForce": 0,
             "CharacterController": {
               "_type": "component",
               "component_id": "7a04edd5-7a1c-4f9b-9bac-5f5ad309fa1d",
               "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
               "component_type": "CharacterController"
             },
-            "JumpForce": 0,
             "RunSpeed": 320,
             "WalkSpeed": 140
           },
@@ -99,6 +97,12 @@
             "CameraPivot": {
               "_type": "gameobject",
               "go": "5f486ded-872c-48ab-9ac0-3d083a95b1f9"
+            },
+            "player": {
+              "_type": "component",
+              "component_id": "ea253347-1f2f-4df6-899c-8cf423f256d1",
+              "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
+              "component_type": "AgentPlayer"
             }
           }
         ]

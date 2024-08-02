@@ -41,7 +41,7 @@ namespace SoulsBox
 
 		protected override void OnUpdate()
 		{
-			if (!CameraController.lockedOn)
+			if (!lockedOn)
 			{
 				CameraController.ForwardAngles += Input.AnalogLook;
 				float _tempVarPointDistance = 100.0f;
@@ -70,13 +70,13 @@ namespace SoulsBox
 				return;
 			}
 
-			if ( !isRolling && !isJumping && !(CameraController.lockedOn) )
+			if ( !isRolling && !isJumping && !(lockedOn && !isSprinting) )
 			{
 				if ( GetMoveVector().Length > 0 ) LastMoveDirectionRotation = Rotation.FromYaw( (GetMoveVector()).EulerAngles.yaw );
 				Transform.Rotation = Rotation.Lerp( Transform.Rotation, LastMoveDirectionRotation, 0.1f );
 			} else if (!isRolling && !isJumping)
 			{
-				Vector3 targetToPlayerDisplacement = (CameraController.lockedOnPosition -Transform.Position);
+				Vector3 targetToPlayerDisplacement = (lockedOnPosition -Transform.Position);
 				Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
 				Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );
 			}

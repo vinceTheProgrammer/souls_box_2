@@ -21,48 +21,67 @@ namespace SoulsBox
 		[Property]
 		public GameObject CameraPivot { get; set; }
 
+		[Property]
+		public AgentPlayer player { get; set; }
+
 		/// <summary>
 		/// X, Y sets distance & offset of camera. Z sets height via the CameraPivot.
 		/// </summary>
 		[Property]
 		public Vector3 CameraOffset { get; set; }
 
-		public bool lockedOn { get; set; }
-		public Vector3 lockedOnPosition { get; set; }
-
 		public GameObject CameraPivotGameObject;
 		public Angles ForwardAngles;
 		private Transform InitialCameraTransform;
 
-		public float horizontalLerpSpeed = 5.0f;  // Speed of horizontal lerp
-		public float verticalLerpSpeed = 5.0f;    // Speed of vertical lerp
+		public float horizontalLerpSpeed = 40.0f;  // Speed of horizontal lerp
+		public float verticalLerpSpeed = 40.0f;    // Speed of vertical lerp
 		public float horizontalThreshold = 0.05f; // Decimal portion of screen space to allow on either side of center
-		public float verticalThreshold = 0.8f; // Decimal portion of screen space to allow on either side of center
+		public float verticalThreshold = 0.2f; // Decimal portion of screen space to allow on either side of center
 
 		protected override void OnUpdate()
 		{
-			if (lockedOn)
+			if (player.lockedOn)
 			{
 
-				Vector3 targetPosition; // Position to lerp to
-				Rotation targetRotation; // Rotation to lerp to
-
-				GameTransform playerTransform = Transform;
-				GameTransform cameraTransform = Camera.Transform;
-
-				Gizmo.Draw.SolidSphere( lockedOnPosition, 1f );
+				Gizmo.Draw.SolidSphere( player.lockedOnPosition, 5f );
 
 				// HORIZONTAL LOCK ON
-				float horizontalScreenPosition = lockedOnPosition.ToScreen().x;
-				if (horizontalScreenPosition < 0.5 - horizontalThreshold)
+				float horizontalScreenPosition = player.lockedOnPosition.ToScreen().x;
+				if (horizontalScreenPosition < 0.5f - horizontalThreshold)
 				{
-					ForwardAngles.yaw += 1f;
+					float currentHorizontalThreshold = 0.5f - horizontalThreshold;
+					float distanceToHorizontalThreshold = MathF.Abs( (currentHorizontalThreshold - horizontalScreenPosition) );
+					//Log.Info( distanceToHorizontalThreshold * horizontalLerpSpeed );
+					ForwardAngles.yaw += 0.1f * distanceToHorizontalThreshold * horizontalLerpSpeed;
 				} else if (horizontalScreenPosition > 0.5 + horizontalThreshold)
 				{
-					ForwardAngles.yaw -= 1f;
+					float currentHorizontalThreshold = 0.5f + horizontalThreshold;
+					float distanceToHorizontalThreshold = MathF.Abs( (currentHorizontalThreshold - horizontalScreenPosition) );
+					//Log.Info( distanceToHorizontalThreshold * horizontalLerpSpeed );
+					ForwardAngles.yaw -= 0.1f * distanceToHorizontalThreshold * horizontalLerpSpeed;
 				}
 
-				Log.Info( horizontalScreenPosition );
+				// VERTICAL LOCK ON
+				float verticalScreenPosition = player.lockedOnPosition.ToScreen().y;
+				if ( verticalScreenPosition < 0.5f - verticalThreshold )
+				{
+					float currentVerticalThreshold = 0.5f - verticalThreshold;
+					float distanceToVerticalThreshold = MathF.Abs( (currentVerticalThreshold - verticalScreenPosition) );
+					Log.Info( distanceToVerticalThreshold );
+					ForwardAngles.pitch -= 0.1f * distanceToVerticalThreshold * verticalLerpSpeed;
+				}
+				else if ( verticalScreenPosition > 0.5 + verticalThreshold )
+				{
+					float currentVerticalThreshold = 0.5f + verticalThreshold;
+					float distanceToVerticalThreshold = MathF.Abs( (currentVerticalThreshold - verticalScreenPosition) );
+					Log.Info( distanceToVerticalThreshold );
+					ForwardAngles.pitch += 0.1f * distanceToVerticalThreshold * verticalLerpSpeed;
+				}
+
+				// ForwardAngles = ForwardAngles.LerpTo(ForwardAngles.WithYaw(ForwardAngles.yaw + 1f), 0.5f);
+
+				//Log.Info( verticalScreenPosition );
 
 
 				// Standard Cam
@@ -113,8 +132,8 @@ namespace SoulsBox
 		protected override void OnStart()
 		{
 			InitialCameraTransform = Camera.Transform.World;
-			lockedOnPosition = Transform.Position + new Vector3( 0, 50, 70 );
-			lockedOn = true;
+			player.lockedOnPosition = Transform.Position + new Vector3( 0, 50, 70 );
+			player.lockedOn = true;
 		}
 	}
 }

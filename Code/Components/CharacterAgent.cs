@@ -14,6 +14,10 @@ namespace SoulsBox
 
 		public bool isBackstepping { get; set; }
 
+		public bool lockedOn { get; set; }
+
+		public Vector3 lockedOnPosition { get; set; }
+
 		public abstract bool IsRunActive();
 
 		public abstract bool IsGuardActive();

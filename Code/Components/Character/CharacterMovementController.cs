@@ -23,7 +23,6 @@ namespace SoulsBox
 		private Vector3 lastMove;
 
 		private float terminalVelocity = 200f;
-		private bool lockedOn = true;
 
 		/// <summary>
 		/// Character walk speed
@@ -112,7 +111,7 @@ namespace SoulsBox
 				CharacterController.Move();
 			}
 
-			if ( isRolling && lockedOn && agent.CameraController != null )
+			if ( isRolling && agent.lockedOn )
 			{
 				//Log.Info( Input.AnalogMove );
 				//Log.Info(RoundToCardinal( Input.AnalogMove ));
@@ -121,7 +120,7 @@ namespace SoulsBox
 
 				if (setLastMove == false)
 				{
-					_targetDirection = RoundToCardinal( Input.AnalogMove ) * agent.CameraController.Camera.Transform.Rotation;
+					_targetDirection = RoundToCardinal( Input.AnalogMove ) * (agent.lockedOnPosition - agent.Transform.Position).EulerAngles;
 					lastMove = _targetDirection;
 					setLastMove = true;
 				}
@@ -249,7 +248,7 @@ namespace SoulsBox
 					AnimationHelper.IsGrounded = CharacterController.IsOnGround;
 					AnimationHelper.WithVelocity( CharacterController.Velocity );
 					AnimationHelper.WithLook( _targetVelocity );
-					if (isNotDoingAnimation && agent.isRolling && lockedOn)
+					if (isNotDoingAnimation && agent.isRolling && agent.lockedOn)
 					{
 						Vector3 cardinalDirection = RoundToCardinal( Input.AnalogMove );
 						
@@ -260,11 +259,11 @@ namespace SoulsBox
 
 						if (cardinalDirection.y > 0)
 						{
-							agent.Transform.Rotation = Rotation.FromYaw( (cardinalDirection * agent.CameraController.Camera.Transform.Rotation).EulerAngles.yaw );
+							agent.Transform.Rotation = Rotation.FromYaw( (cardinalDirection * (agent.lockedOnPosition - agent.Transform.Position).EulerAngles).EulerAngles.yaw );
 							AnimationHelper.Target.Set( "sb_roll2", true );
 						} else if (cardinalDirection.y < 0)
 						{
-							agent.Transform.Rotation = Rotation.FromYaw( (cardinalDirection * agent.CameraController.Camera.Transform.Rotation).EulerAngles.yaw );
+							agent.Transform.Rotation = Rotation.FromYaw( (cardinalDirection * (agent.lockedOnPosition - agent.Transform.Position).EulerAngles).EulerAngles.yaw );
 							AnimationHelper.Target.Set( "sb_roll2_mirror", true );
 						} else
 						{
