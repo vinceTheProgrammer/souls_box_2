@@ -23,6 +23,27 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "fa04b464-4636-4ba4-8f7d-c6e87cda2bfd",
+      "Flags": 0,
+      "Name": "Screen",
+      "Position": "489.9308,345.8908,170.1688",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "ff80e76f-9c53-430f-9f01-89321c5100c9",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "PlayerHud",
+          "__guid": "14bb1036-2acc-4cac-8ea5-965aa35f8254"
+        }
+      ]
     }
   ],
   "SceneProperties": {

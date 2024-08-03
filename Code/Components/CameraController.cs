@@ -68,14 +68,14 @@ namespace SoulsBox
 				{
 					float currentVerticalThreshold = 0.5f - verticalThreshold;
 					float distanceToVerticalThreshold = MathF.Abs( (currentVerticalThreshold - verticalScreenPosition) );
-					Log.Info( distanceToVerticalThreshold );
+					//Log.Info( distanceToVerticalThreshold );
 					ForwardAngles.pitch -= 0.1f * distanceToVerticalThreshold * verticalLerpSpeed;
 				}
 				else if ( verticalScreenPosition > 0.5 + verticalThreshold )
 				{
 					float currentVerticalThreshold = 0.5f + verticalThreshold;
 					float distanceToVerticalThreshold = MathF.Abs( (currentVerticalThreshold - verticalScreenPosition) );
-					Log.Info( distanceToVerticalThreshold );
+					//Log.Info( distanceToVerticalThreshold );
 					ForwardAngles.pitch += 0.1f * distanceToVerticalThreshold * verticalLerpSpeed;
 				}
 
