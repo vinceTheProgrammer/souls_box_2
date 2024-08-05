@@ -120,7 +120,7 @@ namespace SoulsBox
 
 				if (setLastMove == false)
 				{
-					_targetDirection = RoundToCardinal( Input.AnalogMove ) * (agent.lockedOnPosition - agent.Transform.Position).EulerAngles;
+					_targetDirection = Input.AnalogMove * (agent.currentLockOnAble.Transform.Position - agent.Transform.Position).EulerAngles;
 					lastMove = _targetDirection;
 					setLastMove = true;
 				}
@@ -254,16 +254,16 @@ namespace SoulsBox
 						
 
 
-						Log.Info( "CARDINAL: " + cardinalDirection );
+						//Log.Info( "CARDINAL: " + cardinalDirection );
 
 
 						if (cardinalDirection.y > 0)
 						{
-							agent.Transform.Rotation = Rotation.FromYaw( (cardinalDirection * (agent.lockedOnPosition - agent.Transform.Position).EulerAngles).EulerAngles.yaw );
+							agent.Transform.Rotation = Rotation.FromYaw( (Input.AnalogMove * (agent.currentLockOnAble.Transform.Position - agent.Transform.Position).EulerAngles).EulerAngles.yaw );
 							AnimationHelper.Target.Set( "sb_roll2", true );
 						} else if (cardinalDirection.y < 0)
 						{
-							agent.Transform.Rotation = Rotation.FromYaw( (cardinalDirection * (agent.lockedOnPosition - agent.Transform.Position).EulerAngles).EulerAngles.yaw );
+							agent.Transform.Rotation = Rotation.FromYaw( (Input.AnalogMove * (agent.currentLockOnAble.Transform.Position - agent.Transform.Position).EulerAngles).EulerAngles.yaw );
 							AnimationHelper.Target.Set( "sb_roll2_mirror", true );
 						} else
 						{

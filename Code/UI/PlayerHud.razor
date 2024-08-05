@@ -13,13 +13,24 @@
     [Property] AgentPlayer player { get; set; }
 
     Panel LockOnHudElement { get; set; }
+    Color? previousColor = Color.Parse("#b9eeffcc"); // make dynamic later
 
     protected override void OnUpdate()
     {
-        if (LockOnHudElement == null) return;
-        LockOnHudElement.Style.Top = Length.Fraction(player.lockedOnPosition.ToScreen().y);
+        Log.Info(player.currentLockOnAble);
+        if (LockOnHudElement == null || player.currentLockOnAble == null) return;
+
+        if (!player.lockedOn)
+        {
+            LockOnHudElement.Style.BackgroundColor = Color.Transparent;
+        } else
+        {
+            LockOnHudElement.Style.BackgroundColor = previousColor;
+        }
+
+        LockOnHudElement.Style.Top = Length.Fraction(player.currentLockOnAble.Transform.Position.ToScreen().y);
         LockOnHudElement.Style.MarginTop = Length.Pixels(-1 * LockOnHudElement.Box.Rect.Height);
-        LockOnHudElement.Style.Left = Length.Fraction(player.lockedOnPosition.ToScreen().x);
+        LockOnHudElement.Style.Left = Length.Fraction(player.currentLockOnAble.Transform.Position.ToScreen().x);
         LockOnHudElement.Style.MarginLeft = Length.Pixels(-1 * LockOnHudElement.Box.Rect.Width);
     }
 
@@ -32,5 +43,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine( player.lockedOn, player.lockedOnPosition );
+    protected override int BuildHash() => System.HashCode.Combine( player.lockedOn, player.currentLockOnAble );
 }

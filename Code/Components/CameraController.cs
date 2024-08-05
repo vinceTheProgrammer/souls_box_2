@@ -41,13 +41,11 @@ namespace SoulsBox
 
 		protected override void OnUpdate()
 		{
-			if (player.lockedOn)
+			if (player.lockedOn && player.currentLockOnAble != null)
 			{
 
-				Gizmo.Draw.SolidSphere( player.lockedOnPosition, 5f );
-
 				// HORIZONTAL LOCK ON
-				float horizontalScreenPosition = player.lockedOnPosition.ToScreen().x;
+				float horizontalScreenPosition = player.currentLockOnAble.Transform.Position.ToScreen().x;
 				if (horizontalScreenPosition < 0.5f - horizontalThreshold)
 				{
 					float currentHorizontalThreshold = 0.5f - horizontalThreshold;
@@ -63,7 +61,7 @@ namespace SoulsBox
 				}
 
 				// VERTICAL LOCK ON
-				float verticalScreenPosition = player.lockedOnPosition.ToScreen().y;
+				float verticalScreenPosition = player.currentLockOnAble.Transform.Position.ToScreen().y;
 				if ( verticalScreenPosition < 0.5f - verticalThreshold )
 				{
 					float currentVerticalThreshold = 0.5f - verticalThreshold;
@@ -132,8 +130,6 @@ namespace SoulsBox
 		protected override void OnStart()
 		{
 			InitialCameraTransform = Camera.Transform.World;
-			player.lockedOnPosition = Transform.Position + new Vector3( 0, 50, 70 );
-			player.lockedOn = true;
 		}
 	}
 }

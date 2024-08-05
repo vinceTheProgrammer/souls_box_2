@@ -13,7 +13,7 @@
           "__guid": "8ea0effb-a16e-4d0d-8af9-d76e2fb8186a",
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "facepunch.construct23",
+          "MapName": "facepunch.flatgrass",
           "NoOrigin": false,
           "UseMapFromLaunch": false
         },
@@ -42,6 +42,360 @@
         {
           "__type": "PlayerHud",
           "__guid": "14bb1036-2acc-4cac-8ea5-965aa35f8254"
+        }
+      ]
+    },
+    {
+      "__guid": "e6b7a386-2acf-4268-8ae8-40a00dc16a24",
+      "Flags": 0,
+      "Name": "Cube",
+      "Position": "785.7795,622.3432,88.43372",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "05974573-a4eb-4939-9a50-b5795cc6e2a9",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/box.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.LockOnAble",
+          "__guid": "fc09a0c1-be7b-4941-bdef-c600ad46cbd3",
+          "debugName": "cubey",
+          "LockOnOffset": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "0613d6d4-8cf7-4c06-8f91-fe397525f13b",
+      "Flags": 0,
+      "Name": "Cube (1)",
+      "Position": "200.6309,863.7894,88.43372",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "14c8887e-608e-478a-b02c-17bf40485530",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/box.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.LockOnAble",
+          "__guid": "38b63f22-4269-477f-86df-161ce35e0574",
+          "debugName": "fred",
+          "LockOnOffset": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "8de38c60-c053-4e8e-9326-a368cc4dd5c1",
+      "Flags": 0,
+      "Name": "Object",
+      "Position": "26.30878,353.4889,513.4865",
+      "Enabled": true,
+      "Children": [
+        {
+          "__guid": "9bcb1b14-aa69-40bd-97a3-5ef0b7f46b9d",
+          "Flags": 0,
+          "Name": "Cube (7)",
+          "Position": "-1032.288,453.6171,-425.0527",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "d8acdbe4-491b-44c4-afbd-5b76f0ce74a1",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "ae058ead-1e83-4d39-a05e-65a613453f82",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "2be438eb-5700-43e2-b82a-bc966b436ab4",
+          "Flags": 0,
+          "Name": "Cube (68)",
+          "Position": "-1032.288,690.2731,-428.6063",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "266140be-f123-49aa-92b7-93cb471d7f5c",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "a917ff76-d8fd-415c-a344-74e10b091085",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "58f7a6bb-ee54-4375-b60d-5b4650dd5a61",
+          "Flags": 0,
+          "Name": "Cube (68)",
+          "Position": "-1032.288,690.2731,-346.3958",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "89fcd4f4-d9c3-4d63-bacf-b0a74a126f8b",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "2ba1caf0-02eb-4e63-b388-6cd273492b43",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "8780c4c5-61e9-4037-8392-bf49d4cf5915",
+          "Flags": 0,
+          "Name": "Cube (68)",
+          "Position": "-1032.288,352.0142,-346.3958",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "f1ee2a9e-ed82-403c-9529-fffb3212e10e",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "d161a5db-5802-4b48-a83e-7795ae8bdb01",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "7960755f-50b3-4c30-aab0-0512b1027e12",
+          "Flags": 0,
+          "Name": "Cube (68)",
+          "Position": "-1032.288,352.0142,-440.2181",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "9ecb0599-1c0b-42b3-b652-4104f9bf6984",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "5d8174cd-7d30-4168-a547-82a3fde06d35",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "db81503e-bd58-4a39-bc25-7c1ecd2664b6",
+          "Flags": 0,
+          "Name": "Cube (37)",
+          "Position": "-1032.288,509.1262,-346.5088",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "bf4661cf-8a46-49e9-9941-c5655ab86673",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "846a7827-0fdb-4729-88cc-92427567539b",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "d65d18a5-9961-4ae8-a1a2-4b0280e642da",
+          "Flags": 0,
+          "Name": "Cube (6)",
+          "Position": "-1032.288,509.1262,-425.0527",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "2c01bdcc-8d5a-422e-8f75-31154db741f0",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "180ae7d8-eca7-4b48-8ead-13570e884510",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "16af64c2-409b-414a-bb8b-99010406f1be",
+          "Flags": 0,
+          "Name": "Cube (67)",
+          "Position": "-890.5365,690.2731,-428.6063",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "c8bd0380-e4ef-43ed-afa5-44d971728996",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "1949441c-10c6-468a-a95f-670cf156f976",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "b4f49c4c-82fa-4743-85e8-1ee2a2c2c3fe",
+          "Flags": 0,
+          "Name": "Cube (67)",
+          "Position": "-890.5365,690.2731,-346.3958",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "d069293e-5814-446a-b400-dc4138850877",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "5c113b52-1e3e-4fa3-95b6-23e9a6a05559",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "567aada7-716c-4af2-81b9-39df84cccdf8",
+          "Flags": 0,
+          "Name": "Cube (67)",
+          "Position": "-890.5365,352.0142,-346.3958",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "01b0aa79-eadd-48b7-af4d-ba10cbadda84",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "a3b14e9f-3a39-4b97-9593-abd727876740",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "4a0d3696-9606-4fa4-a5db-3fcf7768eba1",
+          "Flags": 0,
+          "Name": "Cube (67)",
+          "Position": "-890.5365,352.0142,-440.2181",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "6c9237cf-0f7c-41f4-8e42-3426aa604e9f",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "8e7eb067-2ac8-45df-841f-e578e8592b3a",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "df68658f-d073-4d73-9b72-2bf0b8a46666",
+          "Flags": 0,
+          "Name": "Cube (36)",
+          "Position": "-890.5365,509.1262,-346.5088",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "2eb3fdc1-2c20-4cf1-aaf4-cdb9cda1f9ed",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "87df17fc-38e6-4dcb-83c1-4366ee0eef5f",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "f5653527-0f21-418b-add6-81a6f24ec398",
+          "Flags": 0,
+          "Name": "Cube (5)",
+          "Position": "-890.5365,509.1262,-425.0527",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "1ee62214-8efe-46c5-8866-5bebd47792fa",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/box.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.LockOnAble",
+              "__guid": "b0263c84-56ba-4915-96ed-9ad21b366b22",
+              "debugName": "fred",
+              "LockOnOffset": "0,0,0"
+            }
+          ]
         }
       ]
     }

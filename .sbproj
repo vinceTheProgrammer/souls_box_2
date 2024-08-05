@@ -78,128 +78,122 @@
           "GroupName": "Movement"
         },
         {
-          "Name": "Walk",
-          "KeyboardCode": "CAPSLOCK",
+          "Name": "sb_walk",
+          "KeyboardCode": "ALT",
           "GamepadCode": "None",
           "GroupName": "Movement"
         },
         {
-          "Name": "Light_Attack",
+          "Name": "sb_light_attack",
           "KeyboardCode": "mouse1",
           "GamepadCode": "SwitchRightBumper",
           "GroupName": "Combat"
         },
         {
-          "Name": "Heavy_Attack",
+          "Name": "sb_heavy_attack",
           "KeyboardCode": "F",
           "GamepadCode": "RightTrigger",
           "GroupName": "Combat"
         },
         {
-          "Name": "Guard",
+          "Name": "sb_guard",
           "KeyboardCode": "MOUSE2",
           "GamepadCode": "SwitchLeftBumper",
           "GroupName": "Combat"
         },
         {
-          "Name": "Parry",
+          "Name": "sb_parry",
           "KeyboardCode": "SHIFT",
           "GamepadCode": "LeftTrigger",
           "GroupName": "Combat"
         },
         {
-          "Name": "Switch_Spell",
+          "Name": "sb_switch_spell",
           "KeyboardCode": "r",
           "GamepadCode": "DpadNorth",
           "GroupName": "Equipment"
         },
         {
-          "Name": "Switch_Item",
+          "Name": "sb_switch_item",
           "KeyboardCode": "f",
           "GamepadCode": "DpadSouth",
           "GroupName": "Equipment"
         },
         {
-          "Name": "Switch_Left_Weapon",
+          "Name": "sb_switch_left_weapon",
           "KeyboardCode": "C",
           "GamepadCode": "DpadWest",
           "GroupName": "Equipment"
         },
         {
-          "Name": "Switch_Right_Weapon",
+          "Name": "sb_switch_right_weapon",
           "KeyboardCode": "V",
           "GamepadCode": "DpadEast",
           "GroupName": "Equipment"
         },
         {
-          "Name": "Use_Item",
+          "Name": "sb_use_item",
           "KeyboardCode": "R",
           "GamepadCode": "X",
           "GroupName": "Equipment"
         },
         {
-          "Name": "General_Use",
+          "Name": "sb_use",
           "KeyboardCode": "E",
           "GamepadCode": "SwitchLeftMenu",
           "GroupName": "Other"
         },
         {
-          "Name": "Lock_On",
-          "KeyboardCode": "MOUSE3",
+          "Name": "sb_lock_on",
+          "KeyboardCode": "Q",
           "GamepadCode": "RightJoystickButton",
           "GroupName": "Other"
         },
         {
-          "Name": "Reset_Camera",
+          "Name": "sb_reset_camera",
           "KeyboardCode": "o",
           "GamepadCode": "RightJoystickButton",
           "GroupName": "Other"
         },
         {
-          "Name": "Gesture_Menu",
+          "Name": "sb_gesture_menu",
           "KeyboardCode": "G",
           "GamepadCode": "SwitchLeftMenu",
           "GroupName": "Other"
         },
         {
-          "Name": "Toggle_Two_Handed",
+          "Name": "sb_toggle_two_handed",
           "KeyboardCode": "Y",
           "GamepadCode": "Y",
           "GroupName": "Other"
         },
         {
-          "Name": "menu_left",
+          "Name": "sb_menu_left",
           "KeyboardCode": "LEFTARROW",
           "GamepadCode": "None",
           "GroupName": "Other"
         },
         {
-          "Name": "menu_right",
+          "Name": "sb_menu_right",
           "KeyboardCode": "RIGHTARROW",
           "GamepadCode": "None",
           "GroupName": "Other"
         },
         {
-          "Name": "menu_up",
+          "Name": "sb_menu_up",
           "KeyboardCode": "UPARROW",
           "GamepadCode": "None",
           "GroupName": "Other"
         },
         {
-          "Name": "menu_down",
+          "Name": "sb_menu_down",
           "KeyboardCode": "DOWNARROW",
           "GamepadCode": "None",
           "GroupName": "Other"
         },
         {
-          "Name": "menu_select",
+          "Name": "sb_menu_select",
           "KeyboardCode": "ENTER",
-          "GamepadCode": "None",
-          "GroupName": "Other"
-        },
-        {
-          "Name": "Lock_On",
-          "KeyboardCode": "Q",
           "GamepadCode": "None",
           "GroupName": "Other"
         },

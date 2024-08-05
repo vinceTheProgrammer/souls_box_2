@@ -1,5 +1,6 @@
 using Sandbox;
 using Sandbox.Diagnostics;
+using System;
 
 namespace SoulsBox
 {
@@ -23,6 +24,97 @@ namespace SoulsBox
 		private float timeSinceSprint = 0f;
 		private const float sprintThreshold = 0.5f;
 		private const float jumpThreshold = 0.1f;
+
+
+		public void UpdateLockOnAbles()
+		{
+			lockOnAbles.Clear();
+			OctreeManager.Instance.Clear();
+
+			IEnumerable<LockOnAble> allLockOnAbles = Scene.GetAllComponents<LockOnAble>();
+			foreach ( var lockOnAble in allLockOnAbles )
+			{
+				OctreeManager.Instance.Insert( lockOnAble );
+			}
+
+			var lockOnAblesInRange = OctreeManager.Instance.QueryRange( Transform.Position, LockOnRadius );
+			foreach ( var lockOnAble in lockOnAblesInRange )
+			{
+				if ( lockOnAble.ParentIsAlive() )
+				{
+					lockOnAbles.Add( lockOnAble );
+				}
+			}
+		}
+
+		private LockOnAble GetClosestLockOnAble()
+		{
+			LockOnAble closest = null;
+			float closestDistance = float.MaxValue;
+
+			foreach ( var lockOnAble in lockOnAbles )
+			{
+				float distance = Vector3.DistanceBetween( Transform.Position, lockOnAble.Transform.Position );
+				if ( distance < closestDistance )
+				{
+					closest = lockOnAble;
+					closestDistance = distance;
+				}
+			}
+
+			return closest;
+		}
+
+		private LockOnAble GetClosestLockOnAbleInView()
+		{
+			LockOnAble closest = null;
+			float closestDistance = float.MaxValue;
+
+			foreach ( var lockOnAble in lockOnAbles )
+			{
+				float distance = Vector3.DistanceBetween( Transform.Position, lockOnAble.Transform.Position );
+				if ( distance < closestDistance && IsWithinView( lockOnAble.Transform ) )
+				{
+					closest = lockOnAble;
+					closestDistance = distance;
+				}
+			}
+
+			return closest;
+		}
+
+		public void SwitchTarget( bool isLeft )
+		{
+			if ( currentLockOnAble == null ) return;
+
+			LockOnAble bestTarget = null;
+			float bestAngle = float.MaxValue;
+
+			foreach ( var lockOnAble in lockOnAbles )
+			{
+				if ( lockOnAble == currentLockOnAble ) continue;
+
+				Vector3 toTarget = lockOnAble.Transform.Position - Transform.Position;
+				Vector3 toCurrentTarget = currentLockOnAble.Transform.Position - Transform.Position;
+
+				float angle = SignedAngle( toCurrentTarget, toTarget);
+				if ( isLeft && angle < 0 && angle > -bestAngle )
+				{
+					bestAngle = -angle;
+					bestTarget = lockOnAble;
+				}
+				else if ( !isLeft && angle > 0 && angle < bestAngle )
+				{
+					bestAngle = angle;
+					bestTarget = lockOnAble;
+				}
+			}
+
+			if ( bestTarget != null )
+			{
+				currentLockOnAble = bestTarget;
+			}
+		}
 
 		public override Vector3 GetMoveVector()
 		{
@@ -57,12 +149,59 @@ namespace SoulsBox
 					CameraController.ForwardAngles.yaw += incrementAmount;
 				}
 			}
-			
+			OctreeManager.Instance.Draw();
+		}
+
+		public void toggleLockOn()
+		{
+			bool previousState = lockedOn;
+			lockedOn = !lockedOn;
+			if ( previousState == false ) 
+			{
+				currentLockOnAble = GetClosestLockOnAble();
+			}
+		}
+
+		private bool IsWithinView(GameTransform gameTransform)
+		{
+			float leftBound = 0f;
+			float rightBound = 1f;
+			float topBound = 0f;
+			float bottomBound = 1f;
+			Vector3 screenCoords = gameTransform.Position.ToScreen();
+			return screenCoords.x >= leftBound && screenCoords.x <= rightBound && screenCoords.y >= topBound && screenCoords.y <= bottomBound;
+		}
+
+
+		// move somewhere else later lol
+		public static float SignedAngle( Vector3 from, Vector3 to)
+		{
+			float angle = Vector3.GetAngle( from, to );
+			float crossY = from.x * to.z - from.z * to.x;
+			return crossY > 0 ? angle : -angle;
 		}
 
 		protected override void OnFixedUpdate()
 		{
-			//Log.Info( timeSinceSprint );
+			UpdateLockOnAbles();
+			//Log.Info( String.Join( ", ", lockOnAbles ) );
+			if (currentLockOnAble != null )
+			{
+				Log.Info( IsWithinView(currentLockOnAble.Transform) );
+			}
+			
+			/*
+			LockOnAble closestLockOnAble = GetClosestLockOnAble();
+			if (closestLockOnAble != null )
+			{
+				lockedOn = true;
+				currentLockOnAble = closestLockOnAble;
+			} else
+			{
+				lockedOn = false;
+			}
+			*/
+
 
 			if ( isRolling || isJumping )
 			{
@@ -76,7 +215,7 @@ namespace SoulsBox
 				Transform.Rotation = Rotation.Lerp( Transform.Rotation, LastMoveDirectionRotation, 0.1f );
 			} else if (!isRolling && !isJumping)
 			{
-				Vector3 targetToPlayerDisplacement = (lockedOnPosition -Transform.Position);
+				Vector3 targetToPlayerDisplacement = (currentLockOnAble.Transform.Position - Transform.Position);
 				Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
 				Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );
 			}
@@ -116,6 +255,27 @@ namespace SoulsBox
 			{
 				isJumping = true;
 			}
+
+			if (Input.Pressed("sb_lock_on"))
+			{
+				toggleLockOn();
+			}
+
+			if (Input.AnalogLook.yaw > 0.5 && lockedOn)
+			{
+				Log.Info( "left!" );
+				SwitchTarget( true );
+			} else if (Input.AnalogLook.yaw < -0.5 && lockedOn )
+			{
+				Log.Info( "right!" );
+				SwitchTarget( false );
+			}
+		}
+
+		protected override void OnStart()
+		{
+
+			OctreeManager.Instance.DestroyAndReInit();
 		}
 	}
 }

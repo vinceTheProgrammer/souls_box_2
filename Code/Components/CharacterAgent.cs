@@ -16,7 +16,11 @@ namespace SoulsBox
 
 		public bool lockedOn { get; set; }
 
-		public Vector3 lockedOnPosition { get; set; }
+		public LockOnAble currentLockOnAble { get; set; }
+
+		public HashSet<LockOnAble> lockOnAbles = new HashSet<LockOnAble>();
+
+		public float LockOnRadius = 1000f;
 
 		public abstract bool IsRunActive();
 
