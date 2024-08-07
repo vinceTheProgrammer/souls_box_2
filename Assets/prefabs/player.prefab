@@ -433,7 +433,7 @@
                                         "__guid": "e8761af4-e480-4794-89ac-a72353ace63f",
                                         "Flags": 4,
                                         "Name": "arm_elbow_helper_L",
-                                        "Position": "-0.000004768372,0.000002861023,-0.00006103516",
+                                        "Position": "0,0,0",
                                         "Rotation": "0.0000003075731,0.000000002854507,-0.7577645,0.6525282",
                                         "Enabled": true
                                       }
@@ -679,7 +679,7 @@
                                             "__guid": "0fd3d037-29a9-4751-9731-d630df4e10a9",
                                             "Flags": 4,
                                             "Name": "arm_elbow_helper_R",
-                                            "Position": "-0.00000667572,0.00003147125,-0.00005340576",
+                                            "Position": "0,0,0",
                                             "Rotation": "0.0000007692941,-0.0000002412072,-0.7577677,0.6525243",
                                             "Enabled": true
                                           }
@@ -771,7 +771,7 @@
                         "__guid": "34c995ee-62b9-4c1a-922d-b900809b570d",
                         "Flags": 4,
                         "Name": "leg_knee_helper_R",
-                        "Position": "0.000001907349,0.000004768372,-0.000009536743",
+                        "Position": "0,0,0",
                         "Rotation": "0.000000905889,-0.000001318489,0.7135269,0.7006279",
                         "Enabled": true
                       }
@@ -788,7 +788,7 @@
                     "__guid": "b7c8f128-eba3-42c3-9f69-0d9218b1addd",
                     "Flags": 4,
                     "Name": "leg_upper_R_twist0",
-                    "Position": "0.000007629395,0.000005960464,-0.00001716614",
+                    "Position": "0,0,0",
                     "Rotation": "-0.00000008940732,-0.000000029802,0.000003069638,1",
                     "Enabled": true
                   },
@@ -796,7 +796,7 @@
                     "__guid": "b8f64e75-c39d-4617-832a-bc2dfbd360ec",
                     "Flags": 4,
                     "Name": "leg_glute_helper_R",
-                    "Position": "-0.000007629395,0,-0.000007629395",
+                    "Position": "0,0,0",
                     "Rotation": "-0.000001221895,-0.0000006515999,-0.7071052,0.7071083",
                     "Enabled": true
                   }
@@ -854,7 +854,7 @@
                         "__guid": "e26ecef5-6334-494a-bbf1-3dd06f8a82be",
                         "Flags": 4,
                         "Name": "leg_knee_helper_L",
-                        "Position": "-0.00001525879,0.000001847744,-0.000009536743",
+                        "Position": "0,0,0",
                         "Rotation": "-0.000002973302,-0.000001705918,0.7135277,0.7006271",
                         "Enabled": true
                       }
@@ -878,7 +878,7 @@
                     "__guid": "b624678b-597c-48a8-ba68-b707ae112e82",
                     "Flags": 4,
                     "Name": "leg_glute_helper_L",
-                    "Position": "-0.000005722046,0.000001907349,-0.000003814697",
+                    "Position": "0,0,0",
                     "Rotation": "-0.000001102686,-0.0000007682514,-0.7071056,0.707108",
                     "Enabled": true
                   }
@@ -965,35 +965,6 @@
               "_type": "gameobject",
               "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b"
             }
-          }
-        ],
-        "Children": [
-          {
-            "__guid": "cd6f6092-7049-4270-9f0b-b02c1af8758d",
-            "Flags": 0,
-            "Name": "Camera",
-            "Position": "-215,0,66",
-            "Tags": "maincamera",
-            "Enabled": true,
-            "Components": [
-              {
-                "__type": "Sandbox.CameraComponent",
-                "__guid": "8223c5d4-2f77-44aa-ba23-800351617639",
-                "BackgroundColor": "0.33333,0.46275,0.52157,1",
-                "ClearFlags": "All",
-                "FieldOfView": 60,
-                "IsMainCamera": true,
-                "Orthographic": false,
-                "OrthographicHeight": 1204,
-                "Priority": 1,
-                "RenderExcludeTags": "",
-                "RenderTags": "",
-                "TargetEye": "None",
-                "Viewport": "0,0,1,1",
-                "ZFar": 10000,
-                "ZNear": 10
-              }
-            ]
           }
         ]
       }

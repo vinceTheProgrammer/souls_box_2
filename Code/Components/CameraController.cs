@@ -41,11 +41,11 @@ namespace SoulsBox
 
 		protected override void OnUpdate()
 		{
-			if (player.lockedOn && player.currentLockOnAble != null)
+			if (player.LockedOn && player.CurrentLockOnAble != null)
 			{
 
 				// HORIZONTAL LOCK ON
-				float horizontalScreenPosition = player.currentLockOnAble.Transform.Position.ToScreen().x;
+				float horizontalScreenPosition = player.CurrentLockOnAble.Transform.Position.ToScreen().x;
 				if (horizontalScreenPosition < 0.5f - horizontalThreshold)
 				{
 					float currentHorizontalThreshold = 0.5f - horizontalThreshold;
@@ -61,7 +61,7 @@ namespace SoulsBox
 				}
 
 				// VERTICAL LOCK ON
-				float verticalScreenPosition = player.currentLockOnAble.Transform.Position.ToScreen().y;
+				float verticalScreenPosition = player.CurrentLockOnAble.Transform.Position.ToScreen().y;
 				if ( verticalScreenPosition < 0.5f - verticalThreshold )
 				{
 					float currentVerticalThreshold = 0.5f - verticalThreshold;
