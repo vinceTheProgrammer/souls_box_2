@@ -22,7 +22,7 @@ namespace SoulsBox
 		public GameObject CameraPivot { get; set; }
 
 		[Property]
-		public AgentPlayer player { get; set; }
+		public AgentPlayer Player { get; set; }
 
 		/// <summary>
 		/// X, Y sets distance & offset of camera. Z sets height via the CameraPivot.
@@ -34,52 +34,48 @@ namespace SoulsBox
 		public Angles ForwardAngles;
 		private Transform InitialCameraTransform;
 
-		public float horizontalLerpSpeed = 40.0f;  // Speed of horizontal lerp
-		public float verticalLerpSpeed = 40.0f;    // Speed of vertical lerp
-		public float horizontalThreshold = 0.05f; // Decimal portion of screen space to allow on either side of center
-		public float verticalThreshold = 0.2f; // Decimal portion of screen space to allow on either side of center
+		public float HorizontalLerpSpeed = 40.0f;  // Speed of horizontal lerp
+		public float VerticalLerpSpeed = 40.0f;    // Speed of vertical lerp
+		public float HorizontalThreshold = 0.05f; // Decimal portion of screen space to allow on either side of center
+		public float VerticalThreshold = 0.2f; // Decimal portion of screen space to allow on either side of center
 
 		protected override void OnUpdate()
 		{
-			if (player.LockedOn && player.CurrentLockOnAble != null)
+			if (Player.LockedOn && Player.CurrentLockOnAble != null)
 			{
 
 				// HORIZONTAL LOCK ON
-				float horizontalScreenPosition = player.CurrentLockOnAble.Transform.Position.ToScreen().x;
-				if (horizontalScreenPosition < 0.5f - horizontalThreshold)
+				float horizontalScreenPosition = Player.CurrentLockOnAble.Transform.Position.ToScreen().x;
+				if (horizontalScreenPosition < 0.5f - HorizontalThreshold)
 				{
-					float currentHorizontalThreshold = 0.5f - horizontalThreshold;
+					float currentHorizontalThreshold = 0.5f - HorizontalThreshold;
 					float distanceToHorizontalThreshold = MathF.Abs( (currentHorizontalThreshold - horizontalScreenPosition) );
 					//Log.Info( distanceToHorizontalThreshold * horizontalLerpSpeed );
-					ForwardAngles.yaw += 0.1f * distanceToHorizontalThreshold * horizontalLerpSpeed;
-				} else if (horizontalScreenPosition > 0.5 + horizontalThreshold)
+					ForwardAngles.yaw += 0.1f * distanceToHorizontalThreshold * HorizontalLerpSpeed;
+				} else if (horizontalScreenPosition > 0.5 + HorizontalThreshold)
 				{
-					float currentHorizontalThreshold = 0.5f + horizontalThreshold;
+					float currentHorizontalThreshold = 0.5f + HorizontalThreshold;
 					float distanceToHorizontalThreshold = MathF.Abs( (currentHorizontalThreshold - horizontalScreenPosition) );
 					//Log.Info( distanceToHorizontalThreshold * horizontalLerpSpeed );
-					ForwardAngles.yaw -= 0.1f * distanceToHorizontalThreshold * horizontalLerpSpeed;
+					ForwardAngles.yaw -= 0.1f * distanceToHorizontalThreshold * HorizontalLerpSpeed;
 				}
 
 				// VERTICAL LOCK ON
-				float verticalScreenPosition = player.CurrentLockOnAble.Transform.Position.ToScreen().y;
-				if ( verticalScreenPosition < 0.5f - verticalThreshold )
+				float verticalScreenPosition = Player.CurrentLockOnAble.Transform.Position.ToScreen().y;
+				if ( verticalScreenPosition < 0.5f - VerticalThreshold )
 				{
-					float currentVerticalThreshold = 0.5f - verticalThreshold;
+					float currentVerticalThreshold = 0.5f - VerticalThreshold;
 					float distanceToVerticalThreshold = MathF.Abs( (currentVerticalThreshold - verticalScreenPosition) );
 					//Log.Info( distanceToVerticalThreshold );
-					ForwardAngles.pitch -= 0.1f * distanceToVerticalThreshold * verticalLerpSpeed;
+					ForwardAngles.pitch -= 0.1f * distanceToVerticalThreshold * VerticalLerpSpeed;
 				}
-				else if ( verticalScreenPosition > 0.5 + verticalThreshold )
+				else if ( verticalScreenPosition > 0.5 + VerticalThreshold )
 				{
-					float currentVerticalThreshold = 0.5f + verticalThreshold;
+					float currentVerticalThreshold = 0.5f + VerticalThreshold;
 					float distanceToVerticalThreshold = MathF.Abs( (currentVerticalThreshold - verticalScreenPosition) );
 					//Log.Info( distanceToVerticalThreshold );
-					ForwardAngles.pitch += 0.1f * distanceToVerticalThreshold * verticalLerpSpeed;
+					ForwardAngles.pitch += 0.1f * distanceToVerticalThreshold * VerticalLerpSpeed;
 				}
-
-				// ForwardAngles = ForwardAngles.LerpTo(ForwardAngles.WithYaw(ForwardAngles.yaw + 1f), 0.5f);
-
-				//Log.Info( verticalScreenPosition );
 
 
 				// Standard Cam
@@ -89,31 +85,6 @@ namespace SoulsBox
 				Camera.Transform.World = InitialCameraTransform.RotateAround( _rotateAround, ForwardAngles );
 				var cameraTrace = Scene.Trace.Ray( _rotateAround, Camera.Transform.World.Position ).Size( 5f ).WithoutTags( "player" ).Run();
 				Camera.Transform.Position = cameraTrace.EndPosition;
-
-
-				/*
-				// Calculate the horizontal position (X and Y) between player and target
-				Vector3 horizontalMidPoint = (Transform.Position + lockedOnPosition) / 2.0f;
-
-				// Calculate the vertical position (Z) to keep both in frame
-				float verticalDistance = MathF.Abs( Transform.Position.z - lockedOnPosition.z );
-				float verticalMidPoint = MathX.Lerp( Transform.Position.z, lockedOnPosition.z, 0.5f ) + minVerticalDistance;
-				verticalMidPoint = MathX.Clamp( verticalMidPoint, MathF.Min( Transform.Position.z, lockedOnPosition.z ), MathF.Max( Transform.Position.z, lockedOnPosition.z ) );
-
-				// Desired target position of the camera
-				targetPosition = new Vector3( horizontalMidPoint.x, horizontalMidPoint.y, verticalMidPoint + cameraHeight );
-
-				// Smoothly move the camera horizontally (X and Y)
-				Vector3 horizontalPosition = Vector3.Lerp( Camera.Transform.Position, targetPosition, horizontalLerpSpeed * Time.Delta );
-				// Smoothly move the camera vertically (Z)
-				horizontalPosition.z = MathX.Lerp( Camera.Transform.Position.z, targetPosition.z, verticalLerpSpeed * Time.Delta );
-
-				// Set the camera's position
-				Camera.Transform.Position = horizontalPosition;
-
-				// Optional: Rotate the camera to look at the midpoint
-				Camera.Transform.Rotation = (horizontalMidPoint - Camera.Transform.Position).Normal.EulerAngles;
-				*/
 			}
 			else
 			{
@@ -129,6 +100,10 @@ namespace SoulsBox
 
 		protected override void OnStart()
 		{
+			Camera = Scene.Camera.GameObject;
+			//Player = Scene.Components.Get<AgentPlayer>();
+			//CameraPivot = Scene.Components.Get<CameraPivot>().GameObject;
+			Camera.SetParent( CameraPivot );
 			InitialCameraTransform = Camera.Transform.World;
 		}
 	}

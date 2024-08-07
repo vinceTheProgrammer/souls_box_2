@@ -50,7 +50,36 @@
           {
             "__type": "SoulsBox.CharacterMovementController",
             "__guid": "f3e451d7-ca9e-4e87-a354-8d2a83179a53",
-            "agent": {
+            "TerminalVelocity": 200,
+            "Agent": {
+              "_type": "component",
+              "component_id": "7158296d-d01c-4c4c-86ad-9df69e8b4d35",
+              "go": "bac041b7-d27c-40aa-8df3-674dc303e4aa",
+              "component_type": "AgentAI"
+            },
+            "CharacterAnimationController": {
+              "_type": "component",
+              "component_id": "39cc5d49-b78f-462b-9b63-d298536d4720",
+              "go": "bac041b7-d27c-40aa-8df3-674dc303e4aa",
+              "component_type": "CharacterAnimationController"
+            },
+            "CharacterController": {
+              "_type": "component",
+              "component_id": "ae782510-a9df-4f45-a3fd-30714a945ec8",
+              "go": "bac041b7-d27c-40aa-8df3-674dc303e4aa",
+              "component_type": "CharacterController"
+            },
+            "RunSpeed": 320,
+            "WalkSpeed": 140
+          },
+          {
+            "__type": "SoulsBox.AgentAI",
+            "__guid": "7158296d-d01c-4c4c-86ad-9df69e8b4d35"
+          },
+          {
+            "__type": "SoulsBox.CharacterAnimationController",
+            "__guid": "39cc5d49-b78f-462b-9b63-d298536d4720",
+            "Agent": {
               "_type": "component",
               "component_id": "7158296d-d01c-4c4c-86ad-9df69e8b4d35",
               "go": "bac041b7-d27c-40aa-8df3-674dc303e4aa",
@@ -62,20 +91,12 @@
               "go": "bac041b7-d27c-40aa-8df3-674dc303e4aa",
               "component_type": "CitizenAnimationHelper"
             },
-            "BackstepForce": 0,
-            "CharacterController": {
+            "MovementController": {
               "_type": "component",
-              "component_id": "ae782510-a9df-4f45-a3fd-30714a945ec8",
+              "component_id": "f3e451d7-ca9e-4e87-a354-8d2a83179a53",
               "go": "bac041b7-d27c-40aa-8df3-674dc303e4aa",
-              "component_type": "CharacterController"
-            },
-            "JumpForce": 0,
-            "RunSpeed": 320,
-            "WalkSpeed": 140
-          },
-          {
-            "__type": "SoulsBox.AgentAI",
-            "__guid": "7158296d-d01c-4c4c-86ad-9df69e8b4d35"
+              "component_type": "CharacterMovementController"
+            }
           }
         ]
       }

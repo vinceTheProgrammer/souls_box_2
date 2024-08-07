@@ -14,10 +14,6 @@
           {
             "__type": "SoulsBox.AgentPlayer",
             "__guid": "ea253347-1f2f-4df6-899c-8cf423f256d1",
-            "Camera": {
-              "_type": "gameobject",
-              "go": "cd6f6092-7049-4270-9f0b-b02c1af8758d"
-            },
             "CameraController": {
               "_type": "component",
               "component_id": "f2c37b1b-6711-4dde-91cb-8648e2f9d2ba",
@@ -65,17 +61,18 @@
           {
             "__type": "SoulsBox.CharacterMovementController",
             "__guid": "68814b77-26b1-4420-a0e5-8c68cb2f04d0",
-            "agent": {
+            "TerminalVelocity": 200,
+            "Agent": {
               "_type": "component",
               "component_id": "ea253347-1f2f-4df6-899c-8cf423f256d1",
               "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
               "component_type": "AgentPlayer"
             },
-            "AnimationHelper": {
+            "CharacterAnimationController": {
               "_type": "component",
-              "component_id": "c61bb71c-d72d-4932-a211-71c9f7d5f2ac",
+              "component_id": "d7278c54-dc80-4a5e-aa9b-7a6e09848bc4",
               "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
-              "component_type": "CitizenAnimationHelper"
+              "component_type": "CharacterAnimationController"
             },
             "CharacterController": {
               "_type": "component",
@@ -89,16 +86,44 @@
           {
             "__type": "SoulsBox.CameraController",
             "__guid": "f2c37b1b-6711-4dde-91cb-8648e2f9d2ba",
-            "Camera": {
-              "_type": "gameobject",
-              "go": "cd6f6092-7049-4270-9f0b-b02c1af8758d"
-            },
             "CameraOffset": "-215,0,60",
             "CameraPivot": {
               "_type": "gameobject",
               "go": "5f486ded-872c-48ab-9ac0-3d083a95b1f9"
             },
-            "player": {
+            "Player": {
+              "_type": "component",
+              "component_id": "ea253347-1f2f-4df6-899c-8cf423f256d1",
+              "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
+              "component_type": "AgentPlayer"
+            }
+          },
+          {
+            "__type": "SoulsBox.CharacterAnimationController",
+            "__guid": "d7278c54-dc80-4a5e-aa9b-7a6e09848bc4",
+            "Agent": {
+              "_type": "component",
+              "component_id": "ea253347-1f2f-4df6-899c-8cf423f256d1",
+              "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
+              "component_type": "AgentPlayer"
+            },
+            "AnimationHelper": {
+              "_type": "component",
+              "component_id": "c61bb71c-d72d-4932-a211-71c9f7d5f2ac",
+              "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
+              "component_type": "CitizenAnimationHelper"
+            },
+            "MovementController": {
+              "_type": "component",
+              "component_id": "68814b77-26b1-4420-a0e5-8c68cb2f04d0",
+              "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
+              "component_type": "CharacterMovementController"
+            }
+          },
+          {
+            "__type": "SoulsBox.InputManager",
+            "__guid": "aada58fd-b683-4403-bca0-6e09ead1cf00",
+            "Agent": {
               "_type": "component",
               "component_id": "ea253347-1f2f-4df6-899c-8cf423f256d1",
               "go": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
