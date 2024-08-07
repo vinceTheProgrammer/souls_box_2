@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 using System;
 
@@ -269,6 +270,21 @@ namespace SoulsBox
 			{
 				Log.Info( "right!" );
 				SwitchTarget( false );
+			}
+
+			if (Input.Pressed("sb_light_attack"))
+			{
+				if (!isLightAttacking)
+				{
+					isLightAttacking = true;
+				} else
+				{
+					CitizenAnimationHelper AnimationHelper = GameObject.Components.Get<CitizenAnimationHelper>();
+					if ( AnimationHelper != null )
+					{
+						AnimationHelper.Target.Set( "sb_continue_combo", true );
+					}
+				}	
 			}
 		}
 

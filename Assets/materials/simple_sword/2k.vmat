@@ -1,0 +1,11 @@
+
+Layer0
+{
+	shader "shaders/complex.shader_c"
+
+	TextureColor "materials/simple_sword/2k_diffuse.png"
+	TextureAmbientOcclusion "materials/default/default_ao.tga"
+	TextureNormal "materials/simple_sword/2k_normal.png"
+	TextureRoughness "materials/simple_sword/2k_roughness.jpg"
+
+}

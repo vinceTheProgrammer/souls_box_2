@@ -17,6 +17,7 @@ namespace SoulsBox
 		private bool isRolling;
 		private bool isJumping;
 		private bool isBackstepping;
+		private bool isAttacking;
 		private bool midwayPoint;
 		private bool canInterrupt;
 		private bool setLastMove;
@@ -81,23 +82,30 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
-
 			//Log.Info( Input.AnalogMove );
-
+			/*
+			Log.Info( "agent.isRolling: " +agent.isRolling );
+			Log.Info( "isRolling: " + isRolling );
+			Log.Info( "midway: " + midwayPoint );
+			Log.Info( "canInterrupt: " + canInterrupt );
+			Log.Info( "isNotDoingAnimation: " + isNotDoingAnimation );
+			Log.Info( "agent.isLightAttacking: " + agent.isLightAttacking );
+			Log.Info( "setLastMove: " + setLastMove );
+			*/
 
 			if ( AnimationHelper != null )
 			{
 				//Log.Info( "hm " + canInterrupt + " " + isRolling );
 				if ( Input.Pressed("sb_roll") && canInterrupt && isRolling )
 				{
-					//Log.Info( "interrupted!!!" );
-					//agent.Transform.Rotation = Rotation.FromYaw( (agent.GetMoveVector()).EulerAngles.yaw );
-					//AnimationHelper.Target.Set( "sb_interrupt", true );
-					//agent.Transform.Rotation = Rotation.FromYaw( (agent.GetMoveVector()).EulerAngles.yaw );
-					//AnimationHelper.Target.Set( "roll_forward", true );
-					//agent.isRolling = true;
-					//isRolling = true;
-					//canInterrupt = false;
+					Log.Info( "interrupted!!!" );
+					AnimationHelper.Target.Set( "sb_interrupt", true );
+					isRolling = false;
+					midwayPoint = false;
+					canInterrupt = false;
+					isNotDoingAnimation = true;
+					setLastMove = false;
+					agent.isRolling = false;
 				}
 			}
 
@@ -231,6 +239,11 @@ namespace SoulsBox
 				CharacterController.Velocity = _targetVelocity;
 				CharacterController.Move();
 			}
+			else if (isAttacking)
+			{
+				//Log.Info( AnimationHelper.Target.RootMotion );
+				CharacterController.MoveTo( Transform.Position + AnimationHelper.Target.RootMotion.Position.Length * Transform.Rotation.Forward.Normal * 7.5f, true);
+			}
 			else
 			{
 				//Log.Info( "!!!!!" );
@@ -275,6 +288,7 @@ namespace SoulsBox
 					}
 					else if ( isNotDoingAnimation && agent.isRolling == true )
 					{
+						Log.Info( "HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII\n\ndasfdjkhsafhkasdjfhkjsdfh\nhfdsakujfhsdjf\nhdsakujhdkjfhaidhfhfdjksfhsd\nsdafkjh" );
 						agent.Transform.Rotation = Rotation.FromYaw( (agent.GetMoveVector()).EulerAngles.yaw );
 						AnimationHelper.Target.Set( "roll_forward", true );
 						isNotDoingAnimation = false;
@@ -289,6 +303,11 @@ namespace SoulsBox
 					else if ( isNotDoingAnimation && agent.isBackstepping == true )
 					{
 						AnimationHelper.Target.Set( "sb_backstep", true );
+						isNotDoingAnimation = false;
+					} else if ( isNotDoingAnimation && agent.isLightAttacking == true )
+					{
+						AnimationHelper.Target.Set( "sb_light_attack_sword", true );
+						isAttacking = true;
 						isNotDoingAnimation = false;
 					}
 					//Log.Info( "can interrupt: " + canInterrupt );
@@ -340,7 +359,7 @@ namespace SoulsBox
 				{
 					case "roll_start":
 					case "roll2_start":
-						//Log.Info( "setting to true" );
+						Log.Info( "setting to true" );
 						isRolling = true;
 						canInterrupt = false;
 						break;
@@ -352,13 +371,26 @@ namespace SoulsBox
 						break;
 					case "roll_end":
 					case "roll2_end":
-						//Log.Info( "setting to false" );
+					case "light_attack_sword_end":
+						Log.Info( "setting to false" );
 						//Log.Info( "You're toooo slow" );
 						isRolling = false;
 						agent.isRolling = false;
+						agent.isLightAttacking = false;
 						midwayPoint = false;
 						canInterrupt = false;
 						isNotDoingAnimation = true;
+						setLastMove = false;
+						isAttacking = false;
+						break;
+					case "light_attack_reset":
+						Log.Info( "reset!" );
+						isRolling = false;
+						agent.isRolling = false;
+						agent.isLightAttacking = true;
+						midwayPoint = false;
+						canInterrupt = false;
+						isNotDoingAnimation = false;
 						setLastMove = false;
 						break;
 					case "jump_end":
@@ -381,11 +413,11 @@ namespace SoulsBox
 						break;
 					case "roll_midway":
 					case "roll2_midway":
-						//Log.Info( "mid" );
+						Log.Info( "mid" );
 						midwayPoint = true;
 						break;
 					case "can_interrupt":
-						//Log.Info( "Can Interrupt!; " + isRolling );
+						Log.Info( "Can Interrupt!; " + isRolling );
 						canInterrupt = true; 
 						break;
 				}

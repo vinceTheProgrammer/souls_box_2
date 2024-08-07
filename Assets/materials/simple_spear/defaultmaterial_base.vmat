@@ -1,0 +1,14 @@
+
+Layer0
+{
+	shader "shaders/complex.shader_c"
+
+	TextureColor "materials/simple_spear/defaultmaterial_base_color.png"
+	TextureAmbientOcclusion "materials/simple_spear/defaultmaterial_mixed_ao.png"
+	TextureNormal "materials/simple_spear/defaultmaterial_normal.png"
+	TextureRoughness "materials/simple_spear/defaultmaterial_roughness.png"
+	F_METALNESS_TEXTURE 1
+	F_SPECULAR 1
+	TextureMetalness "materials/simple_spear/defaultmaterial_metallic.png"
+
+}

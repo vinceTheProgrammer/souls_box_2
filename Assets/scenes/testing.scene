@@ -398,6 +398,86 @@
           ]
         }
       ]
+    },
+    {
+      "__guid": "bc0daebc-8d45-4e6f-9cb1-4dc7832ee4eb",
+      "Flags": 0,
+      "Name": "enemy",
+      "Position": "-203.1825,981.0548,59.51886",
+      "Enabled": true,
+      "__Prefab": "prefabs/enemy.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "cb176e47-e75c-4006-946c-63e2af192863",
+      "Flags": 0,
+      "Name": "sting-sword lowpoly",
+      "Position": "93.85201,-22.81757,224.561",
+      "Rotation": "0,0.6087614,0,0.7933534",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "8b49b387-967c-47cd-8459-106f25c5153c",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/sting_sword/sting-sword lowpoly.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "2bb5a5db-cd09-4018-987f-ed3eb7a0c40c",
+      "Flags": 0,
+      "Name": "spear",
+      "Position": "118.8992,-59.43267,187.5498",
+      "Rotation": "0,-0.1305262,0,0.9914449",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "ffb2897a-9298-402c-ab47-d72d931f3ee6",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/simple_spear/spear.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "5a0bb91f-f9a6-4ac2-a152-91cd4d7e15cb",
+      "Flags": 0,
+      "Name": "swordhigh_01",
+      "Position": "101.1848,3.456353,190.4461",
+      "Rotation": "0,-0.1305262,0,0.9914449",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "5f2f6ddd-2628-47ac-bce3-3bc2d5a6b225",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/simple_sword/swordhigh_01.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "e3568ce9-0782-45af-8970-93687dbf9f58",
+      "Flags": 0,
+      "Name": "glass_bottle_fbx",
+      "Position": "178.201,-64.30856,187.6373",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "4f8faebe-c456-43d8-94d4-a8048e1969fc",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/bottle/glass_bottle_fbx.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
     }
   ],
   "SceneProperties": {

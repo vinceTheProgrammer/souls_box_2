@@ -1,0 +1,43 @@
+{
+  "RootObject": {
+    "__guid": "37fa9b98-bc52-44fa-a016-85922a666884",
+    "Flags": 0,
+    "Name": "sting_sword",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "1564d879-a346-49a8-8319-ddb237430e6d",
+        "BodyGroups": 18446744073709551615,
+        "Model": "models/sting_sword/sting-sword lowpoly.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Sandbox.ManualHitbox",
+        "__guid": "3515828a-a28e-4a49-90fe-761efd519d54",
+        "CenterA": "-22,0,0",
+        "CenterB": "22.99999,0,0",
+        "HitboxTags": "",
+        "Radius": 10,
+        "Shape": "Capsule"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "211ad3cc-ef67-41f1-9da2-b83f65a4187b",
+        "Flags": 0,
+        "Name": "hold_point",
+        "Position": "20,0,0",
+        "Enabled": true
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

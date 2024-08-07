@@ -1,0 +1,11 @@
+
+Layer0
+{
+	shader "shaders/complex.shader_c"
+
+	TextureColor "materials/bottle/glass_bottle_albedo.png"
+	TextureAmbientOcclusion "materials/bottle/glass_bottle_ao.png"
+	TextureNormal "materials/bottle/glass_bottle_normal.png"
+	TextureRoughness "materials/bottle/glass_bottle_roughness.png"
+
+}

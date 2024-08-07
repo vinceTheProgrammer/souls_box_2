@@ -155,7 +155,7 @@
 									{
 										_class = "AnimEvent"
 										event_class = "AE_GENERIC_EVENT"
-										event_frame = 34
+										event_frame = 25
 										event_keys = 
 										{
 											TypeName = ""
@@ -324,6 +324,19 @@
 											Float = 0.0
 											Vector = [ 0.0, 0.0, 0.0 ]
 											StringData = "roll2_end"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 25
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "can_interrupt"
 										}
 									},
 								]
@@ -593,63 +606,6 @@
 							},
 							{
 								_class = "AnimFile"
-								name = "sword_combo"
-								children = 
-								[
-									{
-										_class = "ExtractMotion"
-										extract_tx = true
-										extract_ty = true
-										extract_tz = false
-										extract_rz = false
-										linear = false
-										quadratic = false
-										root_bone_name = "pelvis"
-										motion_type = "Single"
-									},
-									{
-										_class = "AnimAlign"
-										align_tx = true
-										align_ty = true
-										align_tz = false
-										align_rx = false
-										align_ry = false
-										align_rz = false
-										align_frame_type = "Number"
-										frame = 0
-										align_to_anim = "IdlePose_Default"
-										align_to_frame_type = "Number"
-										align_to_frame = 0
-										bone = "pelvis"
-									},
-									{
-										_class = "AnimOffset"
-										translation = [ 0.0, 0.0, -2.0 ]
-										rotation_xyz = [ 0.0, 0.0, 0.0 ]
-									},
-								]
-								activity_name = ""
-								activity_weight = 1
-								weight_list_name = ""
-								fade_in_time = 0.2
-								fade_out_time = 0.2
-								looping = false
-								delta = false
-								worldSpace = false
-								hidden = false
-								anim_markup_ordered = false
-								disable_compression = false
-								disable_interpolation = false
-								enable_scale = false
-								source_filename = "animations/sword_combo.fbx"
-								start_frame = -1
-								end_frame = -1
-								framerate = -1.0
-								take = 0
-								reverse = false
-							},
-							{
-								_class = "AnimFile"
 								name = "roll2_mirror"
 								children = 
 								[
@@ -762,6 +718,19 @@
 											StringData = "roll2_end"
 										}
 									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 25
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "can_interrupt"
+										}
+									},
 								]
 								activity_name = ""
 								activity_weight = 1
@@ -779,6 +748,286 @@
 								source_filename = "animations/roll2_mirror.fbx"
 								start_frame = -1
 								end_frame = 48
+								framerate = 48.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "sword_combo_pt1_windup"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 0
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "light_attack_reset"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 4
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "light_attack_sword_end"
+										}
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/sword_combo.fbx"
+								start_frame = 65
+								end_frame = 69
+								framerate = 5.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "sword_combo_pt1"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/sword_combo.fbx"
+								start_frame = 70
+								end_frame = 92
+								framerate = 48.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "sword_combo_pt2_windup"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 0
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "light_attack_reset"
+										}
+									},
+									{
+										_class = "AnimEvent"
+										event_class = "AE_GENERIC_EVENT"
+										event_frame = 4
+										event_keys = 
+										{
+											TypeName = ""
+											Int = 0
+											Float = 0.0
+											Vector = [ 0.0, 0.0, 0.0 ]
+											StringData = "light_attack_sword_end"
+										}
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/sword_combo.fbx"
+								start_frame = 93
+								end_frame = 97
+								framerate = 5.0
+								take = 0
+								reverse = false
+							},
+							{
+								_class = "AnimFile"
+								name = "sword_combo_pt2"
+								children = 
+								[
+									{
+										_class = "ExtractMotion"
+										extract_tx = true
+										extract_ty = true
+										extract_tz = false
+										extract_rz = false
+										linear = false
+										quadratic = false
+										root_bone_name = "pelvis"
+										motion_type = "Single"
+									},
+									{
+										_class = "AnimAlign"
+										align_tx = true
+										align_ty = true
+										align_tz = false
+										align_rx = false
+										align_ry = false
+										align_rz = false
+										align_frame_type = "Number"
+										frame = 0
+										align_to_anim = "IdlePose_Default"
+										align_to_frame_type = "Number"
+										align_to_frame = 0
+										bone = "pelvis"
+									},
+									{
+										_class = "AnimOffset"
+										translation = [ 0.0, 0.0, -2.0 ]
+										rotation_xyz = [ 0.0, 0.0, 0.0 ]
+									},
+								]
+								activity_name = ""
+								activity_weight = 1
+								weight_list_name = ""
+								fade_in_time = 0.2
+								fade_out_time = 0.2
+								looping = false
+								delta = false
+								worldSpace = false
+								hidden = false
+								anim_markup_ordered = false
+								disable_compression = false
+								disable_interpolation = false
+								enable_scale = false
+								source_filename = "animations/sword_combo.fbx"
+								start_frame = 41
+								end_frame = 64
 								framerate = 48.0
 								take = 0
 								reverse = false

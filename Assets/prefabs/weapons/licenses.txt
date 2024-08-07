@@ -1,0 +1,3 @@
+sting_sword: https://free3d.com/3d-model/sting-sword-128810.html; personal use license (might have to remove before submission)
+simple_spear: https://www.turbosquid.com/3d-models/3d-model-simple-spear-2098706; Standard Turbosquid license
+simple_sword: https://www.turbosquid.com/3d-models/3d-game-ready-medieval-sword1-2190820; Standard Turbosquid license

@@ -14,6 +14,8 @@ namespace SoulsBox
 
 		public bool isBackstepping { get; set; }
 
+		public bool isLightAttacking { get; set; }
+
 		public bool lockedOn { get; set; }
 
 		public LockOnAble currentLockOnAble { get; set; }
