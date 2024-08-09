@@ -17,7 +17,13 @@
 
     protected override void OnUpdate()
     {
-        //Log.Info(player.currentLockOnAble);
+        if (Player == null)
+        {
+            Player = Game.ActiveScene.GetAllComponents<AgentPlayer>().FirstOrDefault(x => x.Network.IsOwner);
+        }
+
+        if (Player == null) return;
+
         if (LockOnHudElement == null || Player.CurrentLockOnAble == null) return;
 
         if (!Player.LockedOn)
@@ -34,14 +40,9 @@
         LockOnHudElement.Style.MarginLeft = Length.Pixels(-1 * LockOnHudElement.Box.Rect.Width);
     }
 
-    protected override void OnStart()
+    protected override int BuildHash()
     {
-        Player = Scene.GetAllComponents<AgentPlayer>().First();
+        if (Player == null || Player.CurrentLockOnAble == null) return 1;
+        return System.HashCode.Combine(Player.LockedOn, Player.CurrentLockOnAble);
     }
-
-
-    /// <summary>
-    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-    /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine( Player.LockedOn, Player.CurrentLockOnAble );
 }

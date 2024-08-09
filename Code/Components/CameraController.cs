@@ -21,8 +21,7 @@ namespace SoulsBox
 		[Property]
 		public GameObject CameraPivot { get; set; }
 
-		[Property]
-		public AgentPlayer Player { get; set; }
+		private AgentPlayer Player { get; set; }
 
 		/// <summary>
 		/// X, Y sets distance & offset of camera. Z sets height via the CameraPivot.
@@ -41,6 +40,9 @@ namespace SoulsBox
 
 		protected override void OnUpdate()
 		{
+			if ( Network.IsProxy ) return;
+			UpdateMoveVectors();
+
 			if (Player.LockedOn && Player.CurrentLockOnAble != null)
 			{
 
@@ -50,13 +52,11 @@ namespace SoulsBox
 				{
 					float currentHorizontalThreshold = 0.5f - HorizontalThreshold;
 					float distanceToHorizontalThreshold = MathF.Abs( (currentHorizontalThreshold - horizontalScreenPosition) );
-					//Log.Info( distanceToHorizontalThreshold * horizontalLerpSpeed );
 					ForwardAngles.yaw += 0.1f * distanceToHorizontalThreshold * HorizontalLerpSpeed;
 				} else if (horizontalScreenPosition > 0.5 + HorizontalThreshold)
 				{
 					float currentHorizontalThreshold = 0.5f + HorizontalThreshold;
 					float distanceToHorizontalThreshold = MathF.Abs( (currentHorizontalThreshold - horizontalScreenPosition) );
-					//Log.Info( distanceToHorizontalThreshold * horizontalLerpSpeed );
 					ForwardAngles.yaw -= 0.1f * distanceToHorizontalThreshold * HorizontalLerpSpeed;
 				}
 
@@ -66,14 +66,12 @@ namespace SoulsBox
 				{
 					float currentVerticalThreshold = 0.5f - VerticalThreshold;
 					float distanceToVerticalThreshold = MathF.Abs( (currentVerticalThreshold - verticalScreenPosition) );
-					//Log.Info( distanceToVerticalThreshold );
 					ForwardAngles.pitch -= 0.1f * distanceToVerticalThreshold * VerticalLerpSpeed;
 				}
 				else if ( verticalScreenPosition > 0.5 + VerticalThreshold )
 				{
 					float currentVerticalThreshold = 0.5f + VerticalThreshold;
 					float distanceToVerticalThreshold = MathF.Abs( (currentVerticalThreshold - verticalScreenPosition) );
-					//Log.Info( distanceToVerticalThreshold );
 					ForwardAngles.pitch += 0.1f * distanceToVerticalThreshold * VerticalLerpSpeed;
 				}
 
@@ -88,6 +86,20 @@ namespace SoulsBox
 			}
 			else
 			{
+				ForwardAngles += Input.AnalogLook;
+				float _tempVarPointDistance = 100.0f;
+				Vector3 _tempPointVector = new Vector3( Transform.Position.WithZ( Transform.Position.z + 65.0f ) + Transform.Rotation.Forward.Normal * _tempVarPointDistance );
+				SceneTraceResult camToPointTraceResult = Scene.Trace.Ray( Camera.Transform.Position, _tempPointVector ).Size( 1f ).WithoutTags( "player" ).Run();
+				SceneTraceResult playerToPointTraceResult = Scene.Trace.Ray( Transform.Position.WithZ( Transform.Position.z + 65.0f ), _tempPointVector ).Size( 1f ).WithoutTags( "player" ).Run();
+
+				bool playerFacingRight = _tempPointVector.ToScreen().x > 0.5f; // TODO ToScreen is obsolete apparently
+
+				if ( camToPointTraceResult.Hit && !playerToPointTraceResult.Hit )
+				{
+					float incrementAmount = playerFacingRight ? -1f : 1f;
+					ForwardAngles.yaw += incrementAmount;
+				}
+
 				Vector3 _rotateAround = CameraPivot.Transform.Position;
 				ForwardAngles = ForwardAngles.WithPitch( MathX.Clamp( ForwardAngles.pitch, -30.0f, 60.0f ) );
 				InitialCameraTransform.Position = (_rotateAround + CameraOffset).WithZ( _rotateAround.z );
@@ -95,16 +107,63 @@ namespace SoulsBox
 				var cameraTrace = Scene.Trace.Ray( _rotateAround, Camera.Transform.World.Position ).Size( 5f ).WithoutTags( "player" ).Run();
 				Camera.Transform.Position = cameraTrace.EndPosition;
 			}
-			
+
+			if ( Player.MoveVectorRelativeToCamera.Length > 0 ) Player.LastMoveDirectionRotation = Rotation.FromYaw( (Player.MoveVectorRelativeToCamera).EulerAngles.yaw );
+
+			if ( Player is AgentPlayer player )
+			{
+				if ( player.IsRolling || player.IsJumping || player.IsBackstepping )
+				{
+					if ( player.CharacterMovementController != null )
+					{
+						Vector3 debug = player.CharacterMovementController.CharacterController.Velocity.ProjectOnNormal( Camera.Transform.Rotation.Right.Normal );
+						float sign = Math.Sign( Camera.Transform.Rotation.Right.Normal.Dot( player.CharacterMovementController.CharacterController.Velocity ) );
+						float debug2 = debug.Length * sign;
+						Angles _targetAngles = ForwardAngles.WithYaw(ForwardAngles.yaw - debug2.Clamp( -1.0f, 1.0f ) );
+						ForwardAngles = ForwardAngles.LerpTo( _targetAngles, 0.1f );
+					}
+				}
+				else
+				{
+					float roundingThreshold = 0.1f;
+					float moveVectorRelativeToCameraYConditionallyRounded = player.MoveVectorRelativeToCamera.y.RoundToNearestThreshold( roundingThreshold );
+					Angles _targetAngles = ForwardAngles.WithYaw( ForwardAngles.yaw + moveVectorRelativeToCameraYConditionallyRounded );
+					ForwardAngles = ForwardAngles.LerpTo( _targetAngles, 0.1f );
+				}
+			}
 		}
 
 		protected override void OnStart()
 		{
+			if ( Network.IsProxy ) return;
 			Camera = Scene.Camera.GameObject;
-			//Player = Scene.Components.Get<AgentPlayer>();
-			//CameraPivot = Scene.Components.Get<CameraPivot>().GameObject;
 			Camera.SetParent( CameraPivot );
+			Camera.Transform.Position = CameraPivot.Transform.Position + CameraOffset;
+			Camera.Transform.Rotation = ((CameraPivot.Transform.Position - Camera.Transform.Position).Normal.EulerAngles).WithPitch(0f);
 			InitialCameraTransform = Camera.Transform.World;
+			Player = AgentPlayer.Local;
+			LogSceneHierarchy();
+		}
+
+		private void LogSceneHierarchy()
+		{
+			IEnumerable<GameObject> objects = Game.ActiveScene.GetAllObjects( true );
+			foreach ( GameObject obj in objects )
+			{
+				Log.Info( obj.Name + ": " + !obj.Network.IsProxy );
+			}
+		}
+
+		private void UpdateMoveVectors()
+		{
+			InputManager.UpdateAnalogMove(Player);
+			Player.MoveVectorRelativeToCamera = GetMoveVectorRelativeToCamera();
+		}
+
+		private Vector3 GetMoveVectorRelativeToCamera()
+		{
+			if ( Camera == null ) return Vector3.Zero;
+			return Player.MoveVector * Camera.Transform.Rotation;
 		}
 	}
 }

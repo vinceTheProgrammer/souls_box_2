@@ -1,15 +1,15 @@
 {
-  "Title": "Souls Box 2",
+  "Title": "Souls Box 2 (Private Testing)",
   "Type": "game",
   "Org": "vincetp",
-  "Ident": "souls_box_2",
+  "Ident": "souls_box_2_private_testing",
   "Schema": 1,
   "IncludeSourceFiles": false,
   "Resources": "",
   "PackageReferences": [],
   "EditorReferences": null,
   "Metadata": {
-    "MaxPlayers": 1,
+    "MaxPlayers": 16,
     "MinPlayers": 1,
     "TickRate": 50,
     "GameNetworkType": "Multiplayer",
@@ -21,7 +21,7 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/game.scene",
+    "StartupScene": "scenes/testing.scene",
     "ProjectTemplate": null,
     "ControlModes": {
       "Keyboard": true,
@@ -202,11 +202,17 @@
           "KeyboardCode": "SEMICOLON",
           "GamepadCode": "None",
           "GroupName": "Other"
+        },
+        {
+          "Name": "chat",
+          "KeyboardCode": "Y",
+          "GamepadCode": "None",
+          "GroupName": "Other"
         }
       ],
       "__guid": "2732d242-d0fe-464e-94e2-09cca95d148d"
     },
-    "LaunchMode": "Launcher",
+    "LaunchMode": "QuickPlay",
     "Compiler": {
       "RootNamespace": "Sandbox",
       "DefineConstants": "SANDBOX;ADDON;DEBUG",
@@ -220,6 +226,6 @@
       ],
       "DistinctAssemblyReferences": []
     },
-    "MapStartupScene": "scenes/game.scene"
+    "MapStartupScene": "scenes/testing.scene"
   }
 }

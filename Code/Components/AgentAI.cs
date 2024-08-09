@@ -13,9 +13,7 @@ namespace SoulsBox
 	{
 		private Rotation LastMoveDirectionRotation;
 
-		public override CameraController CameraController { get => null; set => throw new NotImplementedException(); }
-
-		public override Vector3 GetMoveVector()
+		private void SetMoveVector()
 		{
 			float _speed = 0.5f;
 			float _radius = 1.0f;
@@ -29,22 +27,13 @@ namespace SoulsBox
 			float z = _radius * MathF.Sin( angle );
 
 			// Return the position as a Vector3 (assuming y is constant)
-			return new Vector3( x, z, 0 );
-		}
-
-		public override bool IsGuardActive()
-		{
-			return false;
-		}
-
-		public override bool IsRunActive()
-		{
-			return false;
+			MoveVector = new Vector3( x, z, 0 );
 		}
 
 		protected override void OnUpdate()
 		{
-			if ( GetMoveVector().Length > 0 ) LastMoveDirectionRotation = Rotation.FromYaw( (GetMoveVector()).EulerAngles.yaw );
+			SetMoveVector();
+			if ( MoveVector.Length > 0 ) LastMoveDirectionRotation = Rotation.FromYaw( (MoveVector).EulerAngles.yaw );
 			Transform.Rotation = Rotation.Lerp( Transform.Rotation, LastMoveDirectionRotation, 0.1f );
 		}
 	}

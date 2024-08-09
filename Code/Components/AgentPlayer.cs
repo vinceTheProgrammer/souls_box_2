@@ -2,6 +2,7 @@ using Sandbox;
 using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 using System;
+using System.Numerics;
 
 namespace SoulsBox
 {
@@ -11,56 +12,53 @@ namespace SoulsBox
 	[Title( "Souls Box Player Agent" )]
 	[Category( "Souls Box" )]
 	[Icon( "man" )]
+
 	public sealed class AgentPlayer : CharacterAgent
 	{
 
 		[Property]
-		public override CameraController CameraController { get; set; }
+		public CameraController CameraController { get; set; }
 
-		private Rotation LastMoveDirectionRotation;
+		[Property]
+		public CharacterMovementController CharacterMovementController { get; set; }
 
-		public override Vector3 GetMoveVector()
+		[Sync]
+		public Rotation LastMoveDirectionRotation { get; set; }
+
+		[Sync]
+		public Vector3 MoveVectorRelativeToCamera {  get; set; }
+
+		public bool LockedOn { get; set; }
+		public LockOnAble CurrentLockOnAble { get; set; }
+
+		public HashSet<LockOnAble> LockOnAbles = new HashSet<LockOnAble>();
+		public float LockOnRadius { get; set; } = 1000f;
+
+		public static AgentPlayer Local
 		{
-			return Input.AnalogMove * CameraController.Camera.Transform.Rotation;
+			get
+			{
+				if ( !_local.IsValid())
+				{
+					_local = Game.ActiveScene.GetAllComponents<AgentPlayer>().FirstOrDefault( x => x.Network.IsOwner );
+				}
+				return _local;
+			}
 		}
-
-		public override bool IsGuardActive()
-		{
-			return Input.Down( "Guard" );
-		}
-
-		public override bool IsRunActive()
-		{
-			return IsSprinting;
-		}
+		private static AgentPlayer _local = null;
 
 		protected override void OnUpdate()
 		{
-			if (!LockedOn)
-			{
-				CameraController.ForwardAngles += Input.AnalogLook;
-				float _tempVarPointDistance = 100.0f;
-				Vector3 _tempPointVector = new Vector3( Transform.Position.WithZ( Transform.Position.z + 65.0f ) + Transform.Rotation.Forward.Normal * _tempVarPointDistance );
-				SceneTraceResult camToPointTraceResult = Scene.Trace.Ray( CameraController.Camera.Transform.Position, _tempPointVector ).Size( 1f ).WithoutTags( "player" ).Run();
-				SceneTraceResult playerToPointTraceResult = Scene.Trace.Ray( Transform.Position.WithZ( Transform.Position.z + 65.0f ), _tempPointVector ).Size( 1f ).WithoutTags( "player" ).Run();
-
-				bool playerFacingRight = _tempPointVector.ToScreen().x > 0.5f; // TODO ToScreen is obsolete apparently
-
-				if ( camToPointTraceResult.Hit && !playerToPointTraceResult.Hit )
-				{
-					float incrementAmount = playerFacingRight ? -1f : 1f;
-					CameraController.ForwardAngles.yaw += incrementAmount;
-				}
-			}
 			OctreeManager.Instance.Draw();
 		}
 
-		public void toggleLockOn()
+		public void ToggleLockOn()
 		{
 			bool previousState = LockedOn;
 			LockedOn = !LockedOn;
 			if ( previousState == false ) 
 			{
+				Log.Info( "Lockonable: " + GetClosestLockOnAbleInView() );
 				CurrentLockOnAble = GetClosestLockOnAbleInView();
 			}
 		}
@@ -73,33 +71,20 @@ namespace SoulsBox
 			float bottomBound = 1f;
 			Vector3 screenCoords = gameTransform.Position.ToScreen();
 			return screenCoords.x >= leftBound && screenCoords.x <= rightBound && screenCoords.y >= topBound && screenCoords.y <= bottomBound;
-		}
-
-
-		// move somewhere else later lol
-		
+		}	
 
 		protected override void OnFixedUpdate()
 		{
 			UpdateLockOnAbles();
-
-			if ( !IsRolling && !IsJumping && !(LockedOn && !IsSprinting) )
-			{
-				if ( GetMoveVector().Length > 0 ) LastMoveDirectionRotation = Rotation.FromYaw( (GetMoveVector()).EulerAngles.yaw );
-				Transform.Rotation = Rotation.Lerp( Transform.Rotation, LastMoveDirectionRotation, 0.1f );
-			} else if (!IsRolling && !IsJumping)
-			{
-				Vector3 targetToPlayerDisplacement = (CurrentLockOnAble.Transform.Position - Transform.Position);
-				Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
-				Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );
-			}
-			
+			Log.Info( MoveVectorRelativeToCamera );
 		}
 
 		protected override void OnStart()
 		{
 
 			OctreeManager.Instance.DestroyAndReInit();
+			CurrentLockOnAble = Game.ActiveScene.CreateObject( true ).Components.Create<LockOnAble>();
+
 		}
 
 		public void UpdateLockOnAbles()

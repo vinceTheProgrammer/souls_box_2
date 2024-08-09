@@ -10,30 +10,17 @@ namespace SoulsBox
 	{
 
 		[Property]
-		public CharacterAgent Agent { get; set; }
-
-		public event EventHandler OnJump;
-		public event EventHandler OnToggleLockOn;
-		public event EventHandler OnBackstep;
-		public event EventHandler<bool> OnSprint;
-		public event EventHandler OnRoll;
-
-		public event EventHandler<OnSwitchTargetEventArgs> OnSwitchTarget;
-		
-		public event EventHandler<OnAttackEventArgs> OnAttack;
-		public class OnSwitchTargetEventArgs : EventArgs
-		{
-			public bool isLeft;
-		}
-		public class OnAttackEventArgs : EventArgs
-		{
-			public AttackControl attackControl;
-		}
+		public AgentPlayer Agent { get; set; }
 
 		private float InputHoldTime = 0f;
 		private float TimeSinceSprint = 0f;
 		private const float SprintThreshold = 0.5f;
 		private const float JumpThreshold = 0.1f;
+
+		public static void UpdateAnalogMove(AgentPlayer player)
+		{
+			player.MoveVector = Input.AnalogMove;
+		}
 
 		protected override void OnFixedUpdate()
 		{
@@ -52,45 +39,45 @@ namespace SoulsBox
 				if ( InputHoldTime >= SprintThreshold )
 				{
 					TimeSinceSprint = 0;
-					OnSprint?.Invoke( this, true );
+					Agent.IsSprinting = true;
 				}
 			}
 			else
 			{
 				if ( InputHoldTime > 0 && InputHoldTime < SprintThreshold )
 				{
-					if ( Agent.GetMoveVector().Length > 0 )
+					if ( Agent.MoveVector.Length > 0 )
 					{
-						OnRoll?.Invoke( this, EventArgs.Empty );
+						Agent.IsRolling = true;
 					}
 					else
 					{
-						OnBackstep?.Invoke( this, EventArgs.Empty );
+						Agent.IsBackstepping = true;
 					}
 				}
 
-				OnSprint?.Invoke( this, false );
+				Agent.IsSprinting = false;
 				InputHoldTime = 0;
 				TimeSinceSprint += Time.Delta;
 			}
 			if ( Input.Pressed( "sb_jump" ) && TimeSinceSprint < JumpThreshold )
 			{
-				OnJump?.Invoke( this, EventArgs.Empty );
+				Agent.IsJumping = true;
 			}
 
 			if ( Input.Pressed( "sb_lock_on" ) )
 			{
-				OnToggleLockOn?.Invoke( this, EventArgs.Empty );
+				Agent.ToggleLockOn();
 			}
 
 			if ( Input.AnalogLook.yaw > 0.5 && Agent.LockedOn )
 			{
-				OnSwitchTarget?.Invoke( this, new OnSwitchTargetEventArgs { isLeft = true } );
+				Agent.SwitchTarget( true );
 
 			}
 			else if ( Input.AnalogLook.yaw < -0.5 && Agent.LockedOn )
 			{
-				OnSwitchTarget?.Invoke( this, new OnSwitchTargetEventArgs { isLeft = false } );
+				Agent.SwitchTarget( false );
 
 			}
 
@@ -98,7 +85,7 @@ namespace SoulsBox
 			{
 				if ( !Agent.IsLightAttacking )
 				{
-					OnAttack?.Invoke( this, new OnAttackEventArgs { attackControl = AttackControl.RightLightAttack } );
+					Agent.IsLightAttacking = true;
 				}
 				else
 				{

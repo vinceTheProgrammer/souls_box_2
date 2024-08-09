@@ -27,6 +27,7 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
+			//Log.Info( GameObject.Id + "ooo" );
 			if ( AnimationHelper != null )
 			{
 				if ( Input.Pressed( "sb_roll" ) && CanInterrupt && MovementController.IsRolling )
@@ -43,41 +44,44 @@ namespace SoulsBox
 				AnimationHelper.IsGrounded = MovementController.CharacterController.IsOnGround;
 				AnimationHelper.WithVelocity( MovementController.CharacterController.Velocity );
 
-				float rollYawInRelationToCamera = Agent.GetMoveVector().EulerAngles.yaw;
-
-				if ( !IsDoingAnimation && Agent.IsRolling && Agent.LockedOn )
+				float rollYawInRelationToCamera = Agent.MoveVector.EulerAngles.yaw;
+				if (Agent is AgentPlayer player)
 				{
-					float horizontalCardinalDirection = Input.AnalogMove.RoundToCardinal().y;
-					float rollYawInRelationToTarget = (Input.AnalogMove * (Agent.CurrentLockOnAble.Transform.Position - Agent.Transform.Position).EulerAngles).EulerAngles.yaw;
+					if ( !IsDoingAnimation && player.IsRolling && player.LockedOn )
+					{
+						float horizontalCardinalDirection = Input.AnalogMove.RoundToCardinal().y;
+						float rollYawInRelationToTarget = (Input.AnalogMove * (player.CurrentLockOnAble.Transform.Position - player.Transform.Position).EulerAngles).EulerAngles.yaw;
 
 
-					if ( horizontalCardinalDirection > 0 )
-					{
-						SetAnimgraphParam( "sb_roll2", true, rollYawInRelationToTarget );
-					}
-					else if ( horizontalCardinalDirection < 0 )
-					{
+						if ( horizontalCardinalDirection > 0 )
+						{
+							SetAnimgraphParam( "sb_roll2", true, rollYawInRelationToTarget );
+						}
+						else if ( horizontalCardinalDirection < 0 )
+						{
 
-						SetAnimgraphParam( "sb_roll2_mirror", true, rollYawInRelationToTarget );
-					}
-					else
-					{
-						SetAnimgraphParam( "roll_forward", true, rollYawInRelationToTarget );
+							SetAnimgraphParam( "sb_roll2_mirror", true, rollYawInRelationToTarget );
+						}
+						else
+						{
+							SetAnimgraphParam( "roll_forward", true, rollYawInRelationToTarget );
+						}
 					}
 				}
+
 				else if ( !IsDoingAnimation && Agent.IsRolling == true )
 				{
 					SetAnimgraphParam( "roll_forward", true, rollYawInRelationToCamera );
 				}
-				else if ( IsDoingAnimation && Agent.IsJumping == true )
+				else if ( !IsDoingAnimation && Agent.IsJumping == true )
 				{
 					SetAnimgraphParam( "sb_jump", true, rollYawInRelationToCamera );
 				}
-				else if ( IsDoingAnimation && Agent.IsBackstepping == true )
+				else if ( !IsDoingAnimation && Agent.IsBackstepping == true )
 				{
 					SetAnimgraphParam( "sb_backstep", true );
 				}
-				else if ( IsDoingAnimation && Agent.IsLightAttacking == true )
+				else if ( !IsDoingAnimation && Agent.IsLightAttacking == true )
 				{
 					MovementController.IsAttacking = true;
 					SetAnimgraphParam( "sb_light_attack_sword", true );
@@ -87,6 +91,13 @@ namespace SoulsBox
 
 		protected override void OnStart()
 		{
+			SkinnedModelRenderer skinnedModelRenderer = GameObject.Components.Get<SkinnedModelRenderer>();
+			if (skinnedModelRenderer != null )
+			{
+				ClothingContainer clothingContainer = ClothingContainer.CreateFromLocalUser();
+				clothingContainer.Apply(skinnedModelRenderer);
+			}
+
 			AnimationHelper.Target.OnGenericEvent = ( SceneModel.GenericEvent genericEvent ) =>
 			{
 				switch ( genericEvent.String )
@@ -156,6 +167,18 @@ namespace SoulsBox
 		{
 			AnimationHelper.Target.Set( param, value );
 			IsDoingAnimation = isDoingAnimation;
+		}
+
+		private void PrintDebug()
+		{
+			Log.Info("MovementController.IsRolling: " + MovementController.IsRolling );
+			Log.Info("Agent.IsRolling: " + Agent.IsRolling);
+			Log.Info("Agent.IsLightAttacking: " + Agent.IsLightAttacking);
+			Log.Info("IsPastMidwayPoint: " + IsPastMidwayPoint);
+			Log.Info("CanInterrupt: " + CanInterrupt);
+			Log.Info("IsDoingAnimation: " + IsDoingAnimation);
+			Log.Info("MovementController.SetLastMove: " + MovementController.SetLastMove);
+			Log.Info("MovementController.IsAttacking: " + MovementController.IsAttacking);
 		}
 	}
 }

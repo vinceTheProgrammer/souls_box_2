@@ -42,152 +42,144 @@ namespace SoulsBox
 
 		[Property]
 		public CharacterAgent Agent { get; set; }
-		
-
-		protected override void OnUpdate()
-		{
-			if ( IsRolling || IsJumping || IsBackstepping )
-			{
-				if ( Agent.CameraController != null )
-				{
-					Vector3 debug = CharacterController.Velocity.ProjectOnNormal( Agent.CameraController.Camera.Transform.Rotation.Right.Normal );
-					float sign = Math.Sign( Agent.CameraController.Camera.Transform.Rotation.Right.Normal.Dot( CharacterController.Velocity ) );
-					float debug2 = debug.Length * sign;
-					Angles _targetAngles = Agent.CameraController.ForwardAngles.WithYaw( Agent.CameraController.ForwardAngles.yaw - debug2.Clamp( -1.0f, 1.0f ) );
-					Agent.CameraController.ForwardAngles = Agent.CameraController.ForwardAngles.LerpTo( _targetAngles, 0.1f );
-				}
-			} else
-			{
-				if ( Agent.CameraController != null )
-				{
-					Angles _targetAngles = Agent.CameraController.ForwardAngles.WithYaw( Agent.CameraController.ForwardAngles.yaw + Input.AnalogMove.y );
-					Agent.CameraController.ForwardAngles = Agent.CameraController.ForwardAngles.LerpTo( _targetAngles, 0.1f );
-				}
-			}
-		}
 
 		protected override void OnFixedUpdate()
 		{
-			if (!CharacterController.IsOnGround)
+			if ( !CharacterController.IsOnGround )
 			{
 				CharacterAnimationController.AnimationHelper.IsGrounded = CharacterController.IsOnGround;
 				CharacterController.Accelerate( Vector3.Down * TerminalVelocity );
 				CharacterController.Acceleration = 4.9f;
 				CharacterController.Move();
+				return;
 			}
 
-			if ( IsRolling && Agent.LockedOn )
+			if ( IsRolling )
 			{
-				Vector3 _targetDirection = LastMove;
-
-				if (SetLastMove == false)
-				{
-					_targetDirection = Input.AnalogMove * (Agent.CurrentLockOnAble.Transform.Position - Agent.Transform.Position).EulerAngles;
-					LastMove = _targetDirection;
-					SetLastMove = true;
-				}
-				
-
-				Vector3 _currentVelocity = CharacterController.Velocity;
-				Vector3 _targetVelocity = _targetDirection.Normal * 200.0f;
-				float _targetSpeed = Agent.IsRunActive() && !Agent.IsGuardActive() ? RunSpeed : WalkSpeed;
-				Vector3 _targetLerpVelocity = Agent.GetMoveVector().Normal * _targetSpeed;
-
-				float _currentDotTargetVelocity = _targetLerpVelocity.Dot( _currentVelocity );
-				float _currentDotCurrentVelocity = _currentVelocity.Dot( _currentVelocity );
-				_targetLerpVelocity = MathF.Max( 0, (_currentDotTargetVelocity / _currentDotCurrentVelocity) ) * _currentVelocity;
-
-				if ( CharacterAnimationController.IsPastMidwayPoint == true )
-				{
-					_targetVelocity = _currentVelocity.LerpTo( _targetLerpVelocity, 0.1f, true );
-					if ( float.IsNaN( _targetVelocity.x ) || float.IsNaN( _targetVelocity.y ) || float.IsNaN( _targetVelocity.z ) )
-					{
-						_targetVelocity = new Vector3( 0.000001f, 0.00001f, -0.00001f );
-					}
-				}
-				CharacterController.Velocity = _targetVelocity;
-				CharacterController.Move();
-			} else if (IsRolling)
-			{
-				Vector3 _currentVelocity = CharacterController.Velocity;
-				Vector3 _targetVelocity = Agent.Transform.Rotation.Forward * 200.0f;
-				float _targetSpeed = Agent.IsRunActive() && !Agent.IsGuardActive() ? RunSpeed : WalkSpeed;
-				Vector3 _targetLerpVelocity = Agent.GetMoveVector().Normal * _targetSpeed;
-
-				float _currentDotTargetVelocity = _targetLerpVelocity.Dot( _currentVelocity );
-				float _currentDotCurrentVelocity = _currentVelocity.Dot( _currentVelocity );
-				_targetLerpVelocity = MathF.Max( 0, (_currentDotTargetVelocity / _currentDotCurrentVelocity) ) * _currentVelocity;
-
-				if ( CharacterAnimationController.IsPastMidwayPoint == true )
-				{
-
-					_targetVelocity = _currentVelocity.LerpTo( _targetLerpVelocity, 0.05f, true );
-					if ( float.IsNaN( _targetVelocity.x ) || float.IsNaN( _targetVelocity.y ) || float.IsNaN( _targetVelocity.z ) )
-					{
-						_targetVelocity = new Vector3( 0.000001f, 0.00001f, -0.00001f );
-					}
-				}
-				CharacterController.Velocity = _targetVelocity;
-				CharacterController.Move();
+				HandleRolling();
 			}
 			else if ( IsJumping )
 			{
-				Vector3 _currentVelocity = CharacterController.Velocity;
-				Vector3 _targetVelocity = Agent.Transform.Rotation.Forward * RunSpeed;
-				float _targetSpeed = Agent.IsRunActive() && !Agent.IsGuardActive() ? RunSpeed : WalkSpeed;
-				Vector3 _targetLerpVelocity = Agent.GetMoveVector().Normal * _targetSpeed;
-
-				float _currentDotTargetVelocity = _targetLerpVelocity.Dot( _currentVelocity );
-				float _currentDotCurrentVelocity = _currentVelocity.Dot( _currentVelocity );
-				_targetLerpVelocity = MathF.Max( 0, (_currentDotTargetVelocity / _currentDotCurrentVelocity) ) * _currentVelocity;
-
-				if ( CharacterAnimationController.IsPastMidwayPoint == true )
-				{
-					_targetVelocity = _currentVelocity.LerpTo( _targetLerpVelocity, 0.05f, true );
-					if ( float.IsNaN( _targetVelocity.x ) || float.IsNaN( _targetVelocity.y ) || float.IsNaN( _targetVelocity.z ) )
-					{
-						_targetVelocity = new Vector3( 0.000001f, 0.00001f, -0.00001f );
-					}
-				}
-				CharacterController.Velocity = _targetVelocity;
-				CharacterController.Move();
+				HandleJumping();
 			}
 			else if ( IsBackstepping )
 			{
-				Vector3 _currentVelocity = CharacterController.Velocity;
-				Vector3 _targetVelocity = Agent.Transform.Rotation.Backward * 100.0f;
-				float _targetSpeed = Agent.IsRunActive() && !Agent.IsGuardActive() ? RunSpeed : WalkSpeed;
-				Vector3 _targetLerpVelocity = Agent.Transform.Rotation.Backward * 0.00001f;
-
-				float _currentDotTargetVelocity = _targetLerpVelocity.Dot( _currentVelocity );
-				float _currentDotCurrentVelocity = _currentVelocity.Dot( _currentVelocity );
-				_targetLerpVelocity = MathF.Max( 0, (_currentDotTargetVelocity / _currentDotCurrentVelocity) ) * _currentVelocity;
-
-				if ( CharacterAnimationController.IsPastMidwayPoint == true )
-				{
-					_targetVelocity = _currentVelocity.LerpTo( _targetLerpVelocity, 0.05f, true );
-					if ( float.IsNaN( _targetVelocity.x ) || float.IsNaN( _targetVelocity.y ) || float.IsNaN( _targetVelocity.z ) )
-					{
-						_targetVelocity = new Vector3( 0.000001f, 0.00001f, -0.00001f );
-					}
-				}
-				CharacterController.Velocity = _targetVelocity;
-				CharacterController.Move();
+				HandleBackstepping();
 			}
-			else if (IsAttacking)
+			else if ( IsAttacking )
 			{
-				CharacterController.MoveTo( Transform.Position + CharacterAnimationController.AnimationHelper.Target.RootMotion.Position.Length * Transform.Rotation.Forward.Normal * 7.5f, true);
+				HandleAttacking();
 			}
 			else
 			{
-				float _targetSpeed = Agent.IsRunActive() && !Agent.IsGuardActive() ? RunSpeed : WalkSpeed;
-				Vector3 _targetVelocity = Agent.GetMoveVector().Normal * _targetSpeed;
-
-				CharacterController.Accelerate( _targetVelocity );
-				CharacterController.Acceleration = 10.0f;
-				CharacterController.ApplyFriction( 5.0f );
-				CharacterController.Move();
+				HandleDefaultMovement();
 			}
+		}
+
+		private void HandleRolling()
+		{
+			Vector3 targetDirection = LastMove;
+
+			if (Agent is AgentPlayer player )
+			{
+				if ( player.LockedOn )
+				{
+					if ( !SetLastMove )
+					{
+						targetDirection = player.MoveVector * (player.CurrentLockOnAble.Transform.Position - player.Transform.Position).EulerAngles;
+						LastMove = targetDirection;
+						SetLastMove = true;
+					}
+				}
+				else
+				{
+					targetDirection = player.Transform.Rotation.Forward;
+				}
+			}
+			else
+			{
+				targetDirection = Agent.Transform.Rotation.Forward;
+			}
+
+			if (Agent is AgentPlayer player_)
+			{
+				HandleMovement( targetDirection, player_.LockedOn ? 0.1f : 0.05f, 200.0f );
+			}
+			else
+			{
+				HandleMovement( targetDirection, 0.05f, 200.0f );
+			}
+		}
+
+		private void HandleJumping()
+		{
+			HandleMovement( Agent.Transform.Rotation.Forward, 0.05f, RunSpeed );
+		}
+
+		private void HandleBackstepping()
+		{
+			HandleMovement( Agent.Transform.Rotation.Backward, 0.05f, 100.0f );
+		}
+
+		private void HandleAttacking()
+		{
+			CharacterController.MoveTo( Transform.Position + CharacterAnimationController.AnimationHelper.Target.RootMotion.Position.Length * Transform.Rotation.Forward.Normal * 7.5f, true );
+		}
+
+		private void HandleDefaultMovement()
+		{
+			float targetSpeed = Agent.IsSprinting && !Agent.IsGuarding ? RunSpeed : WalkSpeed;
+			Vector3 targetVelocity;
+			if (Agent is AgentPlayer player && !Network.IsProxy)
+			{
+				targetVelocity = player.MoveVectorRelativeToCamera.Normal * targetSpeed;
+			} else
+			{
+				targetVelocity = Agent.MoveVector.Normal * targetSpeed;
+			}
+
+			CharacterController.Accelerate( targetVelocity );
+			CharacterController.Acceleration = 10.0f;
+			CharacterController.ApplyFriction( 5.0f );
+			CharacterController.Move();
+
+			if (Agent is AgentPlayer player_)
+			{
+				if ( !(player_.LockedOn && !player_.IsSprinting) && player_.CurrentLockOnAble != null )
+				{
+					Transform.Rotation = Rotation.Lerp( Transform.Rotation, player_.LastMoveDirectionRotation, 0.1f );
+				}
+				else
+				{
+					Vector3 targetToPlayerDisplacement = (player_.CurrentLockOnAble.Transform.Position - Transform.Position);
+					Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
+					Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );
+				}
+			}
+		}
+
+		private void HandleMovement( Vector3 targetDirection, float lerpFactor, float baseSpeed )
+		{
+			Vector3 currentVelocity = CharacterController.Velocity;
+			float targetSpeed = Agent.IsSprinting && !Agent.IsGuarding ? RunSpeed : WalkSpeed;
+			Vector3 targetVelocity = targetDirection.Normal * baseSpeed;
+			Vector3 targetLerpVelocity = Agent.MoveVector.Normal * targetSpeed;
+
+			float currentDotTargetVelocity = targetLerpVelocity.Dot( currentVelocity );
+			float currentDotCurrentVelocity = currentVelocity.Dot( currentVelocity );
+			targetLerpVelocity = MathF.Max( 0, (currentDotTargetVelocity / currentDotCurrentVelocity) ) * currentVelocity;
+
+			if ( CharacterAnimationController.IsPastMidwayPoint )
+			{
+				targetVelocity = currentVelocity.LerpTo( targetLerpVelocity, lerpFactor, true );
+				if ( float.IsNaN( targetVelocity.x ) || float.IsNaN( targetVelocity.y ) || float.IsNaN( targetVelocity.z ) )
+				{
+					targetVelocity = new Vector3( 0.000001f, 0.00001f, -0.00001f );
+				}
+			}
+
+			CharacterController.Velocity = targetVelocity;
+			CharacterController.Move();
 		}
 	}
 }

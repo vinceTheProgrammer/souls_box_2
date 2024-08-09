@@ -4,30 +4,25 @@ namespace SoulsBox
 {
 	public abstract class CharacterAgent : Component
 	{
-		public abstract CameraController CameraController { get; set; }
-
+		[Sync]
 		public bool IsRolling { get; set; }
 
+		[Sync]
 		public bool IsJumping { get; set; }
 
+		[Sync]
 		public bool IsSprinting { get; set; }
 
+		[Sync]
 		public bool IsBackstepping { get; set; }
 
+		[Sync]
 		public bool IsLightAttacking { get; set; }
 
-		public bool LockedOn { get; set; }
+		[Sync]
+		public bool IsGuarding { get; set; }
 
-		public LockOnAble CurrentLockOnAble { get; set; }
-
-		public HashSet<LockOnAble> LockOnAbles = new HashSet<LockOnAble>();
-
-		public float LockOnRadius = 1000f;
-
-		public abstract bool IsRunActive();
-
-		public abstract bool IsGuardActive();
-
-		public abstract Vector3 GetMoveVector();
+		[Sync]
+		public Vector3 MoveVector { get; set; }
 	}
 }
