@@ -81,14 +81,6 @@ namespace SoulsBox
 		protected override void OnFixedUpdate()
 		{
 			UpdateLockOnAbles();
-			//Log.Info( Transform.Rotation.Forward );
-			/*
-			Log.Info( "IsSprinting: " + IsSprinting );
-			Log.Info( "IsRolling: " + IsRolling );
-			Log.Info( "IsJumping: " + IsJumping );
-			Log.Info( "IsBackstepping: " + IsBackstepping );
-			Log.Info( "IsLightAttacking: " + IsLightAttacking );
-			*/
 		}
 
 		protected override void OnStart()

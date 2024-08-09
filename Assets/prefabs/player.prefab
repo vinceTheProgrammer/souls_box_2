@@ -9,6 +9,7 @@
         "__guid": "7939f25c-fc8e-40e2-a5ee-9c4d19784c3b",
         "Flags": 0,
         "Name": "Character",
+        "Tags": "player",
         "Enabled": true,
         "Components": [
           {
@@ -138,6 +139,15 @@
             "__type": "Sandbox.LockOnAble",
             "__guid": "2309adb4-2465-4a31-ba9a-31f1d132bc78",
             "LockOnOffset": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.CapsuleCollider",
+            "__guid": "ca95b0d7-e9a4-4a5a-96b5-9e90146f04eb",
+            "End": "0,0,62",
+            "IsTrigger": false,
+            "Radius": 10,
+            "Start": "0,0,10",
+            "Static": false
           }
         ],
         "Children": [

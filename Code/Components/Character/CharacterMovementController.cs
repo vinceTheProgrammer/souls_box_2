@@ -99,11 +99,11 @@ namespace SoulsBox
 
 			if (Agent is AgentPlayer player_)
 			{
-				HandleMovement( targetDirection, player_.LockedOn ? 0.1f : 0.05f, 200.0f );
+				HandleMovement( targetDirection, player_.LockedOn ? 0.1f : 0.05f, 300.0f );
 			}
 			else
 			{
-				HandleMovement( targetDirection, 0.05f, 200.0f );
+				HandleMovement( targetDirection, 0.05f, 300.0f );
 			}
 		}
 
@@ -144,12 +144,12 @@ namespace SoulsBox
 			{
 				if ( !player_.LockedOn || player_.IsSprinting)
 				{
-					Log.Info( GameObject.Parent.Name + " hi" );
+					//Log.Info( GameObject.Parent.Name + " hi" );
 					Transform.Rotation = Rotation.Lerp( Transform.Rotation, player_.LastMoveDirectionRotation, 0.1f );
 				}
 				else
 				{
-					Log.Info( GameObject.Parent.Name + " bye" );
+					//Log.Info( GameObject.Parent.Name + " bye" );
 					Vector3 targetToPlayerDisplacement = (player_.CurrentLockOnAblePosition - Transform.Position);
 					Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
 					Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );

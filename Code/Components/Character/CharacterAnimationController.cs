@@ -30,6 +30,7 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
+			Log.Info( GameObject.Parent.Name + " " + IsDoingAnimation );
 			if ( AnimationHelper != null )
 			{
 				if ( Agent.IsRolling && CanInterrupt )
@@ -57,8 +58,6 @@ namespace SoulsBox
 					currentLockOnAble = player.CurrentLockOnAble;
 					rollYaw = player.MoveVectorRelativeToCamera.EulerAngles.yaw;
 				}
-
-				//Log.Info( GameObject.Parent.Name + ": \n" + "IsDoingAnimation: " + IsDoingAnimation + "\nAgent.IsRolling: " + Agent.IsRolling + "\nisPlayer: " + isPlayer + "\nlockedOn: " + lockedOn + "\ncurrentLockOnAble: " + currentLockOnAble + "\nAgent.IsJumping: " + Agent.IsJumping + "\nAgent.IsBackstepping: " + Agent.IsBackstepping + "\nAgent.IsLightAttacking: " + Agent.IsLightAttacking );
 
 				if ( !IsDoingAnimation && Agent.IsRolling && isPlayer && lockedOn && currentLockOnAble != null )
 				{
@@ -94,7 +93,6 @@ namespace SoulsBox
 				}
 				else if ( !IsDoingAnimation && Agent.IsLightAttacking == true )
 				{
-					Log.Info( "test" );
 					SetAnimgraphParam( "sb_light_attack_sword", true );
 				}
 			}
@@ -107,16 +105,6 @@ namespace SoulsBox
 
 		protected override void OnStart()
 		{
-			/*
-			SkinnedModelRenderer skinnedModelRenderer = GameObject.Components.Get<SkinnedModelRenderer>();
-			if (skinnedModelRenderer != null )
-			{
-				Log.Info( GameObject.Parent.Name + " ooo" );
-				ClothingContainer clothingContainer = ClothingContainer.CreateFromLocalUser();
-				clothingContainer.Apply(skinnedModelRenderer);
-			}
-			*/
-
 			AnimationHelper.Target.OnGenericEvent = ( SceneModel.GenericEvent genericEvent ) =>
 			{
 				switch ( genericEvent.String )
@@ -177,27 +165,13 @@ namespace SoulsBox
 		{
 			Agent.Transform.Rotation = Rotation.FromYaw( agentYaw );
 			AnimationHelper.Target.Set( param, value );
-			Log.Info( "setting to " + isDoingAnimation);
 			IsDoingAnimation = isDoingAnimation;
 		}
 
 		private void SetAnimgraphParam( string param, bool value, bool isDoingAnimation = true)
 		{
 			AnimationHelper.Target.Set( param, value );
-			Log.Info( "setting to " + isDoingAnimation );
 			IsDoingAnimation = isDoingAnimation;
-		}
-
-		private void PrintDebug()
-		{
-			Log.Info( "MovementController.IsRolling: " + Agent.IsRolling );
-			Log.Info( "Agent.IsRolling: " + Agent.IsRolling );
-			Log.Info( "Agent.IsLightAttacking: " + Agent.IsLightAttacking );
-			Log.Info( "IsPastMidwayPoint: " + IsPastMidwayPoint );
-			Log.Info( "CanInterrupt: " + CanInterrupt );
-			Log.Info( "IsDoingAnimation: " + IsDoingAnimation );
-			Log.Info( "MovementController.SetLastMove: " + MovementController.SetLastMove );
-			Log.Info( "MovementController.IsAttacking: " + Agent.IsLightAttacking );
 		}
 	}
 }
