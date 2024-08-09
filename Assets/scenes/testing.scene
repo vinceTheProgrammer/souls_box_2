@@ -88,7 +88,12 @@
             "_type": "gameobject",
             "prefab": "prefabs/player.prefab"
           },
-          "SpawnPoints": [],
+          "SpawnPoints": [
+            {
+              "_type": "gameobject",
+              "go": "845cc308-9fef-478d-a535-2442076c125b"
+            }
+          ],
           "StartServer": true
         }
       ]

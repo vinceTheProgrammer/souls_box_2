@@ -24,7 +24,7 @@
 
         if (Player == null) return;
 
-        if (LockOnHudElement == null || Player.CurrentLockOnAble == null) return;
+        if (LockOnHudElement == null || Player.CurrentLockOnAblePosition == null) return;
 
         if (!Player.LockedOn)
         {
@@ -34,15 +34,15 @@
             LockOnHudElement.Style.BackgroundColor = previousColor;
         }
 
-        LockOnHudElement.Style.Top = Length.Fraction(Player.CurrentLockOnAble.Transform.Position.ToScreen().y);
+        LockOnHudElement.Style.Top = Length.Fraction(Player.CurrentLockOnAblePosition.ToScreen().y);
         LockOnHudElement.Style.MarginTop = Length.Pixels(-1 * LockOnHudElement.Box.Rect.Height);
-        LockOnHudElement.Style.Left = Length.Fraction(Player.CurrentLockOnAble.Transform.Position.ToScreen().x);
+        LockOnHudElement.Style.Left = Length.Fraction(Player.CurrentLockOnAblePosition.ToScreen().x);
         LockOnHudElement.Style.MarginLeft = Length.Pixels(-1 * LockOnHudElement.Box.Rect.Width);
     }
 
     protected override int BuildHash()
     {
-        if (Player == null || Player.CurrentLockOnAble == null) return 1;
-        return System.HashCode.Combine(Player.LockedOn, Player.CurrentLockOnAble);
+        if (Player == null || Player.CurrentLockOnAblePosition == null) return 1;
+        return System.HashCode.Combine(Player.LockedOn, Player.CurrentLockOnAblePosition);
     }
 }

@@ -21,7 +21,7 @@ public sealed class SpawnPlayer : Component
 		}
 		SpawnPlayerAtRandomSpawnPoint();
 		*/
-		LogSceneHierarchy();
+		//LogSceneHierarchy();
 	}
 
 	private void SpawnPlayerAtRandomSpawnPoint()

@@ -16,6 +16,9 @@ namespace SoulsBox
 		private float TimeSinceSprint = 0f;
 		private const float SprintThreshold = 0.5f;
 		private const float JumpThreshold = 0.1f;
+		private bool stickReleased = true;
+		private float lastMouseX = 0f;
+		private const float mouseThreshold = 15f;
 
 		public static void UpdateAnalogMove(AgentPlayer player)
 		{
@@ -70,15 +73,49 @@ namespace SoulsBox
 				Agent.ToggleLockOn();
 			}
 
-			if ( Input.AnalogLook.yaw > 0.5 && Agent.LockedOn )
+			if ( Input.UsingController )
 			{
-				Agent.SwitchTarget( true );
+				float yaw = Input.AnalogLook.yaw;
 
+				if ( Agent.LockedOn )
+				{
+					if ( stickReleased && yaw > 0.5f )
+					{
+						Agent.SwitchTarget( true );
+						stickReleased = false;
+					}
+					else if ( stickReleased && yaw < -0.5f )
+					{
+						Agent.SwitchTarget( false );
+						stickReleased = false;
+					}
+
+					// Check if the stick is released
+					if ( yaw > -0.1f && yaw < 0.1f )
+					{
+						stickReleased = true;
+					}
+				}
 			}
-			else if ( Input.AnalogLook.yaw < -0.5 && Agent.LockedOn )
+			else // Using mouse
 			{
-				Agent.SwitchTarget( false );
+				float mouseX = Input.AnalogLook.yaw;
 
+				if ( Agent.LockedOn )
+				{
+					float deltaX = mouseX - lastMouseX;
+
+					if ( deltaX > mouseThreshold )
+					{
+						Agent.SwitchTarget( false );
+						lastMouseX = mouseX;
+					}
+					else if ( deltaX < -mouseThreshold )
+					{
+						Agent.SwitchTarget( true );
+						lastMouseX = mouseX;
+					}
+				}
 			}
 
 			if ( Input.Pressed( "sb_light_attack" ) )
@@ -89,11 +126,7 @@ namespace SoulsBox
 				}
 				else
 				{
-					CitizenAnimationHelper AnimationHelper = GameObject.Components.Get<CitizenAnimationHelper>();
-					if ( AnimationHelper != null )
-					{
-						AnimationHelper.Target.Set( "sb_continue_combo", true );
-					}
+					Agent.IsContinuing = true;
 				}
 			}
 		}

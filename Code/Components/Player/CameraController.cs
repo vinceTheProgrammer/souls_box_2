@@ -47,7 +47,7 @@ namespace SoulsBox
 			{
 
 				// HORIZONTAL LOCK ON
-				float horizontalScreenPosition = Player.CurrentLockOnAble.Transform.Position.ToScreen().x;
+				float horizontalScreenPosition = Player.CurrentLockOnAblePosition.ToScreen().x;
 				if (horizontalScreenPosition < 0.5f - HorizontalThreshold)
 				{
 					float currentHorizontalThreshold = 0.5f - HorizontalThreshold;
@@ -61,7 +61,7 @@ namespace SoulsBox
 				}
 
 				// VERTICAL LOCK ON
-				float verticalScreenPosition = Player.CurrentLockOnAble.Transform.Position.ToScreen().y;
+				float verticalScreenPosition = Player.CurrentLockOnAblePosition.ToScreen().y;
 				if ( verticalScreenPosition < 0.5f - VerticalThreshold )
 				{
 					float currentVerticalThreshold = 0.5f - VerticalThreshold;
@@ -125,9 +125,7 @@ namespace SoulsBox
 				}
 				else
 				{
-					float roundingThreshold = 0.1f;
-					float moveVectorRelativeToCameraYConditionallyRounded = player.MoveVectorRelativeToCamera.y.RoundToNearestThreshold( roundingThreshold );
-					Angles _targetAngles = ForwardAngles.WithYaw( ForwardAngles.yaw + moveVectorRelativeToCameraYConditionallyRounded );
+					Angles _targetAngles = ForwardAngles.WithYaw( ForwardAngles.yaw + player.MoveVector.y );
 					ForwardAngles = ForwardAngles.LerpTo( _targetAngles, 0.1f );
 				}
 			}
@@ -142,7 +140,7 @@ namespace SoulsBox
 			Camera.Transform.Rotation = ((CameraPivot.Transform.Position - Camera.Transform.Position).Normal.EulerAngles).WithPitch(0f);
 			InitialCameraTransform = Camera.Transform.World;
 			Player = AgentPlayer.Local;
-			LogSceneHierarchy();
+			//LogSceneHierarchy();
 		}
 
 		private void LogSceneHierarchy()

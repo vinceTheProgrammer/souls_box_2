@@ -28,7 +28,12 @@ namespace SoulsBox
 		[Sync]
 		public Vector3 MoveVectorRelativeToCamera {  get; set; }
 
+		[Sync]
 		public bool LockedOn { get; set; }
+
+		[Sync]
+		public Vector3 CurrentLockOnAblePosition { get; set; }
+
 		public LockOnAble CurrentLockOnAble { get; set; }
 
 		public HashSet<LockOnAble> LockOnAbles = new HashSet<LockOnAble>();
@@ -76,7 +81,14 @@ namespace SoulsBox
 		protected override void OnFixedUpdate()
 		{
 			UpdateLockOnAbles();
-			Log.Info( MoveVectorRelativeToCamera );
+			//Log.Info( Transform.Rotation.Forward );
+			/*
+			Log.Info( "IsSprinting: " + IsSprinting );
+			Log.Info( "IsRolling: " + IsRolling );
+			Log.Info( "IsJumping: " + IsJumping );
+			Log.Info( "IsBackstepping: " + IsBackstepping );
+			Log.Info( "IsLightAttacking: " + IsLightAttacking );
+			*/
 		}
 
 		protected override void OnStart()
@@ -101,11 +113,12 @@ namespace SoulsBox
 			var lockOnAblesInRange = OctreeManager.Instance.QueryRange( Transform.Position, LockOnRadius );
 			foreach ( var lockOnAble in lockOnAblesInRange )
 			{
-				if ( lockOnAble.ParentIsAlive() )
+				if ( lockOnAble.ParentIsAlive() && lockOnAble.GameObject.Id != GameObject.Id )
 				{
 					LockOnAbles.Add( lockOnAble );
 				}
 			}
+			CurrentLockOnAblePosition = CurrentLockOnAble.Transform.Position;
 		}
 
 		private LockOnAble GetClosestLockOnAble()
@@ -134,7 +147,7 @@ namespace SoulsBox
 			foreach ( var lockOnAble in LockOnAbles )
 			{
 				float distance = Vector3.DistanceBetween( Transform.Position, lockOnAble.Transform.Position );
-				if ( distance < closestDistance && IsWithinView( lockOnAble.Transform ) )
+				if ( distance < closestDistance && IsWithinView( lockOnAble.Transform ))
 				{
 					closest = lockOnAble;
 					closestDistance = distance;
@@ -156,7 +169,7 @@ namespace SoulsBox
 				if ( lockOnAble == CurrentLockOnAble ) continue;
 
 				Vector3 toTarget = lockOnAble.Transform.Position - Transform.Position;
-				Vector3 toCurrentTarget = CurrentLockOnAble.Transform.Position - Transform.Position;
+				Vector3 toCurrentTarget = CurrentLockOnAblePosition - Transform.Position;
 
 				float angle = toCurrentTarget.SignedAngle( toTarget );
 				if ( isLeft && angle < 0 && angle > -bestAngle )

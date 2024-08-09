@@ -12,10 +12,6 @@ namespace SoulsBox
 	[Icon( "directions_run" )]
 	public sealed class CharacterMovementController : Component
 	{
-		public bool IsRolling;
-		public bool IsJumping;
-		public bool IsBackstepping;
-		public bool IsAttacking;
 		public bool SetLastMove;
 		public Vector3 LastMove;
 
@@ -54,19 +50,19 @@ namespace SoulsBox
 				return;
 			}
 
-			if ( IsRolling )
+			if ( Agent.IsRolling )
 			{
 				HandleRolling();
 			}
-			else if ( IsJumping )
+			else if ( Agent.IsJumping )
 			{
 				HandleJumping();
 			}
-			else if ( IsBackstepping )
+			else if ( Agent.IsBackstepping )
 			{
 				HandleBackstepping();
 			}
-			else if ( IsAttacking )
+			else if ( Agent.IsLightAttacking )
 			{
 				HandleAttacking();
 			}
@@ -86,7 +82,7 @@ namespace SoulsBox
 				{
 					if ( !SetLastMove )
 					{
-						targetDirection = player.MoveVector * (player.CurrentLockOnAble.Transform.Position - player.Transform.Position).EulerAngles;
+						targetDirection = player.MoveVector * (player.CurrentLockOnAblePosition - player.Transform.Position).EulerAngles;
 						LastMove = targetDirection;
 						SetLastMove = true;
 					}
@@ -113,6 +109,7 @@ namespace SoulsBox
 
 		private void HandleJumping()
 		{
+			//Log.Info( CharacterController.Transform.Rotation.Forward );
 			HandleMovement( Agent.Transform.Rotation.Forward, 0.05f, RunSpeed );
 		}
 
@@ -130,7 +127,7 @@ namespace SoulsBox
 		{
 			float targetSpeed = Agent.IsSprinting && !Agent.IsGuarding ? RunSpeed : WalkSpeed;
 			Vector3 targetVelocity;
-			if (Agent is AgentPlayer player && !Network.IsProxy)
+			if (Agent is AgentPlayer player)
 			{
 				targetVelocity = player.MoveVectorRelativeToCamera.Normal * targetSpeed;
 			} else
@@ -145,13 +142,15 @@ namespace SoulsBox
 
 			if (Agent is AgentPlayer player_)
 			{
-				if ( !(player_.LockedOn && !player_.IsSprinting) && player_.CurrentLockOnAble != null )
+				if ( !player_.LockedOn || player_.IsSprinting)
 				{
+					Log.Info( GameObject.Parent.Name + " hi" );
 					Transform.Rotation = Rotation.Lerp( Transform.Rotation, player_.LastMoveDirectionRotation, 0.1f );
 				}
 				else
 				{
-					Vector3 targetToPlayerDisplacement = (player_.CurrentLockOnAble.Transform.Position - Transform.Position);
+					Log.Info( GameObject.Parent.Name + " bye" );
+					Vector3 targetToPlayerDisplacement = (player_.CurrentLockOnAblePosition - Transform.Position);
 					Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
 					Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );
 				}

@@ -23,6 +23,9 @@ namespace SoulsBox
 		public bool IsGuarding { get; set; }
 
 		[Sync]
+		public bool IsContinuing { get; set; }
+
+		[Sync]
 		public Vector3 MoveVector { get; set; }
 	}
 }
