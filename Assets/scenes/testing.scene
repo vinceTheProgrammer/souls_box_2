@@ -54,81 +54,88 @@
       ]
     },
     {
-      "__guid": "31655f85-9ebc-45f8-96e8-6c9eb14d47af",
+      "__guid": "18110692-d26a-4531-b5f3-9c3ab1eca247",
       "Flags": 0,
-      "Name": "Plane",
-      "Position": "0,0,-142.7829",
-      "Scale": "37.62239,37.62239,37.62239",
+      "Name": "Map",
+      "Position": "99.81729,111.8704,-41.95449",
       "Enabled": true,
-      "Components": [
+      "Children": [
         {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "e6f250d8-d4ce-4630-ae25-b8417b161d88",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/dev/plane.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "Sandbox.SpawnPlayer",
-          "__guid": "b696a371-16f1-4e93-871c-89276e67c1fa"
-        },
-        {
-          "__type": "Sandbox.PlaneCollider",
-          "__guid": "b631cb49-95b7-4203-89be-bcb6bce11d22",
-          "Center": "0,0,0",
-          "IsTrigger": false,
-          "Scale": "111.7,107.5001",
-          "Static": true
-        },
-        {
-          "__type": "Sandbox.NetworkHelper",
-          "__guid": "5d363853-3d8f-4d95-bb5e-072c052a0b3d",
-          "PlayerPrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/player.prefab"
-          },
-          "SpawnPoints": [
+          "__guid": "ceedf838-7176-443d-8227-47564ea62ae9",
+          "Flags": 0,
+          "Name": "Sun",
+          "Position": "-269.5213,-151.5268,-8.773872",
+          "Rotation": "0,0.5,0,0.8660254",
+          "Tags": "light_directional,light",
+          "Enabled": true,
+          "Components": [
             {
-              "_type": "gameobject",
-              "go": "845cc308-9fef-478d-a535-2442076c125b"
+              "__type": "Sandbox.DirectionalLight",
+              "__guid": "4b0353ec-ff4f-44a1-8e58-c0e728cce205",
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.91373,0.98039,1,1",
+              "Shadows": true,
+              "SkyColor": "0,0,0,0"
             }
-          ],
-          "StartServer": true
-        }
-      ]
-    },
-    {
-      "__guid": "845cc308-9fef-478d-a535-2442076c125b",
-      "Flags": 0,
-      "Name": "Object",
-      "Position": "0,0,7.142893",
-      "Enabled": true,
-      "Components": [
+          ]
+        },
         {
-          "__type": "Sandbox.SpawnPoint",
-          "__guid": "350c6db3-52e6-4865-9402-ed5e02387c3a",
-          "Color": "0.8902,0.31765,0.05098,1"
-        }
-      ]
-    },
-    {
-      "__guid": "ceedf838-7176-443d-8227-47564ea62ae9",
-      "Flags": 0,
-      "Name": "Sun",
-      "Position": "-169.704,-39.65635,-50.72836",
-      "Rotation": "0,0.5,0,0.8660254",
-      "Tags": "light_directional,light",
-      "Enabled": true,
-      "Components": [
+          "__guid": "845cc308-9fef-478d-a535-2442076c125b",
+          "Flags": 0,
+          "Name": "Spawn Point",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpawnPoint",
+              "__guid": "350c6db3-52e6-4865-9402-ed5e02387c3a",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
         {
-          "__type": "Sandbox.DirectionalLight",
-          "__guid": "4b0353ec-ff4f-44a1-8e58-c0e728cce205",
-          "FogMode": "Enabled",
-          "FogStrength": 1,
-          "LightColor": "0.91373,0.98039,1,1",
-          "Shadows": true,
-          "SkyColor": "0,0,0,0"
+          "__guid": "31655f85-9ebc-45f8-96e8-6c9eb14d47af",
+          "Flags": 0,
+          "Name": "Plane",
+          "Scale": "37.62239,37.62239,37.62239",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "e6f250d8-d4ce-4630-ae25-b8417b161d88",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/dev/plane.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "Sandbox.SpawnPlayer",
+              "__guid": "b696a371-16f1-4e93-871c-89276e67c1fa"
+            },
+            {
+              "__type": "Sandbox.PlaneCollider",
+              "__guid": "b631cb49-95b7-4203-89be-bcb6bce11d22",
+              "Center": "0,0,0",
+              "IsTrigger": false,
+              "Scale": "111.7,107.5001",
+              "Static": true
+            },
+            {
+              "__type": "Sandbox.NetworkHelper",
+              "__guid": "5d363853-3d8f-4d95-bb5e-072c052a0b3d",
+              "PlayerPrefab": {
+                "_type": "gameobject",
+                "prefab": "prefabs/player.prefab"
+              },
+              "SpawnPoints": [
+                {
+                  "_type": "gameobject",
+                  "go": "845cc308-9fef-478d-a535-2442076c125b"
+                }
+              ],
+              "StartServer": true
+            }
+          ]
         }
       ]
     }

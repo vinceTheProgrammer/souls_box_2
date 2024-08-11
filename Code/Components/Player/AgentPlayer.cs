@@ -3,6 +3,8 @@ using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 using System;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Channels;
 
 namespace SoulsBox
 {
@@ -60,11 +62,17 @@ namespace SoulsBox
 		public void ToggleLockOn()
 		{
 			bool previousState = LockedOn;
-			LockedOn = !LockedOn;
 			if ( previousState == false ) 
 			{
-				Log.Info( "Lockonable: " + GetClosestLockOnAbleInView() );
 				CurrentLockOnAble = GetClosestLockOnAbleInView();
+				if ( CurrentLockOnAble != null )
+				{
+					LockedOn = !LockedOn;
+				}
+			}
+			else
+			{
+				LockedOn = !LockedOn;
 			}
 		}
 
@@ -87,8 +95,6 @@ namespace SoulsBox
 		{
 
 			OctreeManager.Instance.DestroyAndReInit();
-			CurrentLockOnAble = Game.ActiveScene.CreateObject( true ).Components.Create<LockOnAble>();
-
 		}
 
 		public void UpdateLockOnAbles()
@@ -110,7 +116,7 @@ namespace SoulsBox
 					LockOnAbles.Add( lockOnAble );
 				}
 			}
-			CurrentLockOnAblePosition = CurrentLockOnAble.Transform.Position;
+			CurrentLockOnAblePosition = CurrentLockOnAble != null ? CurrentLockOnAble.Transform.Position : Vector3.Zero;
 		}
 
 		private LockOnAble GetClosestLockOnAble()

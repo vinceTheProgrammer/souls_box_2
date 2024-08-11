@@ -1,6 +1,7 @@
 using Sandbox;
 using Sandbox.Citizen;
 using System;
+using System.Diagnostics;
 
 namespace SoulsBox
 {
@@ -24,23 +25,15 @@ namespace SoulsBox
 		[Property]
 		public SkinnedModelRenderer ModelRenderer { get; set; }
 
-		public bool IsDoingAnimation { get; set; }
-		public bool CanInterrupt {  get; set; }
-		public bool IsPastMidwayPoint {  get; set; }
+		public AnimTagEventManager AnimTagEventManager { get; set; }
 
 		protected override void OnFixedUpdate()
 		{
-			Log.Info( GameObject.Parent.Name + " " + IsDoingAnimation );
 			if ( AnimationHelper != null )
 			{
-				if ( Agent.IsRolling && CanInterrupt )
+				if ( Agent.IsRolling && IsTagActive("SB_Can_Interrupt" ))
 				{
 					AnimationHelper.Target.Set( "sb_interrupt", true );
-					IsPastMidwayPoint = false;
-					CanInterrupt = false;
-					IsDoingAnimation = false;
-					MovementController.SetLastMove = false;
-					Agent.IsRolling = false;
 				}
 
 				AnimationHelper.IsGrounded = MovementController.CharacterController.IsOnGround;
@@ -59,7 +52,7 @@ namespace SoulsBox
 					rollYaw = player.MoveVectorRelativeToCamera.EulerAngles.yaw;
 				}
 
-				if ( !IsDoingAnimation && Agent.IsRolling && isPlayer && lockedOn && currentLockOnAble != null )
+				if ( !IsTagActive("SB_Doing_Animation") && Agent.IsRolling && isPlayer && lockedOn && currentLockOnAble != null )
 				{
 					float horizontalCardinalDirection = Agent.MoveVector.RoundToCardinal().y;
 					float rollYawInRelationToTarget = (Agent.MoveVector * (currentLockOnAble.Transform.Position - Agent.Transform.Position).EulerAngles).EulerAngles.yaw;
@@ -78,20 +71,20 @@ namespace SoulsBox
 						SetAnimgraphParam( "roll_forward", true, rollYawInRelationToTarget );
 					}
 				}
-				else if ( !IsDoingAnimation && Agent.IsRolling == true )
+				else if ( !IsTagActive( "SB_Doing_Animation" ) && Agent.IsRolling == true )
 				{
 					Log.Info( "rolling!" );
 					SetAnimgraphParam( "roll_forward", true, rollYaw );
 				}
-				else if ( !IsDoingAnimation && Agent.IsJumping == true )
+				else if ( !IsTagActive( "SB_Doing_Animation" ) && Agent.IsJumping == true )
 				{
 					SetAnimgraphParam( "sb_jump", true, rollYaw );
 				}
-				else if ( !IsDoingAnimation && Agent.IsBackstepping == true )
+				else if ( !IsTagActive( "SB_Doing_Animation" ) && Agent.IsBackstepping == true )
 				{
 					SetAnimgraphParam( "sb_backstep", true );
 				}
-				else if ( !IsDoingAnimation && Agent.IsLightAttacking == true )
+				else if ( !IsTagActive( "SB_Doing_Animation" ) && Agent.IsLightAttacking == true )
 				{
 					SetAnimgraphParam( "sb_light_attack_sword", true );
 				}
@@ -105,73 +98,42 @@ namespace SoulsBox
 
 		protected override void OnStart()
 		{
-			AnimationHelper.Target.OnGenericEvent = ( SceneModel.GenericEvent genericEvent ) =>
-			{
-				switch ( genericEvent.String )
-				{
-					case "roll_start":
-					case "roll2_start":
-						Agent.IsRolling = true;
-						CanInterrupt = false;
-						break;
-					case "jump_start":
-						Agent.IsJumping = true;
-						break;
-					case "backstep_start":
-						Agent.IsBackstepping = true;
-						break;
-					case "roll_end":
-					case "roll2_end":
-					case "light_attack_sword_end":
-						Log.Info( "Setting false" );
-						Agent.IsRolling = false;
-						Agent.IsLightAttacking = false;
-						IsPastMidwayPoint = false;
-						CanInterrupt = false;
-						IsDoingAnimation = false;
-						MovementController.SetLastMove = false;
-						Agent.IsContinuing = false;
-						break;
-					case "light_attack_reset":
-						Agent.IsRolling = false;
-						Agent.IsLightAttacking = true;
-						IsPastMidwayPoint = false;
-						CanInterrupt = false;
-						IsDoingAnimation = true;
-						MovementController.SetLastMove = false;
-						Agent.IsContinuing = false;
-						break;
-					case "jump_end":
-						Agent.IsJumping = false;
-						IsPastMidwayPoint = false;
-						IsDoingAnimation = false;
-						break;
-					case "backstep_end":
-						Agent.IsBackstepping = false;
-						IsPastMidwayPoint = false;
-						IsDoingAnimation = false;
-						break;
-					case "midway":
-						IsPastMidwayPoint = true;
-						break;
-					case "can_interrupt":
-						CanInterrupt = true;
-						break;
-				}
-			};
+			AnimTagEventManager = new AnimTagEventManager();
+			AnimTagEventManager.RegisterRenderer( AnimationHelper.Target );
+			RegisterAgentResets();
+
 		}
 
-		private void SetAnimgraphParam(string param, bool value, float agentYaw, bool isDoingAnimation = true)
+		private void SetAnimgraphParam(string param, bool value, float agentYaw)
 		{
 			Agent.Transform.Rotation = Rotation.FromYaw( agentYaw );
 			AnimationHelper.Target.Set( param, value );
-			IsDoingAnimation = isDoingAnimation;
 		}
 
-		private void SetAnimgraphParam( string param, bool value, bool isDoingAnimation = true)
+		private void SetAnimgraphParam( string param, bool value)
 		{
 			AnimationHelper.Target.Set( param, value );
-			IsDoingAnimation = isDoingAnimation;
+		}
+
+		public bool IsTagActive(string tagName)
+		{
+			return AnimTagEventManager.IsTagActive( tagName );
+		}
+
+		private void RegisterAgentResets()
+		{
+			AnimTagEventManager.RegisterTagCallback( "SB_Rolling", SceneModel.AnimTagStatus.End, () =>
+			{
+				Agent.IsRolling = false;
+			});
+			AnimTagEventManager.RegisterTagCallback( "SB_Jumping", SceneModel.AnimTagStatus.End, () =>
+			{
+				Agent.IsJumping = false;
+			});
+			AnimTagEventManager.RegisterTagCallback( "SB_Backstepping", SceneModel.AnimTagStatus.End, () =>
+			{
+				Agent.IsBackstepping = false;
+			});
 		}
 	}
 }

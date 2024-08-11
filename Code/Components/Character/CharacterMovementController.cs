@@ -41,6 +41,18 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
+			if (Network.IsProxy)
+			{
+				return;
+			}
+			else
+			{
+				HandleLocalMovement();
+			}
+		}
+
+		private void HandleLocalMovement()
+		{
 			if ( !CharacterController.IsOnGround )
 			{
 				CharacterAnimationController.AnimationHelper.IsGrounded = CharacterController.IsOnGround;
@@ -78,11 +90,14 @@ namespace SoulsBox
 
 			if (Agent is AgentPlayer player )
 			{
-				if ( player.LockedOn )
+				Log.Info( player.CurrentLockOnAble );
+				Log.Info( player.CurrentLockOnAble );
+				if ( player.LockedOn && player.CurrentLockOnAble != null )
 				{
 					if ( !SetLastMove )
 					{
-						targetDirection = player.MoveVector * (player.CurrentLockOnAblePosition - player.Transform.Position).EulerAngles;
+						Log.Info( "Hello chap" );
+						targetDirection = player.MoveVectorRelativeToCamera * (player.Transform.Position - player.CurrentLockOnAblePosition).EulerAngles;
 						LastMove = targetDirection;
 						SetLastMove = true;
 					}
@@ -168,7 +183,7 @@ namespace SoulsBox
 			float currentDotCurrentVelocity = currentVelocity.Dot( currentVelocity );
 			targetLerpVelocity = MathF.Max( 0, (currentDotTargetVelocity / currentDotCurrentVelocity) ) * currentVelocity;
 
-			if ( CharacterAnimationController.IsPastMidwayPoint )
+			if ( CharacterAnimationController.IsTagActive( "SB_Past_Midway" ))
 			{
 				targetVelocity = currentVelocity.LerpTo( targetLerpVelocity, lerpFactor, true );
 				if ( float.IsNaN( targetVelocity.x ) || float.IsNaN( targetVelocity.y ) || float.IsNaN( targetVelocity.z ) )

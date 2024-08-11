@@ -134,6 +134,11 @@ namespace SoulsBox
 		protected override void OnStart()
 		{
 			if ( Network.IsProxy ) return;
+			var cameraPivotGameObject = Game.ActiveScene.CreateObject();
+			cameraPivotGameObject.Name = "CameraPivot";
+			var cameraPivotComponent = cameraPivotGameObject.Components.Create<CameraPivot>();
+			cameraPivotComponent.Player = this.GameObject;
+			CameraPivot = cameraPivotGameObject;
 			Camera = Scene.Camera.GameObject;
 			Camera.SetParent( CameraPivot );
 			Camera.Transform.Position = CameraPivot.Transform.Position + CameraOffset;

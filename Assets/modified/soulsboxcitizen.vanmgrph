@@ -22968,7 +22968,27 @@
 						m_id = 681773401
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 241964123
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "running_jump"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -24450,7 +24470,27 @@
 						m_id = 818605129
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1401387360
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "roll2"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -24599,7 +24639,27 @@
 						m_id = 853717923
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1401387360
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "roll2_mirror"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -27841,7 +27901,27 @@
 						m_id = 1021272282
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1152777987
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "backstep"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -65766,7 +65846,27 @@
 						m_id = 2021210606
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1401387360
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "roll_forward"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -69310,6 +69410,38 @@
 				m_tagID = 
 				{
 					m_id = 169420729
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Rolling"
+				m_tagID = 
+				{
+					m_id = 1401387360
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Doing_Animation"
+				m_tagID = 
+				{
+					m_id = 1584936859
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Jumping"
+				m_tagID = 
+				{
+					m_id = 241964123
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Backstepping"
+				m_tagID = 
+				{
+					m_id = 1152777987
 				}
 			},
 		]
