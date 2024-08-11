@@ -29,15 +29,17 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
+			AnimationHelper.IsGrounded = MovementController.CharacterController.IsOnGround;
+			AnimationHelper.WithVelocity( MovementController.CharacterController.Velocity );
+
+			if ( Network.IsProxy ) return;
+
 			if ( AnimationHelper != null )
 			{
 				if ( Agent.IsRolling && IsTagActive("SB_Can_Interrupt" ))
 				{
 					AnimationHelper.Target.Set( "sb_interrupt", true );
 				}
-
-				AnimationHelper.IsGrounded = MovementController.CharacterController.IsOnGround;
-				AnimationHelper.WithVelocity( MovementController.CharacterController.Velocity );
 
 				float rollYaw = Agent.MoveVector.EulerAngles.yaw;
 
@@ -73,7 +75,6 @@ namespace SoulsBox
 				}
 				else if ( !IsTagActive( "SB_Doing_Animation" ) && Agent.IsRolling == true )
 				{
-					Log.Info( "rolling!" );
 					SetAnimgraphParam( "roll_forward", true, rollYaw );
 				}
 				else if ( !IsTagActive( "SB_Doing_Animation" ) && Agent.IsJumping == true )
@@ -83,17 +84,23 @@ namespace SoulsBox
 				else if ( !IsTagActive( "SB_Doing_Animation" ) && Agent.IsBackstepping == true )
 				{
 					SetAnimgraphParam( "sb_backstep", true );
-				}
-				else if ( !IsTagActive( "SB_Doing_Animation" ) && Agent.IsLightAttacking == true )
+				} else if ( Agent.IsLightAttacking == true )
 				{
-					SetAnimgraphParam( "sb_light_attack_sword", true );
+					if ( !IsTagActive( "SB_Doing_Animation" ) && !IsTagActive( "SB_Can_Continue" ) )
+					{
+						SetAnimgraphParam( "sb_light_attack_sword", true );
+					}
+				}
+
+				if ( Agent.IsContinuing )
+				{
+					if ( IsTagActive( "SB_Can_Continue" ) && !IsTagActive("SB_Attacking") )
+					{
+						AnimationHelper.Target.Set( "sb_continue_combo", true );
+					}
 				}
 			}
-				
-			if (Agent.IsContinuing)
-			{
-				AnimationHelper.Target.Set( "sb_continue_combo", true );
-			}
+			
 		}
 
 		protected override void OnStart()
@@ -104,12 +111,14 @@ namespace SoulsBox
 
 		}
 
+		[Broadcast]
 		private void SetAnimgraphParam(string param, bool value, float agentYaw)
 		{
-			Agent.Transform.Rotation = Rotation.FromYaw( agentYaw );
+			if (!Network.IsProxy) Agent.Transform.Rotation = Rotation.FromYaw( agentYaw );
 			AnimationHelper.Target.Set( param, value );
 		}
 
+		[Broadcast]
 		private void SetAnimgraphParam( string param, bool value)
 		{
 			AnimationHelper.Target.Set( param, value );
@@ -125,6 +134,7 @@ namespace SoulsBox
 			AnimTagEventManager.RegisterTagCallback( "SB_Rolling", SceneModel.AnimTagStatus.End, () =>
 			{
 				Agent.IsRolling = false;
+				MovementController.SetLastMove = false;
 			});
 			AnimTagEventManager.RegisterTagCallback( "SB_Jumping", SceneModel.AnimTagStatus.End, () =>
 			{
@@ -134,6 +144,16 @@ namespace SoulsBox
 			{
 				Agent.IsBackstepping = false;
 			});
+			AnimTagEventManager.RegisterTagCallback( "SB_Can_Continue", SceneModel.AnimTagStatus.Start, () =>
+			{
+				Agent.IsLightAttacking = false;
+				Agent.IsContinuing = false;
+			});
+			AnimTagEventManager.RegisterTagCallback( "SB_Attacking", SceneModel.AnimTagStatus.Start, () =>
+			{
+				Agent.IsContinuing = false;
+				Agent.IsContinuing = false;
+			} );
 		}
 	}
 }

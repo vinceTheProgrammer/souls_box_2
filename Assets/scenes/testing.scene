@@ -84,6 +84,7 @@
           "__guid": "845cc308-9fef-478d-a535-2442076c125b",
           "Flags": 0,
           "Name": "Spawn Point",
+          "Position": "0,0,0",
           "Enabled": true,
           "Components": [
             {
@@ -97,6 +98,7 @@
           "__guid": "31655f85-9ebc-45f8-96e8-6c9eb14d47af",
           "Flags": 0,
           "Name": "Plane",
+          "Position": "0,0,0",
           "Scale": "37.62239,37.62239,37.62239",
           "Enabled": true,
           "Components": [

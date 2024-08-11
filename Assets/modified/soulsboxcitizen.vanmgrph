@@ -15873,7 +15873,36 @@
 						m_id = 407155723
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 947188815
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1743716262
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "sword_combo_pt1"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -24449,7 +24478,27 @@
 						m_id = 814328973
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1743716262
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "sword_combo_pt1_windup"
 					m_playbackSpeed = 2.0
 					m_bLoop = false
@@ -24489,6 +24538,33 @@
 							}
 							m_fStartCycle = 0.0
 							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1767616811
+							}
+							m_fStartCycle = 0.486068
+							m_fDuration = 0.513932
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 571266799
+							}
+							m_fStartCycle = 0.772962
+							m_fDuration = 0.227038
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1787585841
+							}
+							m_fStartCycle = 0.605779
+							m_fDuration = 0.394221
 						},
 					]
 					m_sequenceName = "roll2"
@@ -24658,6 +24734,33 @@
 							}
 							m_fStartCycle = 0.0
 							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1767616811
+							}
+							m_fStartCycle = 0.486068
+							m_fDuration = 0.513932
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 571266799
+							}
+							m_fStartCycle = 0.772962
+							m_fDuration = 0.227038
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1787585841
+							}
+							m_fStartCycle = 0.605779
+							m_fDuration = 0.394221
 						},
 					]
 					m_sequenceName = "roll2_mirror"
@@ -25792,13 +25895,51 @@
 				{
 					_class = "CSequenceAnimNode"
 					m_sName = "Unnamed"
-					m_vecPosition = [ 5936.0, -48.0 ]
+					m_vecPosition = [ 5936.0, -64.0 ]
 					m_nNodeID = 
 					{
 						m_id = 941767977
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1787585841
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 571266799
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1743716262
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "sword_combo_pt1_windup"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -27921,6 +28062,15 @@
 							m_fStartCycle = 0.0
 							m_fDuration = 1.0
 						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 571266799
+							}
+							m_fStartCycle = 0.697626
+							m_fDuration = 0.302374
+						},
 					]
 					m_sequenceName = "backstep"
 					m_playbackSpeed = 1.0
@@ -28261,7 +28411,45 @@
 						m_id = 1139742684
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1787585841
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 571266799
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1743716262
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "sword_combo_pt2_windup"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -65621,7 +65809,36 @@
 						m_id = 1962401187
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
+					m_tagSpans = 
+					[
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 947188815
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1584936859
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1743716262
+							}
+							m_fStartCycle = 0.0
+							m_fDuration = 1.0
+						},
+					]
 					m_sequenceName = "sword_combo_pt2"
 					m_playbackSpeed = 1.0
 					m_bLoop = false
@@ -65865,6 +66082,33 @@
 							}
 							m_fStartCycle = 0.0
 							m_fDuration = 1.0
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1767616811
+							}
+							m_fStartCycle = 0.486068
+							m_fDuration = 0.513932
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 571266799
+							}
+							m_fStartCycle = 0.772962
+							m_fDuration = 0.227038
+						},
+						{
+							_class = "CAnimTagSpan"
+							m_id = 
+							{
+								m_id = 1787585841
+							}
+							m_fStartCycle = 0.605779
+							m_fDuration = 0.394221
 						},
 					]
 					m_sequenceName = "roll_forward"
@@ -69442,6 +69686,46 @@
 				m_tagID = 
 				{
 					m_id = 1152777987
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Attacking"
+				m_tagID = 
+				{
+					m_id = 947188815
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Can_Continue"
+				m_tagID = 
+				{
+					m_id = 1787585841
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Can_Interrupt"
+				m_tagID = 
+				{
+					m_id = 571266799
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Past_Midway"
+				m_tagID = 
+				{
+					m_id = 1767616811
+				}
+			},
+			{
+				_class = "CEventAnimTag"
+				m_name = "SB_Full_Attack"
+				m_tagID = 
+				{
+					m_id = 1743716262
 				}
 			},
 		]

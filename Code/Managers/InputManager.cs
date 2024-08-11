@@ -18,7 +18,7 @@ namespace SoulsBox
 		private const float JumpThreshold = 0.1f;
 		private bool stickReleased = true;
 		private float lastMouseX = 0f;
-		private const float mouseThreshold = 15f;
+		private const float mouseThreshold = 300f;
 
 		public static void UpdateAnalogMove(AgentPlayer player)
 		{
@@ -99,7 +99,7 @@ namespace SoulsBox
 			}
 			else // Using mouse
 			{
-				float mouseX = Input.AnalogLook.yaw;
+				float mouseX = Mouse.Position.x;
 
 				if ( Agent.LockedOn )
 				{
@@ -120,11 +120,11 @@ namespace SoulsBox
 
 			if ( Input.Pressed( "sb_light_attack" ) )
 			{
-				if ( !Agent.IsLightAttacking )
+				if ( !Agent.CharacterMovementController.CharacterAnimationController.IsTagActive("SB_Attacking") && !Agent.CharacterMovementController.CharacterAnimationController.IsTagActive("SB_Doing_Animation"))
 				{
 					Agent.IsLightAttacking = true;
 				}
-				else
+				else if (Agent.CharacterMovementController.CharacterAnimationController.IsTagActive("SB_Can_Continue"))
 				{
 					Agent.IsContinuing = true;
 				}

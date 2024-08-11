@@ -74,7 +74,7 @@ namespace SoulsBox
 			{
 				HandleBackstepping();
 			}
-			else if ( Agent.IsLightAttacking )
+			else if ( CharacterAnimationController.IsTagActive("SB_Full_Attack") )
 			{
 				HandleAttacking();
 			}
@@ -90,14 +90,11 @@ namespace SoulsBox
 
 			if (Agent is AgentPlayer player )
 			{
-				Log.Info( player.CurrentLockOnAble );
-				Log.Info( player.CurrentLockOnAble );
 				if ( player.LockedOn && player.CurrentLockOnAble != null )
 				{
 					if ( !SetLastMove )
 					{
-						Log.Info( "Hello chap" );
-						targetDirection = player.MoveVectorRelativeToCamera * (player.Transform.Position - player.CurrentLockOnAblePosition).EulerAngles;
+						targetDirection = player.MoveVector * (player.CurrentLockOnAblePosition - player.Transform.Position).EulerAngles;
 						LastMove = targetDirection;
 						SetLastMove = true;
 					}
@@ -124,7 +121,6 @@ namespace SoulsBox
 
 		private void HandleJumping()
 		{
-			//Log.Info( CharacterController.Transform.Rotation.Forward );
 			HandleMovement( Agent.Transform.Rotation.Forward, 0.05f, RunSpeed );
 		}
 
@@ -159,12 +155,10 @@ namespace SoulsBox
 			{
 				if ( !player_.LockedOn || player_.IsSprinting)
 				{
-					//Log.Info( GameObject.Parent.Name + " hi" );
 					Transform.Rotation = Rotation.Lerp( Transform.Rotation, player_.LastMoveDirectionRotation, 0.1f );
 				}
 				else
 				{
-					//Log.Info( GameObject.Parent.Name + " bye" );
 					Vector3 targetToPlayerDisplacement = (player_.CurrentLockOnAblePosition - Transform.Position);
 					Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
 					Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );
