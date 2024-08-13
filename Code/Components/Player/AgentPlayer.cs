@@ -17,13 +17,6 @@ namespace SoulsBox
 
 	public sealed class AgentPlayer : CharacterAgent
 	{
-
-		[Property]
-		public CameraController CameraController { get; set; }
-
-		[Property]
-		public CharacterMovementController CharacterMovementController { get; set; }
-
 		[Sync]
 		public Rotation LastMoveDirectionRotation { get; set; }
 
@@ -36,10 +29,19 @@ namespace SoulsBox
 		[Sync]
 		public Vector3 CurrentLockOnAblePosition { get; set; }
 
+		[Property]
+		public PlayerStats PlayerStats { get; set; }
+
 		public LockOnAble CurrentLockOnAble { get; set; }
 
 		public HashSet<LockOnAble> LockOnAbles = new HashSet<LockOnAble>();
 		public float LockOnRadius { get; set; } = 1000f;
+
+		public bool CanRespawn { get; set; }
+
+		public Bonfire lastRestedBonfire {  get; set; }
+
+		public bool IsRespawning { get; set; }
 
 		public static AgentPlayer Local
 		{
@@ -88,12 +90,13 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
+			if ( Network.IsProxy ) return;
 			UpdateLockOnAbles();
 		}
 
 		protected override void OnStart()
 		{
-
+			if ( Network.IsProxy ) return;
 			OctreeManager.Instance.DestroyAndReInit();
 		}
 
@@ -116,7 +119,7 @@ namespace SoulsBox
 					LockOnAbles.Add( lockOnAble );
 				}
 			}
-			CurrentLockOnAblePosition = CurrentLockOnAble != null ? CurrentLockOnAble.Transform.Position : Vector3.Zero;
+			CurrentLockOnAblePosition = CurrentLockOnAble != null ? (CurrentLockOnAble.Transform.Position + CurrentLockOnAble.LockOnOffset) : Vector3.Zero;
 		}
 
 		private LockOnAble GetClosestLockOnAble()
@@ -126,7 +129,7 @@ namespace SoulsBox
 
 			foreach ( var lockOnAble in LockOnAbles )
 			{
-				float distance = Vector3.DistanceBetween( Transform.Position, lockOnAble.Transform.Position );
+				float distance = Vector3.DistanceBetween( Transform.Position, (lockOnAble.Transform.Position + lockOnAble.LockOnOffset) );
 				if ( distance < closestDistance )
 				{
 					closest = lockOnAble;
@@ -144,7 +147,7 @@ namespace SoulsBox
 
 			foreach ( var lockOnAble in LockOnAbles )
 			{
-				float distance = Vector3.DistanceBetween( Transform.Position, lockOnAble.Transform.Position );
+				float distance = Vector3.DistanceBetween( Transform.Position, (lockOnAble.Transform.Position + lockOnAble.LockOnOffset) );
 				if ( distance < closestDistance && IsWithinView( lockOnAble.Transform ))
 				{
 					closest = lockOnAble;
@@ -166,7 +169,7 @@ namespace SoulsBox
 			{
 				if ( lockOnAble == CurrentLockOnAble ) continue;
 
-				Vector3 toTarget = lockOnAble.Transform.Position - Transform.Position;
+				Vector3 toTarget = (lockOnAble.Transform.Position + lockOnAble.LockOnOffset) - Transform.Position;
 				Vector3 toCurrentTarget = CurrentLockOnAblePosition - Transform.Position;
 
 				float angle = toCurrentTarget.SignedAngle( toTarget );
@@ -186,6 +189,39 @@ namespace SoulsBox
 			{
 				CurrentLockOnAble = bestTarget;
 			}
+		}
+
+		public void Respawn()
+		{
+			Log.Info( "respawn" );
+
+			if (!CanRespawn) return;
+			if ( Network.IsProxy ) return;
+
+			Log.Info( "respawno" );
+
+
+			Bonfire lastRestedBonfire = GetLastRestedOrRandomBonfire();
+
+			IEnumerable<SpawnPoint> spawnPoints = lastRestedBonfire.Components.GetAll<SpawnPoint>( find: FindMode.EnabledInSelfAndDescendants );
+
+			SpawnPoint spawnPoint = spawnPoints.GetRandomItem();
+
+			Transform.Position = spawnPoint.Transform.Position;
+			Transform.Rotation = spawnPoint.Transform.Rotation;
+
+			IsDead = false;
+			IsRespawning = true;
+
+			CharacterVitals.ResetVitals();
+			PlayerStats.Souls = 10;
+		}
+
+		private Bonfire GetLastRestedOrRandomBonfire()
+		{
+			if ( lastRestedBonfire != null ) return lastRestedBonfire;
+			IEnumerable<Bonfire> bonfires = Scene.GetAllComponents<Bonfire>();
+			return bonfires.GetRandomItem();
 		}
 	}
 }

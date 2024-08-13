@@ -2,31 +2,6 @@
   "__guid": "c3530f58-a961-422f-88d6-257e78fdd501",
   "GameObjects": [
     {
-      "__guid": "fa04b464-4636-4ba4-8f7d-c6e87cda2bfd",
-      "Flags": 0,
-      "Name": "Screen",
-      "Position": "489.9308,345.8908,170.1688",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "ff80e76f-9c53-430f-9f01-89321c5100c9",
-          "AutoScreenScale": true,
-          "Opacity": 1,
-          "Scale": 1,
-          "ZIndex": 100
-        },
-        {
-          "__type": "Facepunch.Arena.Chat",
-          "__guid": "30b97439-c2c4-4647-9051-74776f9ba826"
-        },
-        {
-          "__type": "LockOnIndicator",
-          "__guid": "a6e707b1-ec7f-4149-bdae-dc491ccc6f80"
-        }
-      ]
-    },
-    {
       "__guid": "731da9d3-4f7d-4103-a358-44eafc292e34",
       "Flags": 0,
       "Name": "Camera",
@@ -54,90 +29,83 @@
       ]
     },
     {
-      "__guid": "18110692-d26a-4531-b5f3-9c3ab1eca247",
+      "__guid": "56c8540a-ede1-4ce2-829f-31f92fc4e5ad",
       "Flags": 0,
-      "Name": "Map",
-      "Position": "99.81729,111.8704,-41.95449",
+      "Name": "Object",
+      "Position": "763.4576,358.3147,-56.08624",
       "Enabled": true,
-      "Children": [
+      "Components": [
         {
-          "__guid": "ceedf838-7176-443d-8227-47564ea62ae9",
-          "Flags": 0,
-          "Name": "Sun",
-          "Position": "-269.5213,-151.5268,-8.773872",
-          "Rotation": "0,0.5,0,0.8660254",
-          "Tags": "light_directional,light",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.DirectionalLight",
-              "__guid": "4b0353ec-ff4f-44a1-8e58-c0e728cce205",
-              "FogMode": "Enabled",
-              "FogStrength": 1,
-              "LightColor": "0.91373,0.98039,1,1",
-              "Shadows": true,
-              "SkyColor": "0,0,0,0"
-            }
-          ]
+          "__type": "Sandbox.MapInstance",
+          "__guid": "891b4982-b55b-4917-a564-d005a24cc64b",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "sugmagaming.nuketown",
+          "NoOrigin": false,
+          "UseMapFromLaunch": false
         },
         {
-          "__guid": "845cc308-9fef-478d-a535-2442076c125b",
-          "Flags": 0,
-          "Name": "Spawn Point",
-          "Position": "0,0,0",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.SpawnPoint",
-              "__guid": "350c6db3-52e6-4865-9402-ed5e02387c3a",
-              "Color": "0.8902,0.31765,0.05098,1"
-            }
-          ]
+          "__type": "Sandbox.NetworkHelper",
+          "__guid": "5cfcbb7e-2a28-4ca2-80ae-08e0b1097a75",
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player.prefab"
+          },
+          "SpawnPoints": [],
+          "StartServer": true
         },
         {
-          "__guid": "31655f85-9ebc-45f8-96e8-6c9eb14d47af",
-          "Flags": 0,
-          "Name": "Plane",
-          "Position": "0,0,0",
-          "Scale": "37.62239,37.62239,37.62239",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "e6f250d8-d4ce-4630-ae25-b8417b161d88",
-              "BodyGroups": 18446744073709551615,
-              "Model": "models/dev/plane.vmdl",
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            },
-            {
-              "__type": "Sandbox.SpawnPlayer",
-              "__guid": "b696a371-16f1-4e93-871c-89276e67c1fa"
-            },
-            {
-              "__type": "Sandbox.PlaneCollider",
-              "__guid": "b631cb49-95b7-4203-89be-bcb6bce11d22",
-              "Center": "0,0,0",
-              "IsTrigger": false,
-              "Scale": "111.7,107.5001",
-              "Static": true
-            },
-            {
-              "__type": "Sandbox.NetworkHelper",
-              "__guid": "5d363853-3d8f-4d95-bb5e-072c052a0b3d",
-              "PlayerPrefab": {
-                "_type": "gameobject",
-                "prefab": "prefabs/player.prefab"
-              },
-              "SpawnPoints": [
-                {
-                  "_type": "gameobject",
-                  "go": "845cc308-9fef-478d-a535-2442076c125b"
-                }
-              ],
-              "StartServer": true
-            }
-          ]
+          "__type": "Sandbox.CreateBonfires",
+          "__guid": "3ba7114b-0c44-44ec-9212-7af1506a1270"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "ee495875-3baf-4ca9-8ed2-fafbbc2e63e2",
+      "Flags": 0,
+      "Name": "Screen",
+      "Position": "489.9308,345.8908,170.1688",
+      "Enabled": true,
+      "NetworkMode": 0,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "9625f99d-dfc4-43e3-bf22-0983f7c9fee4",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Facepunch.Arena.Chat",
+          "__guid": "62878682-4922-460a-a0c5-634d1a1bd222"
+        },
+        {
+          "__type": "LockOnIndicator",
+          "__guid": "84bb76f9-86c4-41e4-ac65-ecccb0b6fae1"
+        }
+      ]
+    },
+    {
+      "__guid": "67c17654-d300-4ef2-abdc-6a9ea953d0cc",
+      "Flags": 0,
+      "Name": "Cube",
+      "Position": "949.972,1598.294,48.64001",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "f05d45bf-56aa-40df-b89a-dfaac78e2339",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/box.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.LockOnAble",
+          "__guid": "803adad3-be2a-4a47-8bec-c7d6d4603ef9",
+          "LockOnOffset": "0,0,0"
         }
       ]
     }

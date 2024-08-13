@@ -1,0 +1,13 @@
+{
+  "Sequences": [
+    {
+      "Source": "materials/fire/fire.tga",
+      "IsLooping": true,
+      "FlipBook": true,
+      "Columns": 2,
+      "Rows": 2,
+      "Frames": 4
+    }
+  ],
+  "OutputTypeString": "2D"
+}

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "NoWFENuWbLSpXRLnHHim9ezp/8McCbIwpURSYBY9qjXmvojLAH4llU92Vppiv8u7ag7HanqJf8urBrduGp6TJw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\vince\\Documents\\s&box projects\\souls_box\\Libraries\\fish.debugoverlay\\Code\\debugoverlay.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vince\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.17\\microsoft.windowsdesktop.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\vince\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.17\\microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\vince\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.17\\microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}

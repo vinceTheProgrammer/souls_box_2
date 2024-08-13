@@ -120,11 +120,11 @@ namespace SoulsBox
 
 			if ( Input.Pressed( "sb_light_attack" ) )
 			{
-				if ( !Agent.CharacterMovementController.CharacterAnimationController.IsTagActive("SB_Attacking") && !Agent.CharacterMovementController.CharacterAnimationController.IsTagActive("SB_Doing_Animation"))
+				if ( !Agent.CharacterAnimationController.IsTagActive("SB_Attacking") && !Agent.CharacterMovementController.CharacterAnimationController.IsTagActive("SB_Doing_Animation"))
 				{
 					Agent.IsLightAttacking = true;
 				}
-				else if (Agent.CharacterMovementController.CharacterAnimationController.IsTagActive("SB_Can_Continue"))
+				else if (Agent.CharacterAnimationController.IsTagActive("SB_Can_Continue"))
 				{
 					Agent.IsContinuing = true;
 				}

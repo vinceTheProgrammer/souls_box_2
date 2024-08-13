@@ -19,7 +19,7 @@
     {
         if (Player == null)
         {
-            Player = Game.ActiveScene.GetAllComponents<AgentPlayer>().FirstOrDefault(x => x.Network.IsOwner);
+            Player = Game.ActiveScene.GetAllComponents<AgentPlayer>().FirstOrDefault(x => !x.Network.IsProxy);
         }
 
         if (Player == null) return;

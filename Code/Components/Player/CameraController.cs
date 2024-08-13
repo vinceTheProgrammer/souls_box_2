@@ -46,6 +46,12 @@ namespace SoulsBox
 			if (Player.LockedOn && Player.CurrentLockOnAble != null)
 			{
 
+				// Standard Cam
+				Vector3 _rotateAround = CameraPivot.Transform.Position;
+				ForwardAngles = ForwardAngles.WithPitch( MathX.Clamp( ForwardAngles.pitch, -30.0f, 60.0f ) );
+				InitialCameraTransform.Position = (_rotateAround + CameraOffset).WithZ( _rotateAround.z );
+				Camera.Transform.World = InitialCameraTransform.RotateAround( _rotateAround, ForwardAngles );
+
 				// HORIZONTAL LOCK ON
 				float horizontalScreenPosition = Player.CurrentLockOnAblePosition.ToScreen().x;
 				if (horizontalScreenPosition < 0.5f - HorizontalThreshold)
@@ -75,18 +81,12 @@ namespace SoulsBox
 					ForwardAngles.pitch += 0.1f * distanceToVerticalThreshold * VerticalLerpSpeed;
 				}
 
-
-				// Standard Cam
-				Vector3 _rotateAround = CameraPivot.Transform.Position;
-				ForwardAngles = ForwardAngles.WithPitch( MathX.Clamp( ForwardAngles.pitch, -30.0f, 60.0f ) );
-				InitialCameraTransform.Position = (_rotateAround + CameraOffset).WithZ( _rotateAround.z );
-				Camera.Transform.World = InitialCameraTransform.RotateAround( _rotateAround, ForwardAngles );
 				var cameraTrace = Scene.Trace.Ray( _rotateAround, Camera.Transform.World.Position ).Size( 5f ).WithoutTags( "player" ).Run();
 				Camera.Transform.Position = cameraTrace.EndPosition;
 			}
 			else
 			{
-				ForwardAngles += Input.AnalogLook;
+				//ForwardAngles += Input.AnalogLook;
 				float _tempVarPointDistance = 100.0f;
 				Vector3 _tempPointVector = new Vector3( Transform.Position.WithZ( Transform.Position.z + 65.0f ) + Transform.Rotation.Forward.Normal * _tempVarPointDistance );
 				SceneTraceResult camToPointTraceResult = Scene.Trace.Ray( Camera.Transform.Position, _tempPointVector ).Size( 1f ).WithoutTags( "player" ).Run();
@@ -97,6 +97,7 @@ namespace SoulsBox
 				if ( camToPointTraceResult.Hit && !playerToPointTraceResult.Hit )
 				{
 					float incrementAmount = playerFacingRight ? -1f : 1f;
+					Log.Info( "Yaw gotta be kidding me." );
 					ForwardAngles.yaw += incrementAmount;
 				}
 
@@ -116,6 +117,7 @@ namespace SoulsBox
 				{
 					if ( player.CharacterMovementController != null )
 					{
+						Log.Info( "I am your father." );
 						Vector3 debug = player.CharacterMovementController.CharacterController.Velocity.ProjectOnNormal( Camera.Transform.Rotation.Right.Normal );
 						float sign = Math.Sign( Camera.Transform.Rotation.Right.Normal.Dot( player.CharacterMovementController.CharacterController.Velocity ) );
 						float debug2 = debug.Length * sign;
@@ -125,6 +127,7 @@ namespace SoulsBox
 				}
 				else
 				{
+					Log.Info( "I am here." );
 					Angles _targetAngles = ForwardAngles.WithYaw( ForwardAngles.yaw + player.MoveVector.y );
 					ForwardAngles = ForwardAngles.LerpTo( _targetAngles, 0.1f );
 				}

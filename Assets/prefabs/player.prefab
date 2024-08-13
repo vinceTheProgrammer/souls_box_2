@@ -16,11 +16,41 @@
           "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
           "component_type": "CameraController"
         },
+        "CharacterAnimationController": {
+          "_type": "component",
+          "component_id": "b58db0f4-1aba-4231-b0bf-4c535170b29f",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "CharacterAnimationController"
+        },
+        "CharacterCombatController": {
+          "_type": "component",
+          "component_id": "abcdcab2-7f91-4b48-ba9a-d3ec1d057a23",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "CharacterCombatController"
+        },
         "CharacterMovementController": {
           "_type": "component",
           "component_id": "00a08db7-f046-4835-82a0-ac34a2e85beb",
           "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
           "component_type": "CharacterMovementController"
+        },
+        "CharacterStats": {
+          "_type": "component",
+          "component_id": "c7271fc7-f11f-4aff-a06f-9b12af8151a3",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "CharacterStats"
+        },
+        "CharacterVitals": {
+          "_type": "component",
+          "component_id": "4000d9b3-17ef-4f55-9543-55b80188dbfe",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "CharacterVitals"
+        },
+        "PlayerStats": {
+          "_type": "component",
+          "component_id": "d03123e1-c3c9-4180-a06f-223ff83ef44a",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "PlayerStats"
         }
       },
       {
@@ -135,16 +165,42 @@
       {
         "__type": "Sandbox.LockOnAble",
         "__guid": "102cb52a-bb39-42de-9c11-ffa4d7a948fa",
-        "LockOnOffset": "0,0,0"
+        "LockOnOffset": "0,0,35"
       },
       {
-        "__type": "Sandbox.CapsuleCollider",
-        "__guid": "5bd0ce89-919c-4777-87ae-7d914731b0cb",
-        "End": "0,0,62",
+        "__type": "SoulsBox.CharacterCombatController",
+        "__guid": "abcdcab2-7f91-4b48-ba9a-d3ec1d057a23",
+        "Agent": {
+          "_type": "component",
+          "component_id": "98de2beb-de64-4970-848e-1c98d01484e8",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "AgentPlayer"
+        }
+      },
+      {
+        "__type": "SoulsBox.CharacterVitals",
+        "__guid": "4000d9b3-17ef-4f55-9543-55b80188dbfe",
+        "Agent": {
+          "_type": "component",
+          "component_id": "98de2beb-de64-4970-848e-1c98d01484e8",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "AgentPlayer"
+        }
+      },
+      {
+        "__type": "Sandbox.ModelCollider",
+        "__guid": "7d8ac4f1-cb34-45be-a9a3-47e3671a7710",
         "IsTrigger": false,
-        "Radius": 10,
-        "Start": "0,0,10",
+        "Model": "modified/soulsboxcitizen.vmdl",
         "Static": false
+      },
+      {
+        "__type": "SoulsBox.CharacterStats",
+        "__guid": "c7271fc7-f11f-4aff-a06f-9b12af8151a3"
+      },
+      {
+        "__type": "SoulsBox.PlayerStats",
+        "__guid": "d03123e1-c3c9-4180-a06f-223ff83ef44a"
       }
     ],
     "Children": [
@@ -474,7 +530,7 @@
                                     "__guid": "16b7881b-b2de-433b-9527-29b450b304bc",
                                     "Flags": 4,
                                     "Name": "arm_elbow_helper_L",
-                                    "Position": "-0.000004768372,0.000002861023,-0.00006103516",
+                                    "Position": "0,0,0",
                                     "Rotation": "0.0000003075731,0.000000002854507,-0.7577645,0.6525282",
                                     "Enabled": true
                                   }
@@ -536,7 +592,19 @@
                                         "Name": "hold_R",
                                         "Position": "5.361085,0.621902,-3.394508",
                                         "Rotation": "-0.5764739,0.3928987,0.1704146,0.695893",
-                                        "Enabled": true
+                                        "Enabled": true,
+                                        "Children": [
+                                          {
+                                            "__guid": "480eb725-9cd5-4efe-a6ff-250c08bbd18f",
+                                            "Flags": 0,
+                                            "Name": "sting_sword",
+                                            "Position": "-1.361138,-0.4148222,16.62963",
+                                            "Rotation": "-0.3535556,0.6123724,0.3535522,0.6123717",
+                                            "Enabled": true,
+                                            "__Prefab": "prefabs/weapons/sting_sword.prefab",
+                                            "__PrefabVariables": {}
+                                          }
+                                        ]
                                       },
                                       {
                                         "__guid": "bf7d3b6a-1901-48bc-887f-1de9e1ff950e",
@@ -708,7 +776,7 @@
                                         "__guid": "12bcc03e-01db-4e37-91a6-0ef4d632a028",
                                         "Flags": 4,
                                         "Name": "arm_elbow_helper_R",
-                                        "Position": "-0.00000667572,0.00003147125,-0.00005340576",
+                                        "Position": "0,0,0",
                                         "Rotation": "0.0000007692941,-0.0000002412072,-0.7577677,0.6525243",
                                         "Enabled": true
                                       }
@@ -800,7 +868,7 @@
                     "__guid": "52e22aba-b0ca-4f8e-bea3-0f75017ed2b4",
                     "Flags": 4,
                     "Name": "leg_knee_helper_R",
-                    "Position": "0.000001907349,0.000004768372,-0.000009536743",
+                    "Position": "0,0,0",
                     "Rotation": "0.000000905889,-0.000001318489,0.7135269,0.7006279",
                     "Enabled": true
                   }
@@ -817,7 +885,7 @@
                 "__guid": "7d5f7682-f639-420c-9b80-b08ab546b886",
                 "Flags": 4,
                 "Name": "leg_upper_R_twist0",
-                "Position": "0.000007629395,0.000005960464,-0.00001716614",
+                "Position": "0,0,0",
                 "Rotation": "-0.00000008940732,-0.000000029802,0.000003069638,1",
                 "Enabled": true
               },
@@ -825,7 +893,7 @@
                 "__guid": "13000eaa-26e6-4408-8355-f55d99007a6c",
                 "Flags": 4,
                 "Name": "leg_glute_helper_R",
-                "Position": "-0.000007629395,0,-0.000007629395",
+                "Position": "0,0,0",
                 "Rotation": "-0.000001221895,-0.0000006515999,-0.7071052,0.7071083",
                 "Enabled": true
               }
@@ -883,7 +951,7 @@
                     "__guid": "521852c1-759f-4d03-afe7-fd0f0e3b1070",
                     "Flags": 4,
                     "Name": "leg_knee_helper_L",
-                    "Position": "-0.00001525879,0.000001847744,-0.000009536743",
+                    "Position": "0,0,0",
                     "Rotation": "-0.000002973302,-0.000001705918,0.7135277,0.7006271",
                     "Enabled": true
                   }
@@ -907,7 +975,7 @@
                 "__guid": "7930812b-6898-4d0b-a4e4-682e5ede5de2",
                 "Flags": 4,
                 "Name": "leg_glute_helper_L",
-                "Position": "-0.000005722046,0.000001907349,-0.000003814697",
+                "Position": "0,0,0",
                 "Rotation": "-0.000001102686,-0.0000007682514,-0.7071056,0.707108",
                 "Enabled": true
               }

@@ -14,13 +14,8 @@
         "Tint": "1,1,1,1"
       },
       {
-        "__type": "Sandbox.ManualHitbox",
-        "__guid": "3515828a-a28e-4a49-90fe-761efd519d54",
-        "CenterA": "-22,0,0",
-        "CenterB": "22.99999,0,0",
-        "HitboxTags": "",
-        "Radius": 10,
-        "Shape": "Capsule"
+        "__type": "SoulsBox.Weapon",
+        "__guid": "17726210-89d0-421d-ba65-33a9e6d5b0ec"
       }
     ],
     "Children": [

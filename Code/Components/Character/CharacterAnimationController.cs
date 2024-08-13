@@ -36,9 +36,22 @@ namespace SoulsBox
 
 			if ( AnimationHelper != null )
 			{
+				if (Agent.IsDead)
+				{
+					SetAnimgraphParam( "sb_death", true );
+					return;
+				} else if (Agent is AgentPlayer _player)
+				{
+					if (_player.IsRespawning )
+					{
+						SetAnimgraphParam( "sb_respawn", true );
+						return;
+					}
+				}
+
 				if ( Agent.IsRolling && IsTagActive("SB_Can_Interrupt" ))
 				{
-					AnimationHelper.Target.Set( "sb_interrupt", true );
+					SetAnimgraphParam( "sb_interrupt", true );
 				}
 
 				float rollYaw = Agent.MoveVector.EulerAngles.yaw;
@@ -96,7 +109,7 @@ namespace SoulsBox
 				{
 					if ( IsTagActive( "SB_Can_Continue" ) && !IsTagActive("SB_Attacking") )
 					{
-						AnimationHelper.Target.Set( "sb_continue_combo", true );
+						SetAnimgraphParam( "sb_continue_combo", true );
 					}
 				}
 			}
@@ -153,7 +166,26 @@ namespace SoulsBox
 			{
 				Agent.IsContinuing = false;
 				Agent.IsContinuing = false;
+			});
+			AnimTagEventManager.RegisterTagCallback( "SB_Hitbox_Active", SceneModel.AnimTagStatus.Start, () =>
+			{
+				Agent.CharacterCombatController.CanDealDamage = true;	
+			});
+			AnimTagEventManager.RegisterTagCallback( "SB_Dying", SceneModel.AnimTagStatus.End, () =>
+			{
+				if (Agent is AgentPlayer player)
+				{
+					player.CanRespawn = true;
+					player.Respawn();
+				}
 			} );
+
+		}
+
+		public void AnimateHitReaction(DamageInfo damageInfo)
+		{
+			Vector3 force = (damageInfo.Attacker.Transform.Position - Transform.Position).Normal * 5f;
+			AnimationHelper.ProceduralHitReaction( damageInfo, force: force );
 		}
 	}
 }

@@ -41,14 +41,9 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
-			if (Network.IsProxy)
-			{
-				return;
-			}
-			else
-			{
-				HandleLocalMovement();
-			}
+			if (Network.IsProxy) return;
+			if (Agent.IsDead) return;
+			HandleLocalMovement();
 		}
 
 		private void HandleLocalMovement()

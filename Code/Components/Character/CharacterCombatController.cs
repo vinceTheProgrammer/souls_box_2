@@ -14,6 +14,10 @@ namespace SoulsBox
 		[Property]
 		CharacterAgent Agent { get; set; }
 
+		GameObject CurrentWeapon { get; set; }
+
+		public bool CanDealDamage { get; set; }
+
 		public enum AttackControl 
 		{
 			LeftLightAttack,
@@ -22,7 +26,7 @@ namespace SoulsBox
 			RightHeavyAttack,
 		}
 
-		enum PhysicalAttackType
+		public enum PhysicalAttackType
 		{
 			Regular,
 			Slash,
@@ -30,14 +34,14 @@ namespace SoulsBox
 			Thrust
 		}
 
-		enum MagicAttackType
+		public enum MagicAttackType
 		{
 			Sorcery,
 			Pyromancy,
 			Miracles
 		}
 
-		enum AttackCategory
+		public enum AttackCategory
 		{
 			Melee,
 			Sheld,
@@ -46,12 +50,54 @@ namespace SoulsBox
 		}
 
 
-		protected override void OnFixedUpdate()
+		protected override void OnUpdate()
 		{
-			// on attack
-				// case attack_control
-					// AttackControl.LeftLightAttack:
-						// HandleLightAttack(attack)
+			if (Agent.IsDead) return;
+			if (Agent.CharacterAnimationController.IsTagActive("SB_Hitbox_Active"))
+			{
+				if ( CurrentWeapon == null ) return;
+				if (CanDealDamage)
+				{
+					AttemptDealDamage();
+				}
+			}
+		}
+
+		protected override void OnStart()
+		{
+			CurrentWeapon = GetCurrentWeaponGameObject();
+		}
+
+		public GameObject GetCurrentWeaponGameObject()
+		{
+			var weapon = GameObject.Components.GetInDescendants<Weapon>();
+			if ( weapon != null ) return weapon.GameObject;
+			else return null;
+		}
+
+		private void AttemptDealDamage()
+		{
+			float radius = 10f;
+			Vector3 from = CurrentWeapon.Transform.Position + (CurrentWeapon.Transform.Rotation.Forward.Normal * 22f);
+			Vector3 to = CurrentWeapon.Transform.Position + (CurrentWeapon.Transform.Rotation.Backward.Normal * 22f);
+			Capsule hitboxCapsule = new Capsule( from, to, radius );
+			var hitboxTrace = Scene.Trace.Capsule( hitboxCapsule ).IgnoreGameObjectHierarchy( GameObject ).UseHitboxes( true ).Run();
+			if ( hitboxTrace.Hit )
+			{
+				Log.Info( hitboxTrace.GameObject.Name );
+				AgentPlayer hitAgent = hitboxTrace.GameObject.Components.Get<AgentPlayer>();
+				if ( hitAgent != null )
+				{
+					hitAgent.CharacterVitals.Hurt( 10, GameObject );
+					CanDealDamage = false;
+				}
+				IDamageable damageable = hitboxTrace.GameObject.Components.Get<IDamageable>();
+				if ( damageable != null )
+				{
+					Log.Info( "damage" );
+					damageable.OnDamage( new DamageInfo(10, GameObject, CurrentWeapon)   );
+				}
+			}
 		}
 	}
 }
