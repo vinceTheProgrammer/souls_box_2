@@ -21,6 +21,12 @@ namespace SoulsBox
 
 		public int Stamina { get; private set; }
 
+		private TimeSince StaminaLastRecovered { get; set; }
+		private float StaminaRecoveryPeriod { get; set; } = 0.01f;
+		private int StaminaRecoveryAmount { get; set; } = 1;
+		private TimeSince StaminaLastDrained { get; set; }
+		private float StaminaStartRecoveryPeriod { get; set; } = 2f;
+
 		protected override void OnUpdate()
 		{
 			if (GameObject.Components.Get<AgentPlayer>() != null)
@@ -34,7 +40,8 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
-			GiveStamina( 1 );
+
+			RegenerateStamina();
 		}
 
 		protected override void OnStart()
@@ -71,6 +78,7 @@ namespace SoulsBox
 		public void DrainStamina (int amount)
 		{
 			Stamina = Math.Clamp( Stamina - Math.Abs( amount ), 0, Agent.CharacterStats.MaxStamina );
+			StaminaLastDrained = 0;
 		}
 
 		public void ResetVitals()
@@ -82,17 +90,33 @@ namespace SoulsBox
 		// maybe put somewhere else?
 		public void Die(CharacterAgent killer)
 		{
+			if ( Network.IsProxy ) return;
 			Agent.IsDead = true;
 			if (killer is AgentPlayer player && Agent is AgentPlayer thisPlayer)
 			{
 				player.PlayerStats.GiveSouls( thisPlayer.PlayerStats.Souls );
 				thisPlayer.PlayerStats.Souls = 0;
+				GameObject seekingSoul = CharacterCombatController.SpawnParticle( "\\prefabs\\souls_seeking.prefab", thisPlayer.Transform.Position );
+				seekingSoul.Components.Get<SeekingSoul>().Target = player;
 			}
 		}
 
 		public void Die()
 		{
 			Agent.IsDead = true;
+		}
+
+		private void RegenerateStamina()
+		{
+			if (StaminaLastDrained > StaminaStartRecoveryPeriod)
+			{
+				if ( StaminaLastRecovered > StaminaRecoveryPeriod )
+				{
+					Stamina = Math.Clamp( Stamina + StaminaRecoveryAmount, 0, Agent.CharacterStats.MaxStamina );
+					StaminaLastRecovered = 0;
+				}
+			}
+			
 		}
 	}
 }

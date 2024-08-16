@@ -50,7 +50,7 @@ namespace SoulsBox
 		}
 
 
-		protected override void OnUpdate()
+		protected override void OnFixedUpdate()
 		{
 			if (Agent.IsDead) return;
 			if (Agent.CharacterAnimationController.IsTagActive("SB_Hitbox_Active"))
@@ -84,20 +84,36 @@ namespace SoulsBox
 			var hitboxTrace = Scene.Trace.Capsule( hitboxCapsule ).IgnoreGameObjectHierarchy( GameObject ).UseHitboxes( true ).Run();
 			if ( hitboxTrace.Hit )
 			{
-				Log.Info( hitboxTrace.GameObject.Name );
-				AgentPlayer hitAgent = hitboxTrace.GameObject.Components.Get<AgentPlayer>();
+				if ( hitboxTrace.GameObject != null ) Log.Info( hitboxTrace.GameObject.Name );
+				CharacterAgent hitAgent = hitboxTrace.GameObject.Components.Get<CharacterAgent>();
 				if ( hitAgent != null )
 				{
-					hitAgent.CharacterVitals.Hurt( 10, GameObject );
+					SBDamage damage = new( SBDamage.DamageType.PhysicalSlash, 30, GameObject, CurrentWeapon, hitboxTrace.Hitbox );
+					hitAgent.CharacterDefenseController.TryReceiveDamage( damage, hitboxTrace.HitPosition + ((from + to) / 2) );
 					CanDealDamage = false;
+					if (Agent is AgentPlayer) SpawnParticle( "\\prefabs\\particles\\blood.prefab", hitboxTrace.HitPosition + ((from + to) / 2) );
 				}
 				IDamageable damageable = hitboxTrace.GameObject.Components.Get<IDamageable>();
 				if ( damageable != null )
 				{
-					Log.Info( "damage" );
 					damageable.OnDamage( new DamageInfo(10, GameObject, CurrentWeapon)   );
+					SpawnParticle( "\\prefabs\\particles\\sparks.prefab", hitboxTrace.HitPosition + ((from + to) / 2) );
 				}
+				/*
+				if (hitboxTrace.GameObject.Name.ToLower() == "world physics" || hitboxTrace.GameObject.Name.ToLower() == "world_physics" )
+				{
+					SpawnParticle( "\\prefabs\\particles\\sparks.prefab", hitboxTrace.HitPosition + ((from + to) / 2));
+				}
+				*/
 			}
+		}
+
+		// move somewhere else later
+		public static GameObject SpawnParticle(string filepath, Vector3 position)
+		{
+			PrefabFile prefabFile = ResourceLibrary.Get<PrefabFile>( filepath );
+			PrefabScene particlePrefab = SceneUtility.GetPrefabScene( prefabFile );
+			return particlePrefab.Clone( position );
 		}
 	}
 }

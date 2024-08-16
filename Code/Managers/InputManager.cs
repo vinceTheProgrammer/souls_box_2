@@ -35,6 +35,16 @@ namespace SoulsBox
 				return;
 			}
 
+			if (  Agent.CreationMode )
+			{
+				Agent.CharacterMovementController.CreationModeSpeed = (Agent.CharacterMovementController.CreationModeSpeed + Input.MouseWheel.y * 10).Clamp( 0.1f, 10000f );
+			}
+
+			if (  Input.Pressed( "sb_creation_mode" ))
+			{
+				Agent.ToggleCreationMode();
+			}
+
 			if ( Input.Down( "sb_sprint" ) )
 			{
 				InputHoldTime += Time.Delta;
@@ -120,14 +130,25 @@ namespace SoulsBox
 
 			if ( Input.Pressed( "sb_light_attack" ) )
 			{
-				if ( !Agent.CharacterAnimationController.IsTagActive("SB_Attacking") && !Agent.CharacterMovementController.CharacterAnimationController.IsTagActive("SB_Doing_Animation"))
+				if ( Agent.CharacterVitals.Stamina > 0 )
 				{
-					Agent.IsLightAttacking = true;
+					if ( !Agent.CharacterAnimationController.IsTagActive( "SB_Attacking" ) && !Agent.CharacterMovementController.CharacterAnimationController.IsTagActive( "SB_Doing_Animation" ) )
+					{
+						Agent.IsLightAttacking = true;
+					}
+					else if ( Agent.CharacterAnimationController.IsTagActive( "SB_Can_Continue" ) )
+					{
+						Agent.IsContinuing = true;
+					}
 				}
-				else if (Agent.CharacterAnimationController.IsTagActive("SB_Can_Continue"))
-				{
-					Agent.IsContinuing = true;
-				}
+			}
+
+			if (Input.Down("sb_guard") )
+			{
+				Agent.IsGuarding = true;
+			} else if (Input.Released("sb_guard") )
+			{
+				Agent.IsGuarding = false;
 			}
 		}
 	}

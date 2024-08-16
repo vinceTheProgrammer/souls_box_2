@@ -1,0 +1,79 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent;
+
+<root>
+    <div class="big-box">
+        <div class="top-row">
+            <div class="top-row-left">
+                <!-- Content for the 80% section on the left -->
+                <p class="menu-heading">@CurrentScreen.ToString()</p>
+                <p class="menu-subheading">@GetMenuScreenDescription(CurrentScreen)</p>
+            </div>
+            <div class="top-row-right">
+                <!-- Content for the 20% section on the right -->
+                <p>Right Section (20%)</p>
+            </div>
+        </div>
+
+        <div class="menu-content">
+            @if (CurrentScreen == MenuScreen.Status)
+            {
+                <MenuStatus/>
+            } else if (CurrentScreen == MenuScreen.Settings)
+            {
+                <MenuSettings/>
+            } else if (CurrentScreen == MenuScreen.Equipment)
+            {
+                <MenuEquipment/>
+            } else if (CurrentScreen == MenuScreen.Inventory)
+            {
+                <MenuInventory/>
+            }
+        </div>
+
+        <div class="bottom-row">
+            <p>Select    Enter    Close</p>
+        </div>
+    </div>
+</root>
+
+@code
+{
+    public enum MenuScreen
+    {
+        Status,
+        Equipment,
+        Inventory,
+        Settings
+    }
+
+    [Property]
+    public MenuScreen CurrentScreen { get; set; }
+
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine(CurrentScreen);
+    }
+
+    private string GetMenuScreenDescription(MenuScreen screen)
+    {
+        switch (screen)
+        {
+            case MenuScreen.Status:
+                return "View your current attributes and stats";
+                break;
+            case MenuScreen.Equipment:
+                return "Manage your equipment";
+                break;
+            case MenuScreen.Inventory:
+                return "Manage your inventory";
+                break;
+            case MenuScreen.Settings:
+                return "Manage game";
+                break;
+            default:
+                return "missing description :(";
+        }
+    }
+}

@@ -31,6 +31,9 @@ namespace SoulsBox
 		public float TerminalVelocity = 200f;
 
 		[Property]
+		public float CreationModeSpeed = 100f;
+
+		[Property]
 		public CharacterController CharacterController { get; set; }
 
 		[Property]
@@ -39,10 +42,36 @@ namespace SoulsBox
 		[Property]
 		public CharacterAgent Agent { get; set; }
 
+		private Vector3 CreationModeCurrentVelocity { get; set; } = Vector3.Zero;
+
+		protected override void OnUpdate()
+		{
+			if (Agent is AgentPlayer player)
+			{
+				if (player.CreationMode)
+				{
+					ApplyCreationModeVelocity( player );
+				}
+			}
+		}
+
 		protected override void OnFixedUpdate()
 		{
 			if (Network.IsProxy) return;
+
+			if (Agent is AgentPlayer player)
+			{
+				if (player.CreationMode)
+				{
+					HandleCreationModeMovement( player );
+					return;
+				}
+			}
+
+			Log.Info(GameObject.Name + " " + Agent.IsDead );
+
 			if (Agent.IsDead) return;
+
 			HandleLocalMovement();
 		}
 
@@ -81,6 +110,9 @@ namespace SoulsBox
 
 		private void HandleRolling()
 		{
+
+			LerpControllerHeight( 30f );
+
 			Vector3 targetDirection = LastMove;
 
 			if (Agent is AgentPlayer player )
@@ -116,21 +148,27 @@ namespace SoulsBox
 
 		private void HandleJumping()
 		{
+			LerpControllerHeight( 72f );
 			HandleMovement( Agent.Transform.Rotation.Forward, 0.05f, RunSpeed );
+			CharacterController.MoveTo( Transform.Position + new Vector3(0,0,CharacterAnimationController.AnimationHelper.Target.RootMotion.Position.z * 200f), true );
 		}
 
 		private void HandleBackstepping()
 		{
+			LerpControllerHeight( 72f );
 			HandleMovement( Agent.Transform.Rotation.Backward, 0.05f, 100.0f );
 		}
 
 		private void HandleAttacking()
 		{
-			CharacterController.MoveTo( Transform.Position + CharacterAnimationController.AnimationHelper.Target.RootMotion.Position.Length * Transform.Rotation.Forward.Normal * 7.5f, true );
+			LerpControllerHeight( 72f );
+			CharacterController.MoveTo( Transform.Position + CharacterAnimationController.AnimationHelper.Target.RootMotion.Position.Length * Transform.Rotation.Forward.Normal * 3.0f, true );
 		}
 
 		private void HandleDefaultMovement()
 		{
+			LerpControllerHeight( 72f );
+
 			float targetSpeed = Agent.IsSprinting && !Agent.IsGuarding ? RunSpeed : WalkSpeed;
 			Vector3 targetVelocity;
 			if (Agent is AgentPlayer player)
@@ -183,6 +221,24 @@ namespace SoulsBox
 
 			CharacterController.Velocity = targetVelocity;
 			CharacterController.Move();
+		}
+
+		private void LerpControllerHeight(float height)
+		{
+			CharacterController.Height = CharacterController.Height.LerpTo( height, 0.1f );
+		}
+
+		private void HandleCreationModeMovement(AgentPlayer player)
+		{
+			Vector3 movementX = Input.AnalogMove.x * player.CameraController.Camera.Transform.Rotation.Forward.Normal * Time.Delta * CreationModeSpeed;
+			Vector3 movementY = Input.AnalogMove.y * player.CameraController.Camera.Transform.Rotation.Left.Normal * Time.Delta * CreationModeSpeed;
+			Vector3 movement = movementX + movementY;
+			CreationModeCurrentVelocity = CreationModeCurrentVelocity.LerpTo(movement, 0.1f);
+		}
+
+		private void ApplyCreationModeVelocity(AgentPlayer player)
+		{
+			player.CameraController.Camera.Transform.Position += CreationModeCurrentVelocity;
 		}
 	}
 }

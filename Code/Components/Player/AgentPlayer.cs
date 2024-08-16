@@ -32,6 +32,13 @@ namespace SoulsBox
 		[Property]
 		public PlayerStats PlayerStats { get; set; }
 
+		[Property]
+		public CameraController CameraController { get; set; }
+
+		public bool CreationMode { get; private set; }
+
+		public GameTransform LastNormalCameraTransform { get; set; }
+
 		public LockOnAble CurrentLockOnAble { get; set; }
 
 		public HashSet<LockOnAble> LockOnAbles = new HashSet<LockOnAble>();
@@ -193,13 +200,8 @@ namespace SoulsBox
 
 		public void Respawn()
 		{
-			Log.Info( "respawn" );
-
 			if (!CanRespawn) return;
 			if ( Network.IsProxy ) return;
-
-			Log.Info( "respawno" );
-
 
 			Bonfire lastRestedBonfire = GetLastRestedOrRandomBonfire();
 
@@ -222,6 +224,20 @@ namespace SoulsBox
 			if ( lastRestedBonfire != null ) return lastRestedBonfire;
 			IEnumerable<Bonfire> bonfires = Scene.GetAllComponents<Bonfire>();
 			return bonfires.GetRandomItem();
+		}
+
+		public void ToggleCreationMode()
+		{
+			if (!CreationMode)
+			{
+				LastNormalCameraTransform = CameraController.Camera.Transform;
+			}
+			else
+			{
+				CameraController.Camera.Transform.Position = LastNormalCameraTransform.Position;
+				CameraController.Camera.Transform.Rotation =LastNormalCameraTransform.Rotation;
+			}
+			CreationMode = !CreationMode;
 		}
 	}
 }

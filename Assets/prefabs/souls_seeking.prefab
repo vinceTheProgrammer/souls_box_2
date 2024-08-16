@@ -1,0 +1,32 @@
+{
+  "RootObject": {
+    "__guid": "cb346262-bf31-483a-9a8d-12718d6123ad",
+    "Flags": 0,
+    "Name": "souls_seeking",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "SoulsBox.SeekingSoul",
+        "__guid": "bceef599-a52e-4e89-9b67-c5c605d3e907"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "fbd90d9d-7522-4ad2-8ca6-0ad47b606872",
+        "Flags": 0,
+        "Name": "souls",
+        "Tags": "particles,light_point,light",
+        "Enabled": true,
+        "__Prefab": "prefabs/particles/souls.prefab",
+        "__PrefabVariables": {}
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

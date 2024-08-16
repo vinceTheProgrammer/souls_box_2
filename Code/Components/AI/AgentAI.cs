@@ -11,7 +11,8 @@ namespace SoulsBox
 	[Icon( "man" )]
 	public sealed class AgentAI : CharacterAgent
 	{
-		private Rotation LastMoveDirectionRotation;
+		private TimeSince TimeSinceLastAttack {  get; set; }
+		private float AttackPeriod { get; set; } = 3f;
 
 		private void SetMoveVector()
 		{
@@ -30,11 +31,13 @@ namespace SoulsBox
 			MoveVector = new Vector3( x, z, 0 );
 		}
 
-		protected override void OnUpdate()
+		protected override void OnFixedUpdate()
 		{
-			SetMoveVector();
-			if ( MoveVector.Length > 0 ) LastMoveDirectionRotation = Rotation.FromYaw( (MoveVector).EulerAngles.yaw );
-			Transform.Rotation = Rotation.Lerp( Transform.Rotation, LastMoveDirectionRotation, 0.1f );
+			if (TimeSinceLastAttack > AttackPeriod)
+			{
+				IsLightAttacking = true;
+				TimeSinceLastAttack = 0;
+			}
 		}
 	}
 }

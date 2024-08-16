@@ -85,7 +85,7 @@
         },
         {
           "Name": "sb_light_attack",
-          "KeyboardCode": "mouse1",
+          "KeyboardCode": "MOUSE1",
           "GamepadCode": "SwitchRightBumper",
           "GroupName": "Combat"
         },
@@ -206,6 +206,12 @@
         {
           "Name": "chat",
           "KeyboardCode": "Y",
+          "GamepadCode": "None",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_creation_mode",
+          "KeyboardCode": "v",
           "GamepadCode": "None",
           "GroupName": "Other"
         }

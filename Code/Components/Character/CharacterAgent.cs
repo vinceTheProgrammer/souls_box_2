@@ -5,9 +5,6 @@ namespace SoulsBox
 	public abstract class CharacterAgent : Component
 	{
 		[Property]
-		public CameraController CameraController { get; set; }
-
-		[Property]
 		public CharacterMovementController CharacterMovementController { get; set; }
 
 		[Property]
@@ -15,6 +12,9 @@ namespace SoulsBox
 
 		[Property]
 		public CharacterCombatController CharacterCombatController { get; set; }
+
+		[Property]
+		public CharacterDefenseController CharacterDefenseController { get; set; }
 
 		[Property]
 		public CharacterVitals CharacterVitals { get; set; }

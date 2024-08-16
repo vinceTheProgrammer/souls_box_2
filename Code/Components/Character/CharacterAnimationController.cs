@@ -29,6 +29,15 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
+			if (Agent is AgentPlayer player)
+			{
+				if ( player.CreationMode )
+				{
+					AnimationHelper.WithVelocity( Vector3.Zero );
+					return;
+				}
+			}
+
 			AnimationHelper.IsGrounded = MovementController.CharacterController.IsOnGround;
 			AnimationHelper.WithVelocity( MovementController.CharacterController.Velocity );
 
@@ -40,13 +49,22 @@ namespace SoulsBox
 				{
 					SetAnimgraphParam( "sb_death", true );
 					return;
-				} else if (Agent is AgentPlayer _player)
+				} else if (Agent is AgentPlayer __player)
 				{
-					if (_player.IsRespawning )
+					if (__player.IsRespawning )
 					{
 						SetAnimgraphParam( "sb_respawn", true );
 						return;
 					}
+				}
+
+				if (Agent.IsGuarding)
+				{
+					SetAnimgraphParam( "sb_block", true );
+					return;
+				} else if (!Agent.IsGuarding)
+				{
+					SetAnimgraphParam("sb_block", false );
 				}
 
 				if ( Agent.IsRolling && IsTagActive("SB_Can_Interrupt" ))
@@ -59,12 +77,12 @@ namespace SoulsBox
 				bool isPlayer = false;
 				bool lockedOn = false;
 				LockOnAble currentLockOnAble = null;
-				if ( Agent is AgentPlayer player )
+				if ( Agent is AgentPlayer _player )
 				{
 					isPlayer = true;
-					lockedOn = player.LockedOn;
-					currentLockOnAble = player.CurrentLockOnAble;
-					rollYaw = player.MoveVectorRelativeToCamera.EulerAngles.yaw;
+					lockedOn = _player.LockedOn;
+					currentLockOnAble = _player.CurrentLockOnAble;
+					rollYaw = _player.MoveVectorRelativeToCamera.EulerAngles.yaw;
 				}
 
 				if ( !IsTagActive("SB_Doing_Animation") && Agent.IsRolling && isPlayer && lockedOn && currentLockOnAble != null )
@@ -165,7 +183,7 @@ namespace SoulsBox
 			AnimTagEventManager.RegisterTagCallback( "SB_Attacking", SceneModel.AnimTagStatus.Start, () =>
 			{
 				Agent.IsContinuing = false;
-				Agent.IsContinuing = false;
+				Agent.CharacterVitals.DrainStamina( 30 );
 			});
 			AnimTagEventManager.RegisterTagCallback( "SB_Hitbox_Active", SceneModel.AnimTagStatus.Start, () =>
 			{

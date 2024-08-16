@@ -31,7 +31,7 @@
     {
       "__guid": "56c8540a-ede1-4ce2-829f-31f92fc4e5ad",
       "Flags": 0,
-      "Name": "Object",
+      "Name": "Map",
       "Position": "763.4576,358.3147,-56.08624",
       "Enabled": true,
       "Components": [
@@ -40,7 +40,7 @@
           "__guid": "891b4982-b55b-4917-a564-d005a24cc64b",
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "sugmagaming.nuketown",
+          "MapName": "lfproject.the_forest",
           "NoOrigin": false,
           "UseMapFromLaunch": false
         },
@@ -108,6 +108,16 @@
           "LockOnOffset": "0,0,0"
         }
       ]
+    },
+    {
+      "__guid": "f37bbf0b-a34c-45dd-9f0d-2016aa0d3fe9",
+      "Flags": 0,
+      "Name": "enemy",
+      "Position": "-3939.964,4000.071,-54.08624",
+      "Rotation": "0,0,0.991445,-0.1305261",
+      "Enabled": true,
+      "__Prefab": "prefabs/enemy.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

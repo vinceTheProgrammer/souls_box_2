@@ -1,0 +1,29 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel;
+
+<root class="columns">
+    <div class="column flex-grow-2">
+        <div class="equipment-row">
+            <i class="icon level-icon"></i> row 1 <span class="value"></span>
+        </div>
+        <div class="equipment-row">
+            <i class="icon souls-icon"></i> row 2 <span class="value"></span>
+        </div>
+        <div class="equipment-row">
+            <i class="icon vitality-icon"></i> row 3 <span class="value"></span>
+        </div>
+        <div class="equipment-row flex-row justify-flex-start">
+            <div class="equipment-row equipment-selection-info flex-grow-1">
+                <p class="submenu-heading">Right Hand</p>
+                <p class="submenu-subheading">Lightning Spear+4</p>
+            </div>
+        </div>
+    </div>
+
+    <MenuStatusPlayer class="flex-grow-1"/>
+</root>
+
+@code
+{
+}

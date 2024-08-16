@@ -1,0 +1,15 @@
+C:\Program Files (x86)\Steam\steamapps\common\sbox\.vs\output\debugoverlay.xml
+C:\Program Files (x86)\Steam\steamapps\common\sbox\.vs\output\debugoverlay.deps.json
+C:\Program Files (x86)\Steam\steamapps\common\sbox\.vs\output\debugoverlay.dll
+C:\Program Files (x86)\Steam\steamapps\common\sbox\.vs\output\debugoverlay.pdb
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugoverlay.csproj.AssemblyReference.cache
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugoverlay.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugoverlay.AssemblyInfoInputs.cache
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugoverlay.AssemblyInfo.cs
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugoverlay.csproj.CoreCompileInputs.cache
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugoverlay.sourcelink.json
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugove.9B333631.Up2Date
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugoverlay.dll
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\refint\debugoverlay.dll
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\debugoverlay.pdb
+C:\Users\vince\Documents\s&box projects\souls_box\Libraries\fish.debugoverlay\Code\obj\Debug\ref\debugoverlay.dll

@@ -1,0 +1,186 @@
+Menu {
+	display: flex;
+	justify-content: center;
+	align-items: center; // This will also vertically center if needed
+	height: 100%;
+	width: 100%;
+
+	.big-box {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		width: 90%; /* Adjust the width as needed */
+		height: 90%; /* Adjust the height as needed */
+		margin: auto; /* Centers the box */
+		padding: 20px;
+		background-color: rgba(50, 50, 50, 0.95); /* Almost fully opaque */
+		border-radius: 15px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	}
+
+	.top-row {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 20px;
+	}
+
+	.top-row-left {
+		flex: 0 0 66%;
+		flex-direction: column;
+		background-color: #444;
+		border-radius: 10px;
+		color: #fff;
+		padding: 15px;
+	}
+
+	.top-row-right {
+		flex: 0 0 33%;
+		background-color: #555;
+		border-radius: 10px;
+		color: #fff;
+		padding: 15px;
+	}
+
+	.bottom-row {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 20px;
+		background-color: #444;
+		padding: 20px;
+		color: #fff;
+	}
+
+	.columns {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		flex-grow: 1;
+	}
+
+	.column {
+		flex: 1;
+		flex-direction: column;
+		margin: 0 10px;
+		padding: 10px;
+		background-color: #333;
+		border-radius: 10px;
+	}
+
+	.info-item {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 5px;
+		padding: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+	}
+
+	.equipment-row {
+		display: flex;
+		flex: 0 0 25%;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 5px;
+		padding: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+	}
+
+	.displayname {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		margin-bottom: 5px;
+		padding: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+	}
+
+	.icon {
+		margin-right: 10px;
+	}
+
+	.value {
+		margin-left: auto;
+	}
+
+	hr {
+		border: 0;
+		height: 1px;
+		background: #555;
+		margin: 10px 0;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	.menu-content {
+		flex: 1;
+	}
+
+	.flex-grow-1 {
+		flex: 1;
+	}
+
+	.flex-grow-2 {
+		flex: 2;
+	}
+
+	.menu-heading {
+		font-size: 2rem;
+	}
+
+	.menu-subheading {
+		font-size: 1rem;
+	}
+
+	.submenu-heading {
+		font-size: 1rem;
+	}
+
+	.submenu-subheading {
+		font-size: 1.4rem;
+	}
+
+	.equipment-selection-info {
+		flex-direction: column;
+		justify-content: space-evenly;
+	}
+
+	.flex-row {
+		flex-direction: row;
+	}
+
+	.justify-flex-start {
+		justify-content: flex-start
+	}
+
+	.categories {
+		flex: 0 0 20%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 5px;
+		padding: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+	}
+
+	.inventory {
+		flex: 0 0 80%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 5px;
+		padding: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+	}
+}

@@ -17,22 +17,23 @@ public sealed class CreateBonfires : Component
 
 		foreach ( var spawnPoint in spawnPoints )
 		{
-			if (bonfirePositions.Count == 0)
+			bool canAddBonfire = true;
+
+			if (SpaceNotClear(spawnPoint.Transform.Position)) canAddBonfire = false;
+
+			if (bonfirePositions.Count > 0 )
 			{
-				bonfirePositions.Add( spawnPoint.Transform.Position );
-			} else
-			{
-				bool canAddBonfire = true;
-				for ( int i = 0; i < bonfirePositions.Count; i++)
+				for ( int i = 0; i < bonfirePositions.Count; i++ )
 				{
-					if (Vector3.DistanceBetween(spawnPoint.Transform.Position, bonfirePositions[i]) < minDistance || SpaceNotClear(spawnPoint.Transform.Position))
+					if ( Vector3.DistanceBetween( spawnPoint.Transform.Position, bonfirePositions[i] ) < minDistance)
 					{
-						canAddBonfire = false; 
+						canAddBonfire = false;
 						break;
 					}
 				}
-				if ( canAddBonfire ) bonfirePositions.Add( spawnPoint.Transform.Position );
 			}
+
+			if ( canAddBonfire ) bonfirePositions.Add( spawnPoint.Transform.Position );
 			spawnPointsToDelete.Add( spawnPoint.GameObject );
 		}
 
@@ -45,7 +46,9 @@ public sealed class CreateBonfires : Component
 
 			foreach ( var bonfirePosition in bonfirePositions )
 			{
-				bonfirePrefab.Clone( bonfirePosition + new Vector3(0, 0, -8f) );
+				GameObject bonfire = bonfirePrefab.Clone( bonfirePosition + new Vector3(0, 0, -8f) );
+				Log.Info( "bonfire: " + bonfire.Components.Get<BoxCollider>().Touching.Count() );
+				bonfire.Components.Get<Bonfire>().Light();
 			}
 		}
 
@@ -84,6 +87,12 @@ public sealed class CreateBonfires : Component
 		var tr4 = Scene.Trace.Ray( center, end4 ).Size( 3f ).UseHitboxes( true ).Run();
 		var trUp = Scene.Trace.Ray( center, endUp ).Size( 3f ).UseHitboxes( true ).Run();
 		var trDown = Scene.Trace.Ray( center, endDown ).Size( 3f ).UseHitboxes( true ).Run();
+
+		//DebugOverlay.Trace( tr1, 120f );
+		//DebugOverlay.Trace( tr2, 120f );
+		//DebugOverlay.Trace( tr3, 120f );
+		//DebugOverlay.Trace( tr4, 120f );
+
 
 		if ( tr1.Hit || tr2.Hit || tr3.Hit || tr4.Hit || trUp.Hit || !trDown.Hit) isSpaceNotClear = true;
 

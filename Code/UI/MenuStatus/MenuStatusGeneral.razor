@@ -1,0 +1,68 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel;
+
+<root class="column">
+    <div class="info-item">
+        <i class="icon hp-icon"></i> HP <span class="value">@HP</span>
+    </div>
+    <div class="info-item">
+        <i class="icon stamina-icon"></i> Stamina <span class="value">@Stamina</span>
+    </div>
+    <div class="info-item">
+        <i class="icon equip-icon"></i> Equip Load <span class="value">@EquipLoad</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon r-weapon1-icon"></i> R Weapon 1 <span class="value">@RWeapon1</span>
+    </div>
+    <div class="info-item">
+        <i class="icon r-weapon2-icon"></i> R Weapon 2 <span class="value">@RWeapon2</span>
+    </div>
+    <div class="info-item">
+        <i class="icon l-weapon1-icon"></i> L Weapon 1 <span class="value">@LWeapon1</span>
+    </div>
+    <div class="info-item">
+        <i class="icon l-weapon2-icon"></i> L Weapon 2 <span class="value">@LWeapon2</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon physical-def-icon"></i> Physical Def. <span class="value">@PhysicalDef</span>
+    </div>
+    <div class="info-item">
+        <i class="icon vs-strike-icon"></i> VS strike <span class="value">@VSStrike</span>
+    </div>
+    <div class="info-item">
+        <i class="icon vs-slash-icon"></i> VS slash <span class="value">@VSSlash</span>
+    </div>
+    <div class="info-item">
+        <i class="icon vs-thrust-icon"></i> VS thrust <span class="value">@VSThrust</span>
+    </div>
+    <div class="info-item">
+        <i class="icon magic-def-icon"></i> Magic DEF <span class="value">@MagicDEF</span>
+    </div>
+    <div class="info-item">
+        <i class="icon flame-def-icon"></i> Flame DEF <span class="value">@FlameDEF</span>
+    </div>
+    <div class="info-item">
+        <i class="icon lightning-def-icon"></i> Lightning DEF <span class="value">@LightningDEF</span>
+    </div>
+</root>
+
+@code
+{
+    public int HP { get; set; } = 100;
+    public int Stamina { get; set; } = 100;
+    public int EquipLoad { get; set; } = 50;
+    public int RWeapon1 { get; set; } = 10;
+    public int RWeapon2 { get; set; } = 20;
+    public int LWeapon1 { get; set; } = 15;
+    public int LWeapon2 { get; set; } = 25;
+    public int PhysicalDef { get; set; } = 50;
+    public int VSStrike { get; set; } = 5;
+    public int VSSlash { get; set; } = 5;
+    public int VSThrust { get; set; } = 5;
+    public int MagicDEF { get; set; } = 30;
+    public int FlameDEF { get; set; } = 20;
+    public int LightningDEF { get; set; } = 10;
+}
