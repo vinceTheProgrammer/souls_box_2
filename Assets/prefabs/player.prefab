@@ -52,6 +52,13 @@
           "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
           "component_type": "CharacterVitals"
         },
+        "MenuOpen": false,
+        "PlayerInteraction": {
+          "_type": "component",
+          "component_id": "0f601f75-e5b0-4518-b0de-bb4d684524f6",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "PlayerInteraction"
+        },
         "PlayerStats": {
           "_type": "component",
           "component_id": "d03123e1-c3c9-4180-a06f-223ff83ef44a",
@@ -89,7 +96,7 @@
         "__guid": "8adb6912-0503-42a2-9912-b499f5ff258d",
         "Acceleration": 10,
         "Bounciness": 0.3,
-        "GroundAngle": 45,
+        "GroundAngle": 55,
         "Height": 72,
         "IgnoreLayers": "",
         "Radius": 8.81,
@@ -100,7 +107,7 @@
         "__type": "SoulsBox.CharacterMovementController",
         "__guid": "00a08db7-f046-4835-82a0-ac34a2e85beb",
         "CreationModeSpeed": 10,
-        "TerminalVelocity": 200,
+        "TerminalVelocity": 1000,
         "Agent": {
           "_type": "component",
           "component_id": "98de2beb-de64-4970-848e-1c98d01484e8",
@@ -158,7 +165,7 @@
       {
         "__type": "SoulsBox.InputManager",
         "__guid": "e094fbe1-74a9-41ed-bf49-312e1b638acd",
-        "Agent": {
+        "Player": {
           "_type": "component",
           "component_id": "98de2beb-de64-4970-848e-1c98d01484e8",
           "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
@@ -225,6 +232,18 @@
           "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
           "component_type": "AgentPlayer"
         }
+      },
+      {
+        "__type": "SoulsBox.PlayerInteraction",
+        "__guid": "0f601f75-e5b0-4518-b0de-bb4d684524f6",
+        "Center": "0,0,36",
+        "Player": {
+          "_type": "component",
+          "component_id": "98de2beb-de64-4970-848e-1c98d01484e8",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "AgentPlayer"
+        },
+        "Size": "5,5,72"
       }
     ],
     "Children": [

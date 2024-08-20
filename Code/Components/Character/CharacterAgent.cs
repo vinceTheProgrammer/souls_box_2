@@ -22,6 +22,12 @@ namespace SoulsBox
 		[Property]
 		public CharacterStats CharacterStats { get; set; }
 
+		[Property]
+		public CharacterEquipment CharacterEquipment { get; set; }
+
+		[Property]
+		public CharacterInventory CharacterInventory { get; set; }
+
 		[Sync]
 		public bool IsRolling { get; set; }
 

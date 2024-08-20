@@ -35,6 +35,11 @@ namespace SoulsBox
 		[Property]
 		public CameraController CameraController { get; set; }
 
+		[Property]
+		public PlayerInteraction PlayerInteraction { get; set; }
+
+		public bool MenuEnabled { get; set; }
+
 		public bool CreationMode { get; private set; }
 
 		public GameTransform LastNormalCameraTransform { get; set; }
@@ -46,9 +51,12 @@ namespace SoulsBox
 
 		public bool CanRespawn { get; set; }
 
-		public Bonfire lastRestedBonfire {  get; set; }
+		public Bonfire LastRestedBonfire {  get; set; }
 
 		public bool IsRespawning { get; set; }
+
+		public bool IsUsingBonfire { get; set; }
+		public bool IsLightingBonfire { get; set; }
 
 		public static AgentPlayer Local
 		{
@@ -124,6 +132,9 @@ namespace SoulsBox
 				if ( lockOnAble.ParentIsAlive() && lockOnAble.GameObject.Id != GameObject.Id )
 				{
 					LockOnAbles.Add( lockOnAble );
+				} else
+				{
+					LockOnAbles.Remove( lockOnAble );
 				}
 			}
 			CurrentLockOnAblePosition = CurrentLockOnAble != null ? (CurrentLockOnAble.Transform.Position + CurrentLockOnAble.LockOnOffset) : Vector3.Zero;
@@ -180,12 +191,12 @@ namespace SoulsBox
 				Vector3 toCurrentTarget = CurrentLockOnAblePosition - Transform.Position;
 
 				float angle = toCurrentTarget.SignedAngle( toTarget );
-				if ( isLeft && angle < 0 && angle > -bestAngle )
+				if ( !isLeft && angle < 0 && angle > -bestAngle )
 				{
 					bestAngle = -angle;
 					bestTarget = lockOnAble;
 				}
-				else if ( !isLeft && angle > 0 && angle < bestAngle )
+				else if ( isLeft && angle > 0 && angle < bestAngle )
 				{
 					bestAngle = angle;
 					bestTarget = lockOnAble;
@@ -221,7 +232,7 @@ namespace SoulsBox
 
 		private Bonfire GetLastRestedOrRandomBonfire()
 		{
-			if ( lastRestedBonfire != null ) return lastRestedBonfire;
+			if ( LastRestedBonfire != null ) return LastRestedBonfire;
 			IEnumerable<Bonfire> bonfires = Scene.GetAllComponents<Bonfire>();
 			return bonfires.GetRandomItem();
 		}
@@ -238,6 +249,40 @@ namespace SoulsBox
 				CameraController.Camera.Transform.Rotation =LastNormalCameraTransform.Rotation;
 			}
 			CreationMode = !CreationMode;
+		}
+
+		public void ToggleMenu()
+		{
+			Menu menu = Scene.Components.GetInChildren<Menu>(includeDisabled: true);
+			if ( menu.Enabled )
+			{
+				MenuEnabled = false;
+				menu.Enabled = false;
+			} else
+			{
+				MenuEnabled = true;
+				menu.Enabled = true;
+				Sandbox.Mouse.Position = new Vector2 ( Screen.Width / 2, Screen.Height / 2 );
+			}
+		}
+
+		public void ToggleBonfireRest(Bonfire bonfire = null)
+		{
+			if (IsUsingBonfire)
+			{
+				IsUsingBonfire = false;
+				Menu menu = Scene.Components.GetInChildren<Menu>( includeDisabled: true );
+				menu.Enabled = false;
+				menu.CurrentScreen = Menu.MenuScreen.Settings;
+			} else
+			{
+				LastRestedBonfire = bonfire;
+				Transform.Rotation = Transform.Rotation.Angles().WithYaw((bonfire.Transform.Position - Transform.Position).Normal.EulerAngles.yaw);
+				IsUsingBonfire = true;
+				Menu menu = Scene.Components.GetInChildren<Menu>( includeDisabled: true );
+				menu.Enabled = true;
+				menu.CurrentScreen = Menu.MenuScreen.Bonfire;
+			}
 		}
 	}
 }

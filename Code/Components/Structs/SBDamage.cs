@@ -1,5 +1,4 @@
-﻿using Sandbox.Components.Types;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace SoulsBox
 {
-	public sealed class SBDamage : DamageInfo
+	public struct SBDamage
 	{
 		public DamageType Type { get; set; }
+		public int Value { get; set; }
+		public Guid Attacker { get; set; }
+		public Guid Weapon { get; set; } 
 		public List<StatusEffect> StatusEffects { get; set; } = new List<StatusEffect>();
 
 		public enum DamageType
@@ -22,29 +24,21 @@ namespace SoulsBox
 			Lightning
 		}
 
-		public SBDamage(DamageType type, int damage, GameObject attacker, GameObject weapon, Hitbox hitbox ) 
+		public SBDamage(DamageType type, int damage, Guid attacker, Guid weapon) 
 		{
 			Type = type;
-			Damage = damage;
+			Value = damage;
 			Attacker = attacker;
 			Weapon = weapon;
-			Hitbox = hitbox;
 		}
 
-		public SBDamage( DamageType type, int damage, GameObject attacker, GameObject weapon, Hitbox hitbox, StatusEffect statusEffect )
+		public SBDamage( DamageType type, int damage, Guid attacker, Guid weapon, StatusEffect statusEffect )
 		{
 			Type = type;
-			Damage = damage;
+			Value = damage;
 			Attacker = attacker;
 			Weapon = weapon;
-			Hitbox = hitbox;
 			StatusEffects.Add( statusEffect );
 		}
-
-		public int GetDamageValue()
-		{
-			return (int) Math.Round(Damage);
-		}
-
 	}
 }

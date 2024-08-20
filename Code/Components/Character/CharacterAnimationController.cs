@@ -31,7 +31,7 @@ namespace SoulsBox
 		{
 			if (Agent is AgentPlayer player)
 			{
-				if ( player.CreationMode )
+				if ( player.CreationMode || IsTagActive("SB_Stationary") )
 				{
 					AnimationHelper.WithVelocity( Vector3.Zero );
 					return;
@@ -55,6 +55,32 @@ namespace SoulsBox
 					{
 						SetAnimgraphParam( "sb_respawn", true );
 						return;
+					} else if (!__player.IsRespawning )
+					{
+						SetAnimgraphParam("sb_respawn", false );
+					}
+				}
+
+				if ( Agent is AgentPlayer ___player)
+				{
+					if (___player.IsLightingBonfire)
+					{
+						SetAnimgraphParam( "sb_light_bonfire", true );
+						___player.IsLightingBonfire = false;
+						return;
+					} else if ( !___player.IsLightingBonfire )
+					{
+						SetAnimgraphParam( "sb_light_bonfire", false );
+					}
+					
+					if ( ___player.IsUsingBonfire )
+					{
+						SetAnimgraphParam( "sb_rest", true );
+						return;
+					}
+					else if ( !___player.IsUsingBonfire )
+					{
+						SetAnimgraphParam( "sb_rest", false );
 					}
 				}
 
@@ -195,6 +221,9 @@ namespace SoulsBox
 				{
 					player.CanRespawn = true;
 					player.Respawn();
+				} else
+				{
+					Agent.GameObject.Components.Get<ModelPhysics>().MotionEnabled = true;
 				}
 			} );
 

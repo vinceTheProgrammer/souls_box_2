@@ -12,6 +12,7 @@ namespace SoulsBox
 	[Icon( "casino" )]
 	public sealed class PlayerStats : Component
 	{
+		public string Displayname { get; set; }
 		public int Level { get; set; }
 		public int Souls {  get; set; }
 		public int Vitality { get; set; }
@@ -35,6 +36,12 @@ namespace SoulsBox
 			}
 		}
 
+		protected override void OnStart()
+		{
+			if ( Network.IsProxy ) return;
+			Displayname = Network.OwnerConnection.DisplayName;
+		}
+
 		[Broadcast]
 		public void GiveSouls(int amount)
 		{
@@ -47,6 +54,24 @@ namespace SoulsBox
 		{
 			if ( Network.IsProxy ) return;
 			Souls = Math.Clamp(Souls - amount, 0, int.MaxValue);
+		}
+
+		public override int GetHashCode()
+		{
+			HashCode c = new HashCode();
+			c.Add( Displayname );
+			c.Add( Level );
+			c.Add( Souls );
+			c.Add( Vitality );
+			c.Add( Attunement );
+			c.Add( Endurance );
+			c.Add( Strength );
+			c.Add( Dexterity );
+			c.Add( Resistance );
+			c.Add( Intelligence );
+			c.Add( Faith );
+			c.Add( Humanity );
+			return c.ToHashCode();
 		}
 	}
 }

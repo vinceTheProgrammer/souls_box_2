@@ -1,0 +1,40 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using SoulsBox;
+@inherits Panel;
+
+<root class="options-box">
+        <div class="options-list">
+            <div class="option-item" @onclick=@(Leave)>Leave</div>
+            <div class="option-item" @onclick=@(LevelUp)>Level Up</div>
+            <div class="option-item" @onclick=@(FastTravel)>Fast Travel</div>
+            <div class="option-item" @onclick=@(Rest)>Rest</div>
+            <!-- Add more options as needed -->
+        </div>
+</root>
+
+@code
+{
+
+    public AgentPlayer Player { get; set; }
+
+    private void Leave()
+    {
+        Player.ToggleBonfireRest();
+    }
+
+    private void LevelUp()
+    {
+        // Handle level up logic
+    }
+
+    private void FastTravel()
+    {
+        // Handle fast travel logic
+    }
+
+    private void Rest()
+    {
+        // Handle resting logic
+    }
+}

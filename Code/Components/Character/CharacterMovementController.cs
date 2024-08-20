@@ -28,7 +28,7 @@ namespace SoulsBox
 		public float RunSpeed { get; set; }
 
 		[Property]
-		public float TerminalVelocity = 200f;
+		public float TerminalVelocity = 100000f;
 
 		[Property]
 		public float CreationModeSpeed = 100f;
@@ -46,9 +46,11 @@ namespace SoulsBox
 
 		protected override void OnUpdate()
 		{
+			if ( Network.IsProxy ) return;
 			if (Agent is AgentPlayer player)
 			{
-				if (player.CreationMode)
+				if ( player.IsUsingBonfire ) return;
+				if ( player.CreationMode)
 				{
 					ApplyCreationModeVelocity( player );
 				}
@@ -57,10 +59,12 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
-			if (Network.IsProxy) return;
+			if ( Network.IsProxy) return;
+			if ( Agent.CharacterAnimationController.IsTagActive( "SB_Stationary" ) ) return;
 
 			if (Agent is AgentPlayer player)
 			{
+				if ( player.IsUsingBonfire ) return;
 				if (player.CreationMode)
 				{
 					HandleCreationModeMovement( player );
@@ -68,7 +72,7 @@ namespace SoulsBox
 				}
 			}
 
-			Log.Info(GameObject.Name + " " + Agent.IsDead );
+			//Log.Info(GameObject.Name + " " + Agent.IsDead );
 
 			if (Agent.IsDead) return;
 
@@ -80,8 +84,10 @@ namespace SoulsBox
 			if ( !CharacterController.IsOnGround )
 			{
 				CharacterAnimationController.AnimationHelper.IsGrounded = CharacterController.IsOnGround;
-				CharacterController.Accelerate( Vector3.Down * TerminalVelocity );
-				CharacterController.Acceleration = 4.9f;
+				//Log.Info( CharacterController.Velocity.z );
+				Vector3 targetLerp = CharacterController.Velocity.LerpTo( 0, 0.01f );
+				CharacterController.Velocity = new Vector3( targetLerp.x, targetLerp.y, CharacterController.Velocity.z );
+				if (CharacterController.Velocity.z > -TerminalVelocity) CharacterController.Punch( Vector3.Down * 9.8f );
 				CharacterController.Move();
 				return;
 			}

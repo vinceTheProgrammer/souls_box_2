@@ -1,59 +1,159 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using SoulsBox;
+@using System;
 @inherits PanelComponent;
 
 <root>
-    <div class="big-box">
-        <div class="top-row">
-            <div class="top-row-left">
-                <!-- Content for the 80% section on the left -->
-                <p class="menu-heading">@CurrentScreen.ToString()</p>
-                <p class="menu-subheading">@GetMenuScreenDescription(CurrentScreen)</p>
+    @if (CurrentScreen == MenuScreen.Bonfire)
+    {
+        <MenuBonfire Player=@(Player)/>
+    } else {
+        <div class="big-box">
+            <div class="top-row">
+                <div class="top-row-left">
+                    <p class="menu-heading">@CurrentScreen.ToString()</p>
+                    <p class="menu-subheading">@GetMenuScreenDescription(CurrentScreen)</p>
+                </div>
+                <div class="top-row-right">
+                    <p>Right Section (20%)</p>
+                </div>
             </div>
-            <div class="top-row-right">
-                <!-- Content for the 20% section on the right -->
-                <p>Right Section (20%)</p>
+
+            <div class="menu-content">
+                @if (CurrentScreen == MenuScreen.Status)
+                {
+                    <MenuStatus Stats=@(Player.CharacterStats) Vitals=@(Player.CharacterVitals) PlayerStats=@(Player.PlayerStats)/>
+                } else if (CurrentScreen == MenuScreen.Settings)
+                {
+                    <MenuSettings/>
+                } else if (CurrentScreen == MenuScreen.Equipment)
+                {
+                    <MenuEquipment/>
+                } else if (CurrentScreen == MenuScreen.Inventory)
+                {
+                    <MenuInventory CategoriesComponent=@(InventoryCategories)/>
+                }
+            </div>
+
+            <div class="bottom-row">
+                <p>Select    Enter    Close</p>
             </div>
         </div>
-
-        <div class="menu-content">
-            @if (CurrentScreen == MenuScreen.Status)
-            {
-                <MenuStatus/>
-            } else if (CurrentScreen == MenuScreen.Settings)
-            {
-                <MenuSettings/>
-            } else if (CurrentScreen == MenuScreen.Equipment)
-            {
-                <MenuEquipment/>
-            } else if (CurrentScreen == MenuScreen.Inventory)
-            {
-                <MenuInventory/>
-            }
-        </div>
-
-        <div class="bottom-row">
-            <p>Select    Enter    Close</p>
-        </div>
-    </div>
+    }
 </root>
 
 @code
 {
+    [Property] AgentPlayer Player { get; set; }
+
     public enum MenuScreen
     {
         Status,
         Equipment,
         Inventory,
-        Settings
+        Settings,
+        Bonfire
     }
 
-    [Property]
-    public MenuScreen CurrentScreen { get; set; }
+    public MenuScreen CurrentScreen { get; set; } = MenuScreen.Settings;
+
+    private int CurrentMenuCategoryIndex { get; set; } = 3;
+
+    private List<MenuScreen> MenuCategories = new();
+
+    public CategoriesComponent InventoryCategories = new();
+
+    protected override void OnStart()
+    {
+        MenuCategories.Add(MenuScreen.Inventory);
+        MenuCategories.Add(MenuScreen.Equipment);
+        MenuCategories.Add(MenuScreen.Status);
+        MenuCategories.Add(MenuScreen.Settings);
+
+        InventoryCategories.Add("Usable", "usable.png");
+        InventoryCategories.Add("Shards", "shards.png");
+        InventoryCategories.Add("Keys", "keys.png");
+        InventoryCategories.Add("Sorceries", "sorceries.png");
+        InventoryCategories.Add("Weapons", "weapons.png");
+        InventoryCategories.Add("Arrows", "arrows.png");
+        InventoryCategories.Add("Armor", "armor.png");
+        InventoryCategories.Add("Rings", "rings.png");
+        InventoryCategories.SelectedCategory = InventoryCategories.Categories[0];
+    }
 
     protected override int BuildHash()
     {
-        return System.HashCode.Combine(CurrentScreen);
+        if (Player == null) return 1;
+        return System.HashCode.Combine(CurrentScreen, Player.CharacterStats, Player.CharacterVitals, Player.PlayerStats, Player.CharacterInventory, Player.CharacterEquipment, InventoryCategories.SelectedCategory);
+    }
+
+    protected override void OnUpdate()
+    {
+        if (Player == null)
+        {
+            Player = Game.ActiveScene.GetAllComponents<AgentPlayer>().FirstOrDefault(x => !x.Network.IsProxy);
+        }
+
+        if (Input.Pressed("sb_menu_select")) HandleSelect();
+
+        if (Input.Pressed("sb_menu_secondary")) HandleSecondary();
+
+        if (Input.Pressed("sb_menu_thirdly")) HandleThirdly();
+
+        if (Input.Pressed("sb_menu_cycle_left") || Input.Pressed("sb_menu_cycle_left_alt")) HandleCycle(false);
+        else if (Input.Pressed("sb_menu_cycle_right")) HandleCycle(true);
+
+        if (Input.Pressed("sb_menu_up")) HandleVertical(true);
+        else if (Input.Pressed("sb_menu_down")) HandleVertical(false);
+        else if (Input.Pressed("sb_menu_left")) HandleHorizontal(false);
+        else if (Input.Pressed("sb_menu_right")) HandleHorizontal(true);
+    }
+
+    private void HandleSelect()
+    {
+
+    }
+
+    private void HandleSecondary()
+    {
+
+
+    }
+
+    private void HandleThirdly()
+    {
+
+
+    }
+
+    private void HandleVertical(bool isUp)
+    {
+
+
+    }
+
+    private void HandleHorizontal(bool isRight)
+    {
+        if (CurrentScreen == MenuScreen.Inventory)
+        {
+            if (isRight) InventoryCategories.CycleRight();
+            else InventoryCategories.CycleLeft();
+        }
+    }
+
+    private void HandleCycle(bool isRight)
+    {
+        if (isRight)
+        {
+            if (CurrentMenuCategoryIndex == 3) CurrentMenuCategoryIndex = 0;
+            else CurrentMenuCategoryIndex += 1;
+        } else 
+        {
+            if (CurrentMenuCategoryIndex == 0) CurrentMenuCategoryIndex = 3;
+            else CurrentMenuCategoryIndex -= 1;
+        }
+        CurrentScreen = MenuCategories[CurrentMenuCategoryIndex];
     }
 
     private string GetMenuScreenDescription(MenuScreen screen)

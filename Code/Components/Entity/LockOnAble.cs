@@ -1,3 +1,4 @@
+using SoulsBox;
 using System;
 
 namespace Sandbox;
@@ -10,6 +11,15 @@ public sealed class LockOnAble : Component
 
 	public bool ParentIsAlive()
 	{
-		return true;
+		CharacterAgent agent = GameObject.Components.Get<CharacterAgent>();
+		if ( agent != null)
+		{
+			//Log.Info("alive: " + agent.IsDead);
+			return !agent.IsDead;
+		}
+		else
+		{
+			return true;
+		}
 	}
 }

@@ -2,11 +2,11 @@ using Sandbox;
 
 namespace SoulsBox
 {
-	public sealed class EntityUsable : Component
+	public abstract class EntityInteractable : Component
 	{
-		protected override void OnUpdate()
-		{
+		[Property]
+		public string Description {  get; set; }
 
-		}
+		public abstract void Interact( AgentPlayer player );
 	}
 }

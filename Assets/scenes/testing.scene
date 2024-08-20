@@ -40,7 +40,7 @@
           "__guid": "891b4982-b55b-4917-a564-d005a24cc64b",
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "lfproject.the_forest",
+          "MapName": "joseyuyua.firelink_shirine",
           "NoOrigin": false,
           "UseMapFromLaunch": false
         },
@@ -55,66 +55,52 @@
           "StartServer": true
         },
         {
-          "__type": "Sandbox.CreateBonfires",
-          "__guid": "3ba7114b-0c44-44ec-9212-7af1506a1270"
+          "__type": "Sandbox.SpawnScreen",
+          "__guid": "33bd3071-2ad7-4d87-beea-e24181a69e2d"
+        },
+        {
+          "__type": "SoulsBox.CreateBonfires",
+          "__guid": "89f0ff77-cf7a-49a6-9a67-e55671050ef8"
         }
       ],
       "Children": []
     },
     {
-      "__guid": "ee495875-3baf-4ca9-8ed2-fafbbc2e63e2",
-      "Flags": 0,
-      "Name": "Screen",
-      "Position": "489.9308,345.8908,170.1688",
-      "Enabled": true,
-      "NetworkMode": 0,
-      "Components": [
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "9625f99d-dfc4-43e3-bf22-0983f7c9fee4",
-          "AutoScreenScale": true,
-          "Opacity": 1,
-          "Scale": 1,
-          "ZIndex": 100
-        },
-        {
-          "__type": "Facepunch.Arena.Chat",
-          "__guid": "62878682-4922-460a-a0c5-634d1a1bd222"
-        },
-        {
-          "__type": "LockOnIndicator",
-          "__guid": "84bb76f9-86c4-41e4-ac65-ecccb0b6fae1"
-        }
-      ]
-    },
-    {
-      "__guid": "67c17654-d300-4ef2-abdc-6a9ea953d0cc",
-      "Flags": 0,
-      "Name": "Cube",
-      "Position": "949.972,1598.294,48.64001",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "f05d45bf-56aa-40df-b89a-dfaac78e2339",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/dev/box.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "Sandbox.LockOnAble",
-          "__guid": "803adad3-be2a-4a47-8bec-c7d6d4603ef9",
-          "LockOnOffset": "0,0,0"
-        }
-      ]
-    },
-    {
-      "__guid": "f37bbf0b-a34c-45dd-9f0d-2016aa0d3fe9",
+      "__guid": "ffd72746-edaa-4bd0-b6f6-23cf6d1b7903",
       "Flags": 0,
       "Name": "enemy",
-      "Position": "-3939.964,4000.071,-54.08624",
-      "Rotation": "0,0,0.991445,-0.1305261",
+      "Position": "2488.669,834.4789,-2514.11",
+      "Rotation": "-0.1495599,0.005916461,-0.03908291,0.9879622",
+      "Enabled": true,
+      "__Prefab": "prefabs/enemy.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "d8b4f316-1583-4409-bd34-d1360fd715f2",
+      "Flags": 0,
+      "Name": "enemy (1)",
+      "Position": "2065.152,836.4787,-2534.661",
+      "Rotation": "-0.06910302,0.04606912,-0.0641422,0.9944788",
+      "Enabled": true,
+      "__Prefab": "prefabs/enemy.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "075f6efa-4333-4b5c-bad1-a33f739cc791",
+      "Flags": 0,
+      "Name": "enemy (2)",
+      "Position": "1904.917,590.6583,-2025.836",
+      "Rotation": "0.003921814,0.03644362,-0.1069232,0.9935914",
+      "Enabled": true,
+      "__Prefab": "prefabs/enemy.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "b1226d41-fafd-405b-9b92-e6f8a7588fe7",
+      "Flags": 0,
+      "Name": "enemy (3)",
+      "Position": "1781.005,1419.17,-1737.086",
+      "Rotation": "0,0,-0.7071067,0.7071068",
       "Enabled": true,
       "__Prefab": "prefabs/enemy.prefab",
       "__PrefabVariables": {}

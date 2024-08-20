@@ -119,12 +119,12 @@ namespace SoulsBox
 		{
 			if ( screenY < 0.5f - VerticalThreshold )
 			{
-				Log.Info( "up: moving down" );
+				//Log.Info( "up: moving down" );
 				AdjustPitchTowards( 0.5f - VerticalThreshold, screenY, VerticalLerpSpeed );
 			}
 			else if ( screenY > 0.5f + VerticalThreshold )
 			{
-				Log.Info( "down: moving up" );
+				//Log.Info( "down: moving up" );
 				AdjustPitchTowards( 0.5f + VerticalThreshold, screenY, VerticalLerpSpeed );
 			}
 		}

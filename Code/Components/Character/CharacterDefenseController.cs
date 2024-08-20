@@ -22,14 +22,14 @@ namespace SoulsBox
 				ReceiveGuardedDamage( damage, hitPosition );
 				return;
 			}
-			Agent.CharacterVitals.Hurt( damage.GetDamageValue(), GameObject );
+			Agent.CharacterVitals.Hurt( damage.Value, GameObject );
 			Sound.Play( "knife-stab", hitPosition );
 			SpawnParticle( "\\prefabs\\particles\\blood.prefab", hitPosition );
 		}
 
 		protected override void OnFixedUpdate()
 		{
-			Log.Info( Agent.IsGuarding );
+			//Log.Info( Agent.IsGuarding );
 		}
 
 		private void ReceiveGuardedDamage(SBDamage damage, Vector3 hitPosition)

@@ -1,13 +1,17 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using SoulsBox
 @inherits Panel;
 
 <root class="columns">
-    <MenuStatusPlayer/>
-    <MenuStatusGeneral/>
-    <MenuStatusMisc/>
+    <MenuStatusPlayer Stats=@(PlayerStats)/>
+    <MenuStatusGeneral Stats=@(Stats) Vitals=@(Vitals)/>
+    <MenuStatusMisc Stats=@(Stats)/>
 </root>
 
 @code
 {
+    public CharacterStats Stats { get; set; }
+    public CharacterVitals Vitals { get; set; }
+    public PlayerStats PlayerStats { get; set; }
 }

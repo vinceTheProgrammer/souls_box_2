@@ -41,9 +41,18 @@ namespace SoulsBox
 
 		public static float SignedAngle( this Vector3 from, Vector3 to )
 		{
-			float angle = Vector3.GetAngle( from, to );
-			float crossY = from.x * to.z - from.z * to.x;
-			return crossY > 0 ? angle : -angle;
+			// Ignore the Z component and project the vectors onto the XY plane
+			Vector3 fromXY = new Vector3( from.x, from.y, 0f );
+			Vector3 toXY = new Vector3( to.x, to.y, 0f );
+
+			// Calculate the angle between the two vectors
+			float angle = Vector3.GetAngle( fromXY, toXY );
+
+			// Calculate the Z component of the cross product to determine the sign
+			float crossZ = fromXY.x * toXY.y - fromXY.y * toXY.x;
+
+			// Return the angle with the appropriate sign
+			return crossZ > 0 ? angle : -angle;
 		}
 	}
 }

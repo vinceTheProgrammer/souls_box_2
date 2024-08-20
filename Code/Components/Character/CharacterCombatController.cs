@@ -55,6 +55,7 @@ namespace SoulsBox
 			if (Agent.IsDead) return;
 			if (Agent.CharacterAnimationController.IsTagActive("SB_Hitbox_Active"))
 			{
+				if ( Network.IsProxy ) return;
 				if ( CurrentWeapon == null ) return;
 				if (CanDealDamage)
 				{
@@ -65,6 +66,7 @@ namespace SoulsBox
 
 		protected override void OnStart()
 		{
+			if ( Network.IsProxy ) return;
 			CurrentWeapon = GetCurrentWeaponGameObject();
 		}
 
@@ -84,21 +86,22 @@ namespace SoulsBox
 			var hitboxTrace = Scene.Trace.Capsule( hitboxCapsule ).IgnoreGameObjectHierarchy( GameObject ).UseHitboxes( true ).Run();
 			if ( hitboxTrace.Hit )
 			{
-				if ( hitboxTrace.GameObject != null ) Log.Info( hitboxTrace.GameObject.Name );
+				//if ( hitboxTrace.GameObject != null ) Log.Info( hitboxTrace.GameObject.Name );
 				CharacterAgent hitAgent = hitboxTrace.GameObject.Components.Get<CharacterAgent>();
 				if ( hitAgent != null )
 				{
-					SBDamage damage = new( SBDamage.DamageType.PhysicalSlash, 30, GameObject, CurrentWeapon, hitboxTrace.Hitbox );
+					SBDamage damage = new( SBDamage.DamageType.PhysicalSlash, 30, GameObject.Id, CurrentWeapon.Id );
 					hitAgent.CharacterDefenseController.TryReceiveDamage( damage, hitboxTrace.HitPosition + ((from + to) / 2) );
 					CanDealDamage = false;
 					if (Agent is AgentPlayer) SpawnParticle( "\\prefabs\\particles\\blood.prefab", hitboxTrace.HitPosition + ((from + to) / 2) );
+					return;
 				}
 				IDamageable damageable = hitboxTrace.GameObject.Components.Get<IDamageable>();
 				if ( damageable != null )
 				{
-					damageable.OnDamage( new DamageInfo(10, GameObject, CurrentWeapon)   );
-					SpawnParticle( "\\prefabs\\particles\\sparks.prefab", hitboxTrace.HitPosition + ((from + to) / 2) );
+					damageable.OnDamage( new DamageInfo(100, GameObject, CurrentWeapon)   );
 				}
+				SpawnParticle( "\\prefabs\\particles\\sparks.prefab", hitboxTrace.HitPosition + ((from + to) / 2) );
 				/*
 				if (hitboxTrace.GameObject.Name.ToLower() == "world physics" || hitboxTrace.GameObject.Name.ToLower() == "world_physics" )
 				{

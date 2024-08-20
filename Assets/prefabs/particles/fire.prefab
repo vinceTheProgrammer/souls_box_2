@@ -2,15 +2,13 @@
   "RootObject": {
     "__guid": "6421a1c6-a120-49da-9664-0059587697a4",
     "Flags": 0,
-    "Name": "Fire",
-    "Position": "500.0887,103.3662,996.9725",
-    "Rotation": "0,-0.7071067,0,0.7071068",
+    "Name": "fire",
     "Tags": "particles,light_point,light",
     "Enabled": true,
     "Components": [
       {
         "__type": "Sandbox.ParticleEffect",
-        "__guid": "8c95b57d-2011-431d-8c1c-a5d6aafc1a10",
+        "__guid": "aac2193a-940c-4df5-80bb-b65970e35d9b",
         "Alpha": {
           "CurveA": [
             {
@@ -89,7 +87,7 @@
           "ConstantB": "0.46977,0.10521,0.00437,0.87"
         },
         "Lifetime": {
-          "Constants": "0.15,0.15,0,0"
+          "Constants": "2.75,0.15,0,0"
         },
         "MaxParticles": 1000,
         "OrbitalForce": {},
@@ -110,7 +108,7 @@
         "Scale": {
           "Type": "Curve",
           "CurveA": {
-            "rangey": "0,3",
+            "rangey": "0,10",
             "frames": [
               {
                 "in": -9.333329,
@@ -148,16 +146,18 @@
         "StartVelocity": {
           "Type": "Range",
           "Evaluation": "Particle",
-          "Constants": "35.5,99.7,0,0"
+          "Constants": "27.7,76.3,0,0"
         },
-        "Stretch": {},
-        "TimeScale": 0.03,
+        "Stretch": {
+          "Constants": "1,0,0,0"
+        },
+        "TimeScale": 1,
         "Tint": "0.93953,0.47873,0.19228,1",
         "Yaw": {}
       },
       {
         "__type": "Sandbox.ParticleSpriteRenderer",
-        "__guid": "2ee1f3ed-39c2-430e-a853-22df0a04b921",
+        "__guid": "d81b5aa1-8992-445a-a7e1-644d3a1d300a",
         "Additive": false,
         "Alignment": "LookAtCamera",
         "BlurAmount": 0.05,
@@ -178,23 +178,23 @@
       },
       {
         "__type": "Sandbox.ParticleConeEmitter",
-        "__guid": "67d5e5d9-8964-48ff-a4be-d375498627fd",
+        "__guid": "4be9f8a1-78bc-44d1-a1e1-8d37a1b3b20e",
         "Burst": 0,
-        "ConeAngle": 3.49,
-        "ConeFar": 5,
-        "ConeNear": 2.5,
+        "ConeAngle": 3.1,
+        "ConeFar": 69.10004,
+        "ConeNear": 69.899925,
         "Delay": 0,
         "DestroyOnEnd": false,
         "Duration": 3,
-        "InVolume": false,
+        "InVolume": true,
         "Loop": true,
         "OnEdge": false,
-        "Rate": 376.64,
-        "RateOverDistance": 92.79
+        "Rate": 68.86,
+        "RateOverDistance": 68.86
       },
       {
         "__type": "Sandbox.PointLight",
-        "__guid": "f6a8531b-5e56-4fc0-bb83-c4236d153315",
+        "__guid": "4480356e-ab64-449a-a60c-60b6f3e4e1cb",
         "Attenuation": 1,
         "FogMode": "Enabled",
         "FogStrength": 1,
@@ -202,7 +202,9 @@
         "Radius": 200,
         "Shadows": true
       }
-    ]
+    ],
+    "Children": [],
+    "__variables": []
   },
   "ShowInMenu": false,
   "MenuPath": null,

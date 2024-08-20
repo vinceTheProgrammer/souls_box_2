@@ -6,16 +6,26 @@
     "Enabled": true,
     "Components": [
       {
-        "__type": "Sandbox.Bonfire",
-        "__guid": "fff1d9e1-1488-40ab-a236-c7e2857b40f1"
-      },
-      {
         "__type": "Sandbox.BoxCollider",
         "__guid": "567a73fd-0b27-4caa-b2bc-168114bb5c2b",
         "Center": "0,0,40",
         "IsTrigger": true,
         "Scale": "130,130,80",
         "Static": false
+      },
+      {
+        "__type": "SoulsBox.Bonfire",
+        "__guid": "3a4ac909-b351-48a0-bb2a-fd4ac2514446",
+        "Description": "Rest at Bonfire"
+      },
+      {
+        "__type": "Sandbox.CapsuleCollider",
+        "__guid": "3be61a70-31de-4e69-ade4-1fdf6abd9daa",
+        "End": "0,0,-5.900024",
+        "IsTrigger": false,
+        "Radius": 20,
+        "Start": "0,0,-30.99998",
+        "Static": true
       }
     ],
     "Children": [
@@ -82,17 +92,35 @@
             ]
           },
           {
-            "__guid": "4ebc0d52-753c-4779-907a-7bab4e72f629",
+            "__guid": "e7449b22-a784-4e02-bba4-f4a43cc53ebf",
             "Flags": 0,
-            "Name": "Fire",
-            "Position": "-0.000004528215,0,-25.3236",
-            "Rotation": "0,-0.7071067,0,0.7071068",
-            "Tags": "particles,light_point,light",
+            "Name": "Light",
+            "Tags": "light_point,light",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "Sandbox.PointLight",
+                "__guid": "9e93d75f-2c79-48fc-a4f6-855500ef8384",
+                "Attenuation": 1,
+                "FogMode": "Enabled",
+                "FogStrength": 1,
+                "LightColor": "1,0.80837,0.52093,1",
+                "Radius": 200,
+                "Shadows": true
+              }
+            ]
+          },
+          {
+            "__guid": "dee5803b-7008-4a19-9f01-284059d8430e",
+            "Flags": 0,
+            "Name": "fire_legacy (1)",
+            "Rotation": "0,-0.7071068,0,0.7071068",
+            "Tags": "light,light_point,particles",
             "Enabled": true,
             "Components": [
               {
                 "__type": "Sandbox.ParticleEffect",
-                "__guid": "ca0febd5-9298-4e6d-b05d-de00f7cd2a15",
+                "__guid": "2d7ea4bf-cab7-4b26-8ec3-f30e51fd0bff",
                 "Alpha": {
                   "CurveA": [
                     {
@@ -112,7 +140,7 @@
                 },
                 "ApplyColor": true,
                 "ApplyRotation": true,
-                "ApplyShape": false,
+                "ApplyShape": true,
                 "Bounce": {
                   "Constants": "1,0,0,0"
                 },
@@ -182,7 +210,7 @@
                 "Pitch": {
                   "Constants": "97.5,0,0,0"
                 },
-                "PreWarm": 0,
+                "PreWarm": 1,
                 "PushStrength": {},
                 "Roll": {
                   "Type": "Range",
@@ -192,14 +220,14 @@
                 "Scale": {
                   "Type": "Curve",
                   "CurveA": {
-                    "rangey": "0,3",
+                    "rangey": "0,10",
                     "frames": [
                       {
                         "in": -9.333329,
                         "out": 9.333329
                       },
                       {
-                        "x": 0.03325123,
+                        "x": 0.014880952,
                         "y": 1,
                         "in": -0.056075174,
                         "out": 0.056075174
@@ -239,7 +267,7 @@
               },
               {
                 "__type": "Sandbox.ParticleSpriteRenderer",
-                "__guid": "25f49527-7207-4a6b-b72f-4836ea1539c2",
+                "__guid": "5002ed8e-beea-4ffd-9aa7-cf471e432d3e",
                 "Additive": false,
                 "Alignment": "LookAtCamera",
                 "BlurAmount": 0.05,
@@ -260,7 +288,7 @@
               },
               {
                 "__type": "Sandbox.ParticleConeEmitter",
-                "__guid": "d036d42e-88fa-440e-93d4-1d811aba255b",
+                "__guid": "edd36a63-4474-4cf9-adb5-8051eeca2ca7",
                 "Burst": 0,
                 "ConeAngle": 7.82,
                 "ConeFar": 29.800032,
@@ -273,25 +301,6 @@
                 "OnEdge": false,
                 "Rate": 141.74,
                 "RateOverDistance": 150
-              }
-            ]
-          },
-          {
-            "__guid": "e7449b22-a784-4e02-bba4-f4a43cc53ebf",
-            "Flags": 0,
-            "Name": "Light",
-            "Tags": "light_point,light",
-            "Enabled": true,
-            "Components": [
-              {
-                "__type": "Sandbox.PointLight",
-                "__guid": "9e93d75f-2c79-48fc-a4f6-855500ef8384",
-                "Attenuation": 1,
-                "FogMode": "Enabled",
-                "FogStrength": 1,
-                "LightColor": "1,0.80837,0.52093,1",
-                "Radius": 200,
-                "Shadows": true
               }
             ]
           }

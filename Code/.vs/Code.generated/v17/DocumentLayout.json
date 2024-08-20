@@ -3,20 +3,92 @@
   "WorkspaceRootPath": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\characterdefensecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characterdefensecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\categoriescomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\categoriescomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\player\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\player\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu.razor.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu.razor.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menuinventory.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menuinventory.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\player\\agentplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\player\\agentplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menuequipment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menuequipment.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\characteranimationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characteranimationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menubonfire.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menubonfire.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\charactermovementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\charactermovementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\entity\\bonfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\entity\\bonfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\managers\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:managers\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\charactervitals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\charactervitals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menusettings\\menusettingscredits.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menusettings\\menusettingscredits.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\characterinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characterinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\characteragent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characteragent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\chat.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\chat.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\createbonfires.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:createbonfires.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\entity\\lockonable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\entity\\lockonable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\lockonindicator.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\lockonindicator.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menusettings.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menusettings.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menustatus.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menustatus.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\characterdefensecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characterdefensecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\item\\key.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\item\\key.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\player\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,52 +99,92 @@
       "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characterstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\entity\\seekingsoul.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\entity\\seekingsoul.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\charactervitals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\charactervitals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\player\\agentplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\player\\agentplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\characterequipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characterequipment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menustatus\\menustatusmisc.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menustatus\\menustatusmisc.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menustatus\\menustatusplayer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menustatus\\menustatusplayer.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menustatus\\menustatusgeneral.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menustatus\\menustatusgeneral.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\spawnplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:spawnplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\entity\\entityinteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\entity\\entityinteractable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\player\\playerinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\player\\playerinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\spawnscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:spawnscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menusettings\\menusettingsoptions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menusettings\\menusettingsoptions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menusettings\\menusettingslobbytools.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menusettings\\menusettingslobbytools.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\ui\\menu\\menusettings\\menusettingscontrols.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:ui\\menu\\menusettings\\menusettingscontrols.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\charactercombatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\charactercombatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\charactermovementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\charactermovementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\utils\\vector3extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:utils\\vector3extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\characteranimationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characteranimationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\player\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\player\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\structs\\sbdamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\structs\\sbdamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\item\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\item\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\entity\\seekingsoul.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\entity\\seekingsoul.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\ai\\agentai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\ai\\agentai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\types\\statuseffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\types\\statuseffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\types\\sbdamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\types\\sbdamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\character\\characteragent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\character\\characteragent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\createbonfires.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:createbonfires.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|c:\\users\\vince\\documents\\s\u0026box projects\\souls_box\\code\\components\\entity\\bonfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F21EBD77-FC76-4E36-9EF7-306EDF4BBA5C}|souls_box.csproj|solutionrelative:components\\entity\\bonfire.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\Menu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:UI\\Menu\\Menu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\StatusEffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Components\\Types\\StatusEffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\SBDamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Components\\Types\\SBDamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -82,123 +194,202 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PlayerStats.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\PlayerStats.cs",
-              "RelativeDocumentMoniker": "Components\\Player\\PlayerStats.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\PlayerStats.cs",
-              "RelativeToolTip": "Components\\Player\\PlayerStats.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAcwCAAAAAFAAAA",
+              "DocumentIndex": 1,
+              "Title": "Menu.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu.razor",
+              "RelativeDocumentMoniker": "UI\\Menu.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu.razor",
+              "RelativeToolTip": "UI\\Menu.razor",
+              "ViewState": "AQIAAKcAAAAAAAAAAAAAAFQAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-19T21:06:57.184Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CategoriesComponent.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\CategoriesComponent.cs",
+              "RelativeDocumentMoniker": "UI\\Menu\\CategoriesComponent.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\CategoriesComponent.cs",
+              "RelativeToolTip": "UI\\Menu\\CategoriesComponent.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAIwDQAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T07:26:32.832Z",
+              "WhenOpened": "2024-08-20T07:33:27.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MenuBonfire.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuBonfire.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuBonfire.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuBonfire.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuBonfire.razor",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAlwBYAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-20T03:29:52.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AgentPlayer.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\AgentPlayer.cs",
+              "RelativeDocumentMoniker": "Components\\Player\\AgentPlayer.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\AgentPlayer.cs",
+              "RelativeToolTip": "Components\\Player\\AgentPlayer.cs",
+              "ViewState": "AQIAAP4AAAAAAAAAAAAewAABAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T02:09:47.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "SeekingSoul.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\SeekingSoul.cs",
-              "RelativeDocumentMoniker": "Components\\Entity\\SeekingSoul.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\SeekingSoul.cs",
-              "RelativeToolTip": "Components\\Entity\\SeekingSoul.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "CharacterAnimationController.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterAnimationController.cs",
+              "RelativeDocumentMoniker": "Components\\Character\\CharacterAnimationController.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterAnimationController.cs",
+              "RelativeToolTip": "Components\\Character\\CharacterAnimationController.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAADgvzUAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T07:24:08.804Z",
+              "WhenOpened": "2024-08-16T02:32:45.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CharacterMovementController.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterMovementController.cs",
+              "RelativeDocumentMoniker": "Components\\Character\\CharacterMovementController.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterMovementController.cs",
+              "RelativeToolTip": "Components\\Character\\CharacterMovementController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD4AAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T01:58:18.453Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "CharacterStats.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterStats.cs",
-              "RelativeDocumentMoniker": "Components\\Character\\CharacterStats.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterStats.cs",
-              "RelativeToolTip": "Components\\Character\\CharacterStats.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "MenuEquipment.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuEquipment.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuEquipment.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuEquipment.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuEquipment.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-19T21:51:27.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MenuInventory.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuInventory.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuInventory.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuInventory.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuInventory.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-20T01:21:41.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Menu.razor.scss",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu.razor.scss",
+              "RelativeDocumentMoniker": "UI\\Menu.razor.scss",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu.razor.scss",
+              "RelativeToolTip": "UI\\Menu.razor.scss",
+              "ViewState": "AQIAAK4AAAAAAAAAAAAtwMEAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2024-08-19T23:19:51.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Bonfire.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\Bonfire.cs",
+              "RelativeDocumentMoniker": "Components\\Entity\\Bonfire.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\Bonfire.cs",
+              "RelativeToolTip": "Components\\Entity\\Bonfire.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAwwA0AAAB/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T07:23:35.356Z",
+              "WhenOpened": "2024-08-16T03:43:08.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "InputManager.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Managers\\InputManager.cs",
+              "RelativeDocumentMoniker": "Managers\\InputManager.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Managers\\InputManager.cs",
+              "RelativeToolTip": "Managers\\InputManager.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAMwCMAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T02:04:53.556Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "AgentAI.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\AI\\AgentAI.cs",
-              "RelativeDocumentMoniker": "Components\\AI\\AgentAI.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\AI\\AgentAI.cs",
-              "RelativeToolTip": "Components\\AI\\AgentAI.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAqwCYAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T06:34:00.581Z",
+              "Title": "MenuSettingsCredits.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings\\MenuSettingsCredits.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuSettings\\MenuSettingsCredits.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings\\MenuSettingsCredits.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuSettings\\MenuSettingsCredits.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-19T23:06:58.372Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "StatusEffect.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\StatusEffect.cs",
-              "RelativeDocumentMoniker": "Components\\Types\\StatusEffect.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\StatusEffect.cs",
-              "RelativeToolTip": "Components\\Types\\StatusEffect.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAOAAAA",
+              "Title": "CharacterInventory.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterInventory.cs",
+              "RelativeDocumentMoniker": "Components\\Character\\CharacterInventory.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterInventory.cs",
+              "RelativeToolTip": "Components\\Character\\CharacterInventory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T06:00:21.855Z",
+              "WhenOpened": "2024-08-20T01:22:00.34Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "SBDamage.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\SBDamage.cs",
-              "RelativeDocumentMoniker": "Components\\Types\\SBDamage.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\SBDamage.cs",
-              "RelativeToolTip": "Components\\Types\\SBDamage.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAwwCEAAACCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T05:50:49.156Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
               "Title": "CharacterAgent.cs",
               "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterAgent.cs",
               "RelativeDocumentMoniker": "Components\\Character\\CharacterAgent.cs",
               "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterAgent.cs",
               "RelativeToolTip": "Components\\Character\\CharacterAgent.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAwwAsAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-16T05:45:23.105Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CharacterDefenseController.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterDefenseController.cs",
-              "RelativeDocumentMoniker": "Components\\Character\\CharacterDefenseController.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterDefenseController.cs",
-              "RelativeToolTip": "Components\\Character\\CharacterDefenseController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBEAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T04:44:42.069Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CharacterVitals.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterVitals.cs",
-              "RelativeDocumentMoniker": "Components\\Character\\CharacterVitals.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterVitals.cs",
-              "RelativeToolTip": "Components\\Character\\CharacterVitals.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAqwBEAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T04:10:30.746Z",
+              "DocumentIndex": 14,
+              "Title": "Chat.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Chat.razor",
+              "RelativeDocumentMoniker": "UI\\Chat.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Chat.razor",
+              "RelativeToolTip": "UI\\Chat.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-18T17:38:50.211Z",
               "EditorCaption": ""
             },
             {
@@ -209,7 +400,7 @@
               "RelativeDocumentMoniker": "CreateBonfires.cs",
               "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\CreateBonfires.cs",
               "RelativeToolTip": "CreateBonfires.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADIAAAAuAAAA",
+              "ViewState": "AQIAAEwAAAAAAAAAAADgv1YAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-16T04:06:49.749Z",
               "EditorCaption": ""
@@ -217,97 +408,375 @@
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "Bonfire.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\Bonfire.cs",
-              "RelativeDocumentMoniker": "Components\\Entity\\Bonfire.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\Bonfire.cs",
-              "RelativeToolTip": "Components\\Entity\\Bonfire.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAUAAAA",
+              "Title": "LockOnAble.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\LockOnAble.cs",
+              "RelativeDocumentMoniker": "Components\\Entity\\LockOnAble.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\LockOnAble.cs",
+              "RelativeToolTip": "Components\\Entity\\LockOnAble.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAADgvxAAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T03:43:08.032Z",
+              "WhenOpened": "2024-08-18T19:09:08.485Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 17,
+              "Title": "LockOnIndicator.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\LockOnIndicator.razor",
+              "RelativeDocumentMoniker": "UI\\LockOnIndicator.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\LockOnIndicator.razor",
+              "RelativeToolTip": "UI\\LockOnIndicator.razor",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-20T00:06:12.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MenuSettings.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuSettings.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuSettings.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-19T23:13:19.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "MenuStatus.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuStatus.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuStatus.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuStatus.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuStatus.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-20T00:00:44.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CharacterDefenseController.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterDefenseController.cs",
+              "RelativeDocumentMoniker": "Components\\Character\\CharacterDefenseController.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterDefenseController.cs",
+              "RelativeToolTip": "Components\\Character\\CharacterDefenseController.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAhwB8AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T04:44:42.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Key.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Item\\Key.cs",
+              "RelativeDocumentMoniker": "Components\\Item\\Key.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Item\\Key.cs",
+              "RelativeToolTip": "Components\\Item\\Key.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T03:23:43.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PlayerStats.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\PlayerStats.cs",
+              "RelativeDocumentMoniker": "Components\\Player\\PlayerStats.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\PlayerStats.cs",
+              "RelativeToolTip": "Components\\Player\\PlayerStats.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAwDoAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T02:16:13.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CharacterStats.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterStats.cs",
+              "RelativeDocumentMoniker": "Components\\Character\\CharacterStats.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterStats.cs",
+              "RelativeToolTip": "Components\\Character\\CharacterStats.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAywEoAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T01:42:36.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "CharacterVitals.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterVitals.cs",
+              "RelativeDocumentMoniker": "Components\\Character\\CharacterVitals.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterVitals.cs",
+              "RelativeToolTip": "Components\\Character\\CharacterVitals.cs",
+              "ViewState": "AQIAAGsAAAAAAAAAAAAowHgAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T02:13:03.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "MenuStatusMisc.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\MenuStatus\\MenuStatusMisc.razor",
+              "RelativeDocumentMoniker": "UI\\MenuStatus\\MenuStatusMisc.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\MenuStatus\\MenuStatusMisc.razor",
+              "RelativeToolTip": "UI\\MenuStatus\\MenuStatusMisc.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-20T01:13:45.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "MenuStatusPlayer.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\MenuStatus\\MenuStatusPlayer.razor",
+              "RelativeDocumentMoniker": "UI\\MenuStatus\\MenuStatusPlayer.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\MenuStatus\\MenuStatusPlayer.razor",
+              "RelativeToolTip": "UI\\MenuStatus\\MenuStatusPlayer.razor",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABcAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-20T00:08:00.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "CharacterEquipment.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterEquipment.cs",
+              "RelativeDocumentMoniker": "Components\\Character\\CharacterEquipment.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterEquipment.cs",
+              "RelativeToolTip": "Components\\Character\\CharacterEquipment.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-19T22:53:19.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "MenuStatusGeneral.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\MenuStatus\\MenuStatusGeneral.razor",
+              "RelativeDocumentMoniker": "UI\\MenuStatus\\MenuStatusGeneral.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\MenuStatus\\MenuStatusGeneral.razor",
+              "RelativeToolTip": "UI\\MenuStatus\\MenuStatusGeneral.razor",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAADYAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-19T17:17:58.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "SpawnPlayer.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\SpawnPlayer.cs",
+              "RelativeDocumentMoniker": "SpawnPlayer.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\SpawnPlayer.cs",
+              "RelativeToolTip": "SpawnPlayer.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACYAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-18T17:38:45.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "SpawnScreen.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\SpawnScreen.cs",
+              "RelativeDocumentMoniker": "SpawnScreen.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\SpawnScreen.cs",
+              "RelativeToolTip": "SpawnScreen.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-19T23:29:47.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "MenuSettingsLobbyTools.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings\\MenuSettingsLobbyTools.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuSettings\\MenuSettingsLobbyTools.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings\\MenuSettingsLobbyTools.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuSettings\\MenuSettingsLobbyTools.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-19T23:13:12.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "MenuSettingsControls.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings\\MenuSettingsControls.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuSettings\\MenuSettingsControls.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings\\MenuSettingsControls.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuSettings\\MenuSettingsControls.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-19T23:00:50.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "MenuSettingsOptions.razor",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings\\MenuSettingsOptions.razor",
+              "RelativeDocumentMoniker": "UI\\Menu\\MenuSettings\\MenuSettingsOptions.razor",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\MenuSettings\\MenuSettingsOptions.razor",
+              "RelativeToolTip": "UI\\Menu\\MenuSettings\\MenuSettingsOptions.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-19T22:59:07.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "EntityInteractable.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\EntityInteractable.cs",
+              "RelativeDocumentMoniker": "Components\\Entity\\EntityInteractable.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\EntityInteractable.cs",
+              "RelativeToolTip": "Components\\Entity\\EntityInteractable.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-18T18:11:19.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Vector3Extensions.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Utils\\Vector3Extensions.cs",
+              "RelativeDocumentMoniker": "Utils\\Vector3Extensions.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Utils\\Vector3Extensions.cs",
+              "RelativeToolTip": "Utils\\Vector3Extensions.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAiwC4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-18T17:52:41.801Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PlayerInteraction.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\PlayerInteraction.cs",
+              "RelativeDocumentMoniker": "Components\\Player\\PlayerInteraction.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\PlayerInteraction.cs",
+              "RelativeToolTip": "Components\\Player\\PlayerInteraction.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAuwCUAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-18T17:21:55.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Weapon.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Item\\Weapon.cs",
+              "RelativeDocumentMoniker": "Components\\Item\\Weapon.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Item\\Weapon.cs",
+              "RelativeToolTip": "Components\\Item\\Weapon.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-18T16:59:49.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "SBDamage.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Structs\\SBDamage.cs",
+              "RelativeDocumentMoniker": "Components\\Structs\\SBDamage.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Structs\\SBDamage.cs",
+              "RelativeToolTip": "Components\\Structs\\SBDamage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-18T16:58:17.189Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "SeekingSoul.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\SeekingSoul.cs",
+              "RelativeDocumentMoniker": "Components\\Entity\\SeekingSoul.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Entity\\SeekingSoul.cs",
+              "RelativeToolTip": "Components\\Entity\\SeekingSoul.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T07:24:08.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "AgentAI.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\AI\\AgentAI.cs",
+              "RelativeDocumentMoniker": "Components\\AI\\AgentAI.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\AI\\AgentAI.cs",
+              "RelativeToolTip": "Components\\AI\\AgentAI.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAqwCYAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T06:34:00.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "StatusEffect.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\StatusEffect.cs",
+              "RelativeDocumentMoniker": "Components\\Types\\StatusEffect.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\StatusEffect.cs",
+              "RelativeToolTip": "Components\\Types\\StatusEffect.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T06:00:21.855Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "SBDamage.cs",
+              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\SBDamage.cs",
+              "RelativeDocumentMoniker": "Components\\Types\\SBDamage.cs",
+              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Types\\SBDamage.cs",
+              "RelativeToolTip": "Components\\Types\\SBDamage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAwwCEAAACCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-16T05:50:49.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
               "Title": "CharacterCombatController.cs",
               "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterCombatController.cs",
               "RelativeDocumentMoniker": "Components\\Character\\CharacterCombatController.cs",
               "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterCombatController.cs",
               "RelativeToolTip": "Components\\Character\\CharacterCombatController.cs",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAuwF0AAAAfAAAA",
+              "ViewState": "AQIAAEgAAAAAAAAAAIA1wGUAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-16T03:03:46.19Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CharacterAnimationController.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterAnimationController.cs",
-              "RelativeDocumentMoniker": "Components\\Character\\CharacterAnimationController.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterAnimationController.cs",
-              "RelativeToolTip": "Components\\Character\\CharacterAnimationController.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAmwDwAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T02:32:45.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InputManager.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Managers\\InputManager.cs",
-              "RelativeDocumentMoniker": "Managers\\InputManager.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Managers\\InputManager.cs",
-              "RelativeToolTip": "Managers\\InputManager.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwCcAAABxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T02:04:53.556Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CharacterMovementController.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterMovementController.cs",
-              "RelativeDocumentMoniker": "Components\\Character\\CharacterMovementController.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Character\\CharacterMovementController.cs",
-              "RelativeToolTip": "Components\\Character\\CharacterMovementController.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAhwEYAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T01:58:18.453Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AgentPlayer.cs",
-              "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\AgentPlayer.cs",
-              "RelativeDocumentMoniker": "Components\\Player\\AgentPlayer.cs",
-              "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\AgentPlayer.cs",
-              "RelativeToolTip": "Components\\Player\\AgentPlayer.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAuwNYAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T01:49:29.113Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 38,
               "Title": "CameraController.cs",
               "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\CameraController.cs",
               "RelativeDocumentMoniker": "Components\\Player\\CameraController.cs",
               "ToolTip": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\Components\\Player\\CameraController.cs",
               "RelativeToolTip": "Components\\Player\\CameraController.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAA6wDMAAABvAAAA",
+              "ViewState": "AQIAAHIAAAAAAAAAAAAEwH4AAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-16T01:48:59.043Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-16T01:48:59.043Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 43,
               "Title": "Menu.razor",
               "DocumentMoniker": "C:\\Users\\vince\\Documents\\s\u0026box projects\\souls_box\\Code\\UI\\Menu\\Menu.razor",
               "RelativeDocumentMoniker": "UI\\Menu\\Menu.razor",

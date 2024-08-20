@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sandbox.Components.Types
+namespace SoulsBox
 {
-	public sealed class StatusEffect
+	public struct StatusEffect
 	{
-		public StatusEffect Type { get; set; }
+		public StatusEffectType Type { get; set; }
 		public int StatusEffectValue { get; set; }
 		public enum StatusEffectType
 		{
@@ -17,7 +17,7 @@ namespace Sandbox.Components.Types
 			Poison,
 			Curse
 		}
-		public StatusEffect(StatusEffect statusEffect, int statusEffectValue)
+		public StatusEffect(StatusEffectType statusEffect, int statusEffectValue)
 		{
 			Type = statusEffect;
 			StatusEffectValue = statusEffectValue;

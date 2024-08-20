@@ -43,7 +43,7 @@ public sealed class SpawnPlayer : Component
 		IEnumerable<GameObject> objects = Game.ActiveScene.GetAllObjects(true);
 		foreach ( GameObject obj in objects )
 		{
-			Log.Info( obj.Name + ": " + !obj.Network.IsProxy );
+			//Log.Info( obj.Name + ": " + !obj.Network.IsProxy );
 		}
 	}
 }

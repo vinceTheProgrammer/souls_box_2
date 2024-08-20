@@ -90,7 +90,6 @@ namespace SoulsBox
 		// maybe put somewhere else?
 		public void Die(CharacterAgent killer)
 		{
-			if ( Network.IsProxy ) return;
 			Agent.IsDead = true;
 			if (killer is AgentPlayer player && Agent is AgentPlayer thisPlayer)
 			{
@@ -117,6 +116,14 @@ namespace SoulsBox
 				}
 			}
 			
+		}
+
+		public override int GetHashCode()
+		{
+			HashCode c = new HashCode();
+			c.Add( Health );
+			c.Add( Stamina );
+			return c.ToHashCode();
 		}
 	}
 }

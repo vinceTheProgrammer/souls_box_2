@@ -140,7 +140,7 @@
         {
           "Name": "sb_use",
           "KeyboardCode": "E",
-          "GamepadCode": "SwitchLeftMenu",
+          "GamepadCode": "A",
           "GroupName": "Other"
         },
         {
@@ -212,6 +212,36 @@
         {
           "Name": "sb_creation_mode",
           "KeyboardCode": "v",
+          "GamepadCode": "None",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_menu_cycle_left",
+          "KeyboardCode": "del",
+          "GamepadCode": "SwitchLeftBumper",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_menu_cycle_right",
+          "KeyboardCode": "end",
+          "GamepadCode": "SwitchRightBumper",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_menu_secondary",
+          "KeyboardCode": "f",
+          "GamepadCode": "None",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_menu_thirdly",
+          "KeyboardCode": "g",
+          "GamepadCode": "None",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_menu_cycle_left_alt",
+          "KeyboardCode": "home",
           "GamepadCode": "None",
           "GroupName": "Other"
         }

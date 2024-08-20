@@ -1,36 +1,32 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using SoulsBox
 @inherits Panel;
 
 <root class="column">
     <div class="info-item">
-        <i class="icon poise-icon"></i> Poise <span class="value">@Poise</span>
+        <i class="icon poise-icon"></i> Poise <span class="value">@Stats.Poise</span>
     </div>
     <div class="info-item">
-        <i class="icon bleed-resist-icon"></i> Bleed Resist <span class="value">@BleedResist</span>
+        <i class="icon bleed-resist-icon"></i> Bleed Resist <span class="value">@Stats.BleedResist</span>
     </div>
     <div class="info-item">
-        <i class="icon poison-resist-icon"></i> Poison Resist <span class="value">@PoisonResist</span>
+        <i class="icon poison-resist-icon"></i> Poison Resist <span class="value">@Stats.PoisonResist</span>
     </div>
     <div class="info-item">
-        <i class="icon curse-resist-icon"></i> Curse Resist <span class="value">@CurseResist</span>
-    </div>
-    <hr>
-    <div class="info-item">
-        <i class="icon item-discovery-icon"></i> Item Discovery <span class="value">@ItemDiscovery</span>
+        <i class="icon curse-resist-icon"></i> Curse Resist <span class="value">@Stats.CurseResist</span>
     </div>
     <hr>
     <div class="info-item">
-        <i class="icon attunement-slots-icon"></i> Attunement Slots <span class="value">@AttunementSlots</span>
+        <i class="icon item-discovery-icon"></i> Item Discovery <span class="value">@Stats.ItemDiscovery</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon attunement-slots-icon"></i> Attunement Slots <span class="value">@Stats.AttunementSlots</span>
     </div>
 </root>
 
 @code
 {
-    public int Poise { get; set; } = 40;
-    public int BleedResist { get; set; } = 15;
-    public int PoisonResist { get; set; } = 15;
-    public int CurseResist { get; set; } = 10;
-    public int ItemDiscovery { get; set; } = 100;
-    public int AttunementSlots { get; set; } = 2;
+    public CharacterStats Stats { get; set; }
 }

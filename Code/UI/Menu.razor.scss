@@ -16,6 +16,7 @@ Menu {
 		background-color: rgba(50, 50, 50, 0.95); /* Almost fully opaque */
 		border-radius: 15px;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		pointer-events: all;
 	}
 
 	.top-row {
@@ -75,6 +76,11 @@ Menu {
 		background-color: #222;
 		border-radius: 5px;
 		color: #fff;
+		transition: background-color 0.1s ease;
+	}
+
+	.info-item:hover {
+		background-color: #444;
 	}
 
 	.equipment-row {
@@ -166,10 +172,39 @@ Menu {
 		justify-content: flex-start;
 		align-items: center;
 		margin-bottom: 5px;
-		padding: 5px;
 		background-color: #222;
 		border-radius: 5px;
 		color: #fff;
+	}
+
+	.category-bar {
+		flex: 1;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+	}
+
+	.category-icon {
+		padding: 10px;
+		height: 100%;
+		flex: 1;
+		cursor: pointer;
+		background-color: firebrick;
+		transition: background-color 0.2s ease;
+	}
+
+	.category-icon.selected {
+		background-color: blue;
+	}
+
+	.category-icon img {
+		height: 50px;
+		width: 50px;
 	}
 
 	.inventory {
@@ -182,5 +217,54 @@ Menu {
 		background-color: #222;
 		border-radius: 5px;
 		color: #fff;
+	}
+
+	.options-box {
+		position: absolute;
+		left: 5%;
+		top: 30%; // Adjust this as needed to position vertically
+		width: 500px;
+		height: 60%; // Adjust height as needed
+		padding: 20px;
+		background-color: rgba(50, 50, 50, 0.95);
+		border-radius: 15px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		overflow-y: scroll; // Makes the content scrollable
+		overflow-x: hidden;
+		pointer-events: all;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		flex-grow: 1;
+	}
+
+	.options-box h3 {
+		text-align: center;
+		color: #fff;
+		margin-bottom: 10px;
+	}
+
+	.options-list {
+		flex: 1;
+		flex-direction: column;
+		margin: 0 10px;
+		padding: 10px;
+		background-color: rgba(50, 50, 50, 00);
+		border-radius: 10px;
+	}
+
+	.option-item {
+		padding: 10px;
+		margin: 5px 0;
+		background-color: #222;
+		color: #fff;
+		border-radius: 5px;
+		text-align: center;
+		cursor: pointer;
+		transition: background-color 0.1s ease;
+	}
+
+	.option-item:hover {
+		background-color: #444;
 	}
 }

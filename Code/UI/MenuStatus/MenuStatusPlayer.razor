@@ -1,62 +1,51 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using SoulsBox;
 @inherits Panel;
 
 <root class="column">
     <div class="displayname">
-        <span class="name">@Displayname</span>
+        <span class="name">@Stats.Displayname</span>
     </div>
     <hr />
     <div class="info-item">
-        <i class="icon level-icon"></i> Level <span class="value">@Level</span>
+        <i class="icon level-icon"></i> Level <span class="value">@Stats.Level</span>
     </div>
     <div class="info-item">
-        <i class="icon souls-icon"></i> Souls <span class="value">@Souls</span>
-    </div>
-    <hr>
-    <div class="info-item">
-        <i class="icon vitality-icon"></i> Vitality <span class="value">@Vitality</span>
-    </div>
-    <div class="info-item">
-        <i class="icon attunement-icon"></i> Attunement <span class="value">@Attunement</span>
-    </div>
-    <div class="info-item">
-        <i class="icon endurance-icon"></i> Endurance <span class="value">@Endurance</span>
-    </div>
-    <div class="info-item">
-        <i class="icon strength-icon"></i> Strength <span class="value">@Strength</span>
-    </div>
-    <div class="info-item">
-        <i class="icon dexterity-icon"></i> Dexterity <span class="value">@Dexterity</span>
-    </div>
-    <div class="info-item">
-        <i class="icon resistance-icon"></i> Resistance <span class="value">@Resistance</span>
-    </div>
-    <div class="info-item">
-        <i class="icon intelligence-icon"></i> Intelligence <span class="value">@Intelligence</span>
-    </div>
-    <div class="info-item">
-        <i class="icon faith-icon"></i> Faith <span class="value">@Faith</span>
+        <i class="icon souls-icon"></i> Souls <span class="value">@Stats.Souls</span>
     </div>
     <hr>
     <div class="info-item">
-        <i class="icon humanity-icon"></i> Humanity <span class="value">@Humanity</span>
+        <i class="icon vitality-icon"></i> Vitality <span class="value">@Stats.Vitality</span>
+    </div>
+    <div class="info-item">
+        <i class="icon attunement-icon"></i> Attunement <span class="value">@Stats.Attunement</span>
+    </div>
+    <div class="info-item">
+        <i class="icon endurance-icon"></i> Endurance <span class="value">@Stats.Endurance</span>
+    </div>
+    <div class="info-item">
+        <i class="icon strength-icon"></i> Strength <span class="value">@Stats.Strength</span>
+    </div>
+    <div class="info-item">
+        <i class="icon dexterity-icon"></i> Dexterity <span class="value">@Stats.Dexterity</span>
+    </div>
+    <div class="info-item">
+        <i class="icon resistance-icon"></i> Resistance <span class="value">@Stats.Resistance</span>
+    </div>
+    <div class="info-item">
+        <i class="icon intelligence-icon"></i> Intelligence <span class="value">@Stats.Intelligence</span>
+    </div>
+    <div class="info-item">
+        <i class="icon faith-icon"></i> Faith <span class="value">@Stats.Faith</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon humanity-icon"></i> Humanity <span class="value">@Stats.Humanity</span>
     </div>
 </root>
 
 @code
 {
-    public string Displayname { get; set; } = "Vince2555";
-
-    public int Level { get; set; } = 1;
-    public int Souls { get; set; } = 1000;
-    public int Vitality { get; set; } = 10;
-    public int Attunement { get; set; } = 10;
-    public int Endurance { get; set; } = 10;
-    public int Strength { get; set; } = 10;
-    public int Dexterity { get; set; } = 10;
-    public int Resistance { get; set; } = 10;
-    public int Intelligence { get; set; } = 10;
-    public int Faith { get; set; } = 10;
-    public int Humanity { get; set; } = 1;
+    public PlayerStats Stats { get; set; }
 }

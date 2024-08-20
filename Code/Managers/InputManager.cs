@@ -10,7 +10,7 @@ namespace SoulsBox
 	{
 
 		[Property]
-		public AgentPlayer Agent { get; set; }
+		public AgentPlayer Player { get; set; }
 
 		private float InputHoldTime = 0f;
 		private float TimeSinceSprint = 0f;
@@ -25,78 +25,65 @@ namespace SoulsBox
 			player.MoveVector = Input.AnalogMove;
 		}
 
-		protected override void OnFixedUpdate()
+		protected override void OnUpdate()
 		{
 			if ( Network.IsProxy ) return;
+			if ( Player.IsUsingBonfire )
+			{
+				if ( Input.EscapePressed )
+				{
+					Input.EscapePressed = false;
+					Player.ToggleBonfireRest();
+				}
+				return;
+			}
 
-			if ( Agent.IsRolling || Agent.IsJumping )
+			if (Input.EscapePressed)
+			{
+				Input.EscapePressed = false;
+				Player.ToggleMenu();
+			}
+
+			if ( Player.IsRolling || Player.IsJumping )
 			{
 				InputHoldTime = 0f; // Reset the input hold time when rolling or jumping
 				return;
 			}
 
-			if (  Agent.CreationMode )
+			if (Input.Pressed("sb_use"))
 			{
-				Agent.CharacterMovementController.CreationModeSpeed = (Agent.CharacterMovementController.CreationModeSpeed + Input.MouseWheel.y * 10).Clamp( 0.1f, 10000f );
+				Player.PlayerInteraction.TryInteraction();
+			}
+
+			if (  Player.CreationMode )
+			{
+				Player.CharacterMovementController.CreationModeSpeed = (Player.CharacterMovementController.CreationModeSpeed + Input.MouseWheel.y * 10).Clamp( 0.1f, 10000f );
 			}
 
 			if (  Input.Pressed( "sb_creation_mode" ))
 			{
-				Agent.ToggleCreationMode();
-			}
-
-			if ( Input.Down( "sb_sprint" ) )
-			{
-				InputHoldTime += Time.Delta;
-
-				if ( InputHoldTime >= SprintThreshold )
-				{
-					TimeSinceSprint = 0;
-					Agent.IsSprinting = true;
-				}
-			}
-			else
-			{
-				if ( InputHoldTime > 0 && InputHoldTime < SprintThreshold )
-				{
-					if ( Agent.MoveVector.Length > 0 )
-					{
-						Agent.IsRolling = true;
-					}
-					else
-					{
-						Agent.IsBackstepping = true;
-					}
-				}
-
-				Agent.IsSprinting = false;
-				InputHoldTime = 0;
-				TimeSinceSprint += Time.Delta;
-			}
-			if ( Input.Pressed( "sb_jump" ) && TimeSinceSprint < JumpThreshold )
-			{
-				Agent.IsJumping = true;
+				Player.ToggleCreationMode();
 			}
 
 			if ( Input.Pressed( "sb_lock_on" ) )
 			{
-				Agent.ToggleLockOn();
+				Player.ToggleLockOn();
 			}
 
 			if ( Input.UsingController )
 			{
 				float yaw = Input.AnalogLook.yaw;
 
-				if ( Agent.LockedOn )
+				if ( Player.LockedOn )
 				{
 					if ( stickReleased && yaw > 0.5f )
 					{
-						Agent.SwitchTarget( true );
+						Player.SwitchTarget( true );
 						stickReleased = false;
 					}
 					else if ( stickReleased && yaw < -0.5f )
 					{
-						Agent.SwitchTarget( false );
+						Player.SwitchTarget( false );
 						stickReleased = false;
 					}
 
@@ -111,44 +98,79 @@ namespace SoulsBox
 			{
 				float mouseX = Mouse.Position.x;
 
-				if ( Agent.LockedOn )
+				if ( Player.LockedOn )
 				{
 					float deltaX = mouseX - lastMouseX;
 
 					if ( deltaX > mouseThreshold )
 					{
-						Agent.SwitchTarget( false );
+						Player.SwitchTarget( false );
 						lastMouseX = mouseX;
 					}
 					else if ( deltaX < -mouseThreshold )
 					{
-						Agent.SwitchTarget( true );
+						Player.SwitchTarget( true );
 						lastMouseX = mouseX;
 					}
 				}
 			}
 
+			if ( !Player.CharacterMovementController.CharacterController.IsOnGround ) return;
+
+			if ( Input.Down( "sb_sprint" ) )
+			{
+				InputHoldTime += Time.Delta;
+
+				if ( InputHoldTime >= SprintThreshold )
+				{
+					TimeSinceSprint = 0;
+					Player.IsSprinting = true;
+				}
+			}
+			else
+			{
+				if ( InputHoldTime > 0 && InputHoldTime < SprintThreshold )
+				{
+					if ( Player.MoveVector.Length > 0 )
+					{
+						Player.IsRolling = true;
+					}
+					else
+					{
+						Player.IsBackstepping = true;
+					}
+				}
+
+				Player.IsSprinting = false;
+				InputHoldTime = 0;
+				TimeSinceSprint += Time.Delta;
+			}
+			if ( Input.Pressed( "sb_jump" ) && TimeSinceSprint < JumpThreshold )
+			{
+				Player.IsJumping = true;
+			}
+
 			if ( Input.Pressed( "sb_light_attack" ) )
 			{
-				if ( Agent.CharacterVitals.Stamina > 0 )
+				if ( Player.CharacterVitals.Stamina > 0 )
 				{
-					if ( !Agent.CharacterAnimationController.IsTagActive( "SB_Attacking" ) && !Agent.CharacterMovementController.CharacterAnimationController.IsTagActive( "SB_Doing_Animation" ) )
+					if ( !Player.CharacterAnimationController.IsTagActive( "SB_Attacking" ) && !Player.CharacterMovementController.CharacterAnimationController.IsTagActive( "SB_Doing_Animation" ) )
 					{
-						Agent.IsLightAttacking = true;
+						Player.IsLightAttacking = true;
 					}
-					else if ( Agent.CharacterAnimationController.IsTagActive( "SB_Can_Continue" ) )
+					else if ( Player.CharacterAnimationController.IsTagActive( "SB_Can_Continue" ) )
 					{
-						Agent.IsContinuing = true;
+						Player.IsContinuing = true;
 					}
 				}
 			}
 
 			if (Input.Down("sb_guard") )
 			{
-				Agent.IsGuarding = true;
+				Player.IsGuarding = true;
 			} else if (Input.Released("sb_guard") )
 			{
-				Agent.IsGuarding = false;
+				Player.IsGuarding = false;
 			}
 		}
 	}

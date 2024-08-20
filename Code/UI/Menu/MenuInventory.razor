@@ -1,11 +1,18 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using SoulsBox
+@namespace SoulsBox;
 @inherits Panel;
 
 <root class="columns">
     <div class="column flex-grow-2">
-        <div class="categories">
-            <i class="icon level-icon"></i> categories <span class="value"></span>
+        <div class="category-bar">
+            @foreach (var category in CategoriesComponent.Categories)
+            {
+                <div class="category-icon @(category == CategoriesComponent.SelectedCategory ? "selected" : "")" @onclick="() => CategoriesComponent.SelectCategory(category)">
+                    <img src="@category.Icon" alt="@category.Name" />
+                </div>
+            }
         </div>
         <div class="inventory">
             <i class="icon souls-icon"></i> items <span class="value"></span>
@@ -15,6 +22,6 @@
     <MenuStatusPlayer class="flex-grow-1"/>
 </root>
 
-@code
-{
+@code {
+    public CategoriesComponent CategoriesComponent { get; set; }
 }
