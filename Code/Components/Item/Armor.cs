@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoulsBox
 {
-	public sealed class Armor : Component
+	public sealed class Armor : Item
 	{
 		public float PhysicalDefense { get; set; }
 		public float StrikeDefense { get; set; }

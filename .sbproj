@@ -1,13 +1,14 @@
 {
-  "Title": "Souls Box 2 (Private Testing)",
+  "Title": "Souls Box 2",
   "Type": "game",
   "Org": "vincetp",
-  "Ident": "souls_box_2_private_testing",
+  "Ident": "souls_box_2",
   "Schema": 1,
   "IncludeSourceFiles": false,
-  "Resources": "",
+  "Resources": "/icons/*.svg",
   "PackageReferences": [],
   "EditorReferences": null,
+  "IsWhitelistDisabled": false,
   "Metadata": {
     "MaxPlayers": 16,
     "MinPlayers": 1,
@@ -21,7 +22,7 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/testing.scene",
+    "StartupScene": "scenes/game.scene",
     "ProjectTemplate": null,
     "ControlModes": {
       "Keyboard": true,
@@ -91,7 +92,7 @@
         },
         {
           "Name": "sb_heavy_attack",
-          "KeyboardCode": "F",
+          "KeyboardCode": "h",
           "GamepadCode": "RightTrigger",
           "GroupName": "Combat"
         },
@@ -170,31 +171,31 @@
         {
           "Name": "sb_menu_left",
           "KeyboardCode": "LEFTARROW",
-          "GamepadCode": "None",
+          "GamepadCode": "DpadWest",
           "GroupName": "Other"
         },
         {
           "Name": "sb_menu_right",
           "KeyboardCode": "RIGHTARROW",
-          "GamepadCode": "None",
+          "GamepadCode": "DpadEast",
           "GroupName": "Other"
         },
         {
           "Name": "sb_menu_up",
           "KeyboardCode": "UPARROW",
-          "GamepadCode": "None",
+          "GamepadCode": "DpadNorth",
           "GroupName": "Other"
         },
         {
           "Name": "sb_menu_down",
           "KeyboardCode": "DOWNARROW",
-          "GamepadCode": "None",
+          "GamepadCode": "DpadSouth",
           "GroupName": "Other"
         },
         {
           "Name": "sb_menu_select",
-          "KeyboardCode": "ENTER",
-          "GamepadCode": "None",
+          "KeyboardCode": "e",
+          "GamepadCode": "A",
           "GroupName": "Other"
         },
         {
@@ -212,7 +213,7 @@
         {
           "Name": "sb_creation_mode",
           "KeyboardCode": "v",
-          "GamepadCode": "None",
+          "GamepadCode": "SwitchLeftMenu",
           "GroupName": "Other"
         },
         {
@@ -230,19 +231,43 @@
         {
           "Name": "sb_menu_secondary",
           "KeyboardCode": "f",
-          "GamepadCode": "None",
+          "GamepadCode": "X",
           "GroupName": "Other"
         },
         {
           "Name": "sb_menu_thirdly",
           "KeyboardCode": "g",
-          "GamepadCode": "None",
+          "GamepadCode": "Y",
           "GroupName": "Other"
         },
         {
           "Name": "sb_menu_cycle_left_alt",
           "KeyboardCode": "home",
           "GamepadCode": "None",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_menu_back",
+          "KeyboardCode": "q",
+          "GamepadCode": "B",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_menu_info",
+          "KeyboardCode": "v",
+          "GamepadCode": "SwitchLeftMenu",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_creation_mode_speed_inc",
+          "KeyboardCode": "mwheelup",
+          "GamepadCode": "SwitchRightBumper",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "sb_creation_mode_speed_dec",
+          "KeyboardCode": "mwheeldown",
+          "GamepadCode": "SwitchLeftBumper",
           "GroupName": "Other"
         }
       ],
@@ -262,6 +287,6 @@
       ],
       "DistinctAssemblyReferences": []
     },
-    "MapStartupScene": "scenes/testing.scene"
+    "MapStartupScene": "scenes/game.scene"
   }
 }

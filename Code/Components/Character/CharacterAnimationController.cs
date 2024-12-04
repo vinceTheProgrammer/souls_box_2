@@ -27,61 +27,91 @@ namespace SoulsBox
 
 		public AnimTagEventManager AnimTagEventManager { get; set; }
 
+		private AgentPlayer Player { get; set; }
+
 		protected override void OnFixedUpdate()
 		{
-			if (Agent is AgentPlayer player)
+			if ( Player == null && Agent is AgentPlayer player)
 			{
+				Player = player;
 				if ( player.CreationMode || IsTagActive("SB_Stationary") )
 				{
 					AnimationHelper.WithVelocity( Vector3.Zero );
-					return;
+				} else
+				{
+					AnimationHelper.WithVelocity( MovementController.CharacterController.Velocity );
 				}
+			} else if (Player != null)
+			{
+				//Log.Info( "hmmmmmmmmmmmm" );
+				if ( Player.CreationMode || IsTagActive( "SB_Stationary" ) && !Player.IsRespawning)
+				{
+					AnimationHelper.WithVelocity( Vector3.Zero );
+				} else
+				{
+					AnimationHelper.WithVelocity( MovementController.CharacterController.Velocity );
+				}
+			} else
+			{
+				AnimationHelper.WithVelocity( MovementController.CharacterController.Velocity );
 			}
 
 			AnimationHelper.IsGrounded = MovementController.CharacterController.IsOnGround;
-			AnimationHelper.WithVelocity( MovementController.CharacterController.Velocity );
 
 			if ( Network.IsProxy ) return;
 
 			if ( AnimationHelper != null )
 			{
-				if (Agent.IsDead)
+				if ( Agent.IsDead)
 				{
 					SetAnimgraphParam( "sb_death", true );
 					return;
-				} else if (Agent is AgentPlayer __player)
+				} else if (!Agent.IsDead)
 				{
-					if (__player.IsRespawning )
-					{
-						SetAnimgraphParam( "sb_respawn", true );
-						return;
-					} else if (!__player.IsRespawning )
-					{
-						SetAnimgraphParam("sb_respawn", false );
-					}
+					SetAnimgraphParam("sb_death", false );
 				}
 
-				if ( Agent is AgentPlayer ___player)
+				if ( Player != null)
 				{
-					if (___player.IsLightingBonfire)
+					if ( Player.IsRespawning )
+					{
+						
+						SetAnimgraphParam( "sb_respawn", true );
+						Player.IsRespawning = false;
+						return;
+					}
+					else if ( !Player.IsRespawning )
+					{
+						SetAnimgraphParam( "sb_respawn", false );
+					}
+
+
+					if ( Player.IsLightingBonfire)
 					{
 						SetAnimgraphParam( "sb_light_bonfire", true );
-						___player.IsLightingBonfire = false;
+						Player.IsLightingBonfire = false;
 						return;
-					} else if ( !___player.IsLightingBonfire )
+					} else if ( !Player.IsLightingBonfire )
 					{
 						SetAnimgraphParam( "sb_light_bonfire", false );
 					}
-					
-					if ( ___player.IsUsingBonfire )
+
+					if ( Player.IsUsingBonfire )
 					{
 						SetAnimgraphParam( "sb_rest", true );
 						return;
 					}
-					else if ( !___player.IsUsingBonfire )
+					else if ( !Player.IsUsingBonfire )
 					{
 						SetAnimgraphParam( "sb_rest", false );
 					}
+				}
+
+				if (Agent.IsStaggered )
+				{
+					SetAnimgraphParam( "sb_stagger", true );
+					Agent.IsStaggered = false;
+					return;
 				}
 
 				if (Agent.IsGuarding)
@@ -103,12 +133,12 @@ namespace SoulsBox
 				bool isPlayer = false;
 				bool lockedOn = false;
 				LockOnAble currentLockOnAble = null;
-				if ( Agent is AgentPlayer _player )
+				if ( Player != null )
 				{
 					isPlayer = true;
-					lockedOn = _player.LockedOn;
-					currentLockOnAble = _player.CurrentLockOnAble;
-					rollYaw = _player.MoveVectorRelativeToCamera.EulerAngles.yaw;
+					lockedOn = Player.LockedOn;
+					currentLockOnAble = Player.CurrentLockOnAble;
+					rollYaw = Player.MoveVectorRelativeToCamera.EulerAngles.yaw;
 				}
 
 				if ( !IsTagActive("SB_Doing_Animation") && Agent.IsRolling && isPlayer && lockedOn && currentLockOnAble != null )
@@ -217,13 +247,15 @@ namespace SoulsBox
 			});
 			AnimTagEventManager.RegisterTagCallback( "SB_Dying", SceneModel.AnimTagStatus.End, () =>
 			{
-				if (Agent is AgentPlayer player)
+				if ( Player != null)
 				{
-					player.CanRespawn = true;
-					player.Respawn();
+					Player.CanRespawn = true;
+					Player.Respawn();
 				} else
 				{
 					Agent.GameObject.Components.Get<ModelPhysics>().MotionEnabled = true;
+					Agent.GameObject.Tags.Add( "ragdoll" );
+					//Agent.GameObject.Components.Get<CharacterAgent>().Destroy();
 				}
 			} );
 

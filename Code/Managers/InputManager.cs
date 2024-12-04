@@ -16,9 +16,6 @@ namespace SoulsBox
 		private float TimeSinceSprint = 0f;
 		private const float SprintThreshold = 0.5f;
 		private const float JumpThreshold = 0.1f;
-		private bool stickReleased = true;
-		private float lastMouseX = 0f;
-		private const float mouseThreshold = 300f;
 
 		public static void UpdateAnalogMove(AgentPlayer player)
 		{
@@ -30,7 +27,7 @@ namespace SoulsBox
 			if ( Network.IsProxy ) return;
 			if ( Player.IsUsingBonfire )
 			{
-				if ( Input.EscapePressed )
+				if ( Input.EscapePressed || (Input.UsingController && Input.Pressed("sb_jump")))
 				{
 					Input.EscapePressed = false;
 					Player.ToggleBonfireRest();
@@ -50,14 +47,31 @@ namespace SoulsBox
 				return;
 			}
 
-			if (Input.Pressed("sb_use"))
+			if (Input.Pressed("sb_use") && !Player.MenuEnabled)
 			{
 				Player.PlayerInteraction.TryInteraction();
 			}
 
 			if (  Player.CreationMode )
 			{
-				Player.CharacterMovementController.CreationModeSpeed = (Player.CharacterMovementController.CreationModeSpeed + Input.MouseWheel.y * 10).Clamp( 0.1f, 10000f );
+				float mouseWheelDelta = 0f;
+				if (Input.UsingController)
+				{
+					if (Input.Down("sb_creation_mode_speed_inc"))
+					{
+						mouseWheelDelta = 1f;
+					} else if (Input.Down("sb_creation_mode_speed_dec"))
+					{
+						mouseWheelDelta = -1f;
+					} else
+					{
+						mouseWheelDelta = 0f;
+					}
+				} else
+				{
+					mouseWheelDelta = Input.MouseWheel.y;
+				}
+				Player.CharacterMovementController.CreationModeSpeed = (Player.CharacterMovementController.CreationModeSpeed + mouseWheelDelta * 10).Clamp( 0.1f, 10000f );
 			}
 
 			if (  Input.Pressed( "sb_creation_mode" ))
@@ -70,87 +84,51 @@ namespace SoulsBox
 				Player.ToggleLockOn();
 			}
 
-			if ( Input.UsingController )
+			if (Input.Pressed("sb_switch_item"))
 			{
-				float yaw = Input.AnalogLook.yaw;
-
-				if ( Player.LockedOn )
-				{
-					if ( stickReleased && yaw > 0.5f )
-					{
-						Player.SwitchTarget( true );
-						stickReleased = false;
-					}
-					else if ( stickReleased && yaw < -0.5f )
-					{
-						Player.SwitchTarget( false );
-						stickReleased = false;
-					}
-
-					// Check if the stick is released
-					if ( yaw > -0.1f && yaw < 0.1f )
-					{
-						stickReleased = true;
-					}
-				}
-			}
-			else // Using mouse
-			{
-				float mouseX = Mouse.Position.x;
-
-				if ( Player.LockedOn )
-				{
-					float deltaX = mouseX - lastMouseX;
-
-					if ( deltaX > mouseThreshold )
-					{
-						Player.SwitchTarget( false );
-						lastMouseX = mouseX;
-					}
-					else if ( deltaX < -mouseThreshold )
-					{
-						Player.SwitchTarget( true );
-						lastMouseX = mouseX;
-					}
-				}
+				Player.CharacterEquipment.CycleSelectedUsable();
 			}
 
 			if ( !Player.CharacterMovementController.CharacterController.IsOnGround ) return;
 
-			if ( Input.Down( "sb_sprint" ) )
+			if ( !Player.CharacterAnimationController.IsTagActive( "SB_Full_Attack" ) )
 			{
-				InputHoldTime += Time.Delta;
+				if ( Input.Down( "sb_sprint" ) && !Player.IsGuarding )
+				{
+					InputHoldTime += Time.Delta;
 
-				if ( InputHoldTime >= SprintThreshold )
-				{
-					TimeSinceSprint = 0;
-					Player.IsSprinting = true;
-				}
-			}
-			else
-			{
-				if ( InputHoldTime > 0 && InputHoldTime < SprintThreshold )
-				{
-					if ( Player.MoveVector.Length > 0 )
+					if ( InputHoldTime >= SprintThreshold )
 					{
-						Player.IsRolling = true;
-					}
-					else
-					{
-						Player.IsBackstepping = true;
+						TimeSinceSprint = 0;
+						Player.IsSprinting = true;
 					}
 				}
+				else
+				{
+					if ( InputHoldTime > 0 && InputHoldTime < SprintThreshold )
+					{
+						if ( Player.MoveVector.Length > 0 )
+						{
+							Player.IsRolling = true;
+						}
+						else
+						{
+							Player.IsBackstepping = true;
+						}
+					}
 
-				Player.IsSprinting = false;
-				InputHoldTime = 0;
-				TimeSinceSprint += Time.Delta;
+					Player.IsSprinting = false;
+					InputHoldTime = 0;
+					TimeSinceSprint += Time.Delta;
+				}
+				if ( Input.Pressed( "sb_jump" ) && TimeSinceSprint < JumpThreshold && !Player.IsGuarding )
+				{
+					Player.IsJumping = true;
+				}
 			}
-			if ( Input.Pressed( "sb_jump" ) && TimeSinceSprint < JumpThreshold )
-			{
-				Player.IsJumping = true;
-			}
+			
 
-			if ( Input.Pressed( "sb_light_attack" ) )
+			if ( Input.Pressed( "sb_light_attack" ) && !Player.IsGuarding )
 			{
 				if ( Player.CharacterVitals.Stamina > 0 )
 				{
@@ -165,7 +143,7 @@ namespace SoulsBox
 				}
 			}
 
-			if (Input.Down("sb_guard") )
+			if (Input.Down("sb_guard") && !Input.Down( "sb_sprint" ) )
 			{
 				Player.IsGuarding = true;
 			} else if (Input.Released("sb_guard") )

@@ -87,7 +87,7 @@
           "ConstantB": "0.46977,0.10521,0.00437,0.87"
         },
         "Lifetime": {
-          "Constants": "0.15,0.15,0,0"
+          "Constants": "0.25,0.15,0,0"
         },
         "MaxParticles": 1000,
         "OrbitalForce": {},
@@ -144,10 +144,10 @@
         "StartVelocity": {
           "Type": "Range",
           "Evaluation": "Particle",
-          "Constants": "35.5,99.7,0,0"
+          "Constants": "3.2,9.7,0,0"
         },
         "Stretch": {},
-        "TimeScale": 0.03,
+        "TimeScale": 1,
         "Tint": "0.80465,0.96093,1,1",
         "Yaw": {}
       },

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoulsBox
 {
-	public sealed class Weapon : Component
+	public sealed class Weapon : Item
 	{
 		public CharacterCombatController.PhysicalAttackType	AttackType { get; set; }
 		public WeaponType Type { get; set; }

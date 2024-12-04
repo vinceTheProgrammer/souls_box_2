@@ -52,6 +52,8 @@ namespace SoulsBox
 
 		protected override void OnFixedUpdate()
 		{
+			if ( Agent == null ) return;
+			if (Agent.CharacterAnimationController == null ) return;
 			if (Agent.IsDead) return;
 			if (Agent.CharacterAnimationController.IsTagActive("SB_Hitbox_Active"))
 			{

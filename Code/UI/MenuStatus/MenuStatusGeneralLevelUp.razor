@@ -1,0 +1,57 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using SoulsBox;
+@inherits Panel;
+
+<root class="column">
+    <div class="info-item">
+        <i class="icon hp-icon"></i> HP <span class="value">@(Vitals.Health + "/" + Stats.MaxHealth)</span>
+    </div>
+    <div class="info-item">
+        <i class="icon stamina-icon"></i> Stamina <span class="value">@(Vitals.Stamina + "/" + Stats.MaxStamina)</span>
+    </div>
+    <div class="info-item">
+        <i class="icon equip-icon"></i> Equip Load <span class="value">@Stats.EquipLoad</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon r-weapon1-icon"></i> R Weapon 1 <span class="value">@Stats.RWeapon1</span>
+    </div>
+    <div class="info-item">
+        <i class="icon r-weapon2-icon"></i> R Weapon 2 <span class="value">@Stats.RWeapon2</span>
+    </div>
+    <div class="info-item">
+        <i class="icon l-weapon1-icon"></i> L Weapon 1 <span class="value">@Stats.LWeapon1</span>
+    </div>
+    <div class="info-item">
+        <i class="icon l-weapon2-icon"></i> L Weapon 2 <span class="value">@Stats.LWeapon2</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon physical-def-icon"></i> Physical Def. <span class="value">@Stats.PhysicalDefense</span>
+    </div>
+    <div class="info-item">
+        <i class="icon vs-strike-icon"></i> VS strike <span class="value">@Stats.StrikeDefense</span>
+    </div>
+    <div class="info-item">
+        <i class="icon vs-slash-icon"></i> VS slash <span class="value">@Stats.SlashDefense</span>
+    </div>
+    <div class="info-item">
+        <i class="icon vs-thrust-icon"></i> VS thrust <span class="value">@Stats.ThrustDefense</span>
+    </div>
+    <div class="info-item">
+        <i class="icon magic-def-icon"></i> Magic DEF <span class="value">@Stats.MagicDefense</span>
+    </div>
+    <div class="info-item">
+        <i class="icon flame-def-icon"></i> Flame DEF <span class="value">@Stats.FlameDefense</span>
+    </div>
+    <div class="info-item">
+        <i class="icon lightning-def-icon"></i> Lightning DEF <span class="value">@Stats.LightningDefense</span>
+    </div>
+</root>
+
+@code
+{
+    public CharacterStats Stats { get; set; }
+    public CharacterVitals Vitals { get; set; }
+}

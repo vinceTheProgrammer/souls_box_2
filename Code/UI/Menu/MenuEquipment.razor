@@ -1,29 +1,382 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using SoulsBox;
+@using System;
 @inherits Panel;
 
 <root class="columns">
     <div class="column flex-grow-2">
-        <div class="equipment-row">
-            <i class="icon level-icon"></i> row 1 <span class="value"></span>
-        </div>
-        <div class="equipment-row">
-            <i class="icon souls-icon"></i> row 2 <span class="value"></span>
-        </div>
-        <div class="equipment-row">
-            <i class="icon vitality-icon"></i> row 3 <span class="value"></span>
-        </div>
-        <div class="equipment-row flex-row justify-flex-start">
-            <div class="equipment-row equipment-selection-info flex-grow-1">
-                <p class="submenu-heading">Right Hand</p>
-                <p class="submenu-subheading">Lightning Spear+4</p>
+        @if (ItemSelection == ItemCategory.None || ItemSelection == null)
+        {
+            <div class="equipment-row">
+                <div class="rh-column">
+                    <div class="equipment-icon"><img src="icons/sword.svg" /></div>
+                    <div class=@((SelectedX == 2 && SelectedY == 0 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(2, 0))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetRightHand(0).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 2 && SelectedY == 1 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(2, 1))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetRightHand(1).ID}.png") />
+                    </div>
+                </div>
+                <div class="usable-column">
+                    <div class="usable-icon"><i>science</i></div>
+                    <div class=@((SelectedX == 2 && SelectedY == 2 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(2, 2))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetUsable(0).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 2 && SelectedY == 3 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(2, 3))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetUsable(1).ID}.png") />
+
+                    </div>
+                    <div class=@((SelectedX == 2 && SelectedY == 4 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(2, 4))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetUsable(2).ID}.png") />
+
+                    </div>
+                    <div class=@((SelectedX == 2 && SelectedY == 5 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(2, 5))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetUsable(3).ID}.png") />
+
+                    </div>
+                    <div class=@((SelectedX == 2 && SelectedY == 6 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(2, 6))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetUsable(4).ID}.png") />
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="equipment-row">
+                <div class="lh-column">
+                    <div class="equipment-icon"><i>shield</i></div>
+                    <div class=@((SelectedX == 1 && SelectedY == 0 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(1, 0))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetLeftHand(0).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 1 && SelectedY == 1 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(1, 1))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetLeftHand(1).ID}.png") />
+                    </div>
+                </div>
+                <div class="arrow-column">
+                    <div class="equipment-icon"><img src="icons/arrow.svg" /></div>
+                    <div class=@((SelectedX == 1 && SelectedY == 2 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(1, 2))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetArrow(0).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 1 && SelectedY == 3 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(1, 3))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetArrow(1).ID}.png") />
+                    </div>
+                </div>
+                <div class="bolt-column">
+                    <div class="equipment-icon"><img src="icons/arrow.svg" /></div>
+                    <div class=@((SelectedX == 1 && SelectedY == 5 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(1, 5))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetBolt(0).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 1 && SelectedY == 6 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(1, 6))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetBolt(0).ID}.png") />
+                    </div>
+                </div>
+            </div>
+            <div class="equipment-row">
+                <div class="armor-column">
+                    <div class="equipment-icon"><img src="icons/helmet.svg" /></div>
+                    <div class=@((SelectedX == 0 && SelectedY == 0 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(0, 0))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetArmor(0).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 0 && SelectedY == 1 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(0, 1))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetArmor(1).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 0 && SelectedY == 2 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(0, 2))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetArmor(2).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 0 && SelectedY == 3 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(0, 3))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetArmor(3).ID}.png") />
+                    </div>
+                </div>
+                <div class="ring-column">
+                    <div class="equipment-icon"><img src="icons/ring.svg" /></div>
+                    <div class=@((SelectedX == 0 && SelectedY == 5 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(0, 5))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetRing(0).ID}.png") />
+                    </div>
+                    <div class=@((SelectedX == 0 && SelectedY == 6 ? "selected " : "") + "slot") @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelection(0, 6))>
+                        <img class="equipment-item-icon" src=@($"items/icons/{Equipment.GetRing(1).ID}.png") />
+                    </div>
+                </div>
+            </div>
+            <div class="equipment-row flex-row justify-flex-start">
+                <div class="equipment-row-selection-info equipment-selection-info flex-grow-1">
+                    <div class="inner-equipment-row-selection-info">
+                        <p class="submenu-heading">@(GetHoveredCategory())</p>
+                    </div>
+                    <div class="inner-equipment-row-selection-info">
+                        <p class="submenu-subheading">@(GetHoveredItem().Name)</p>
+                    </div>
+                </div>
+                <div class="flex-grow-2"></div>
+            </div>
+        }
+        else
+        {
+            <MenuItemSelection @ref=MenuIte ItemSelection=@(ItemSelection) Inventory=@(Inventory) Equipment=@(Equipment) Parent=@(this)/>
+        }
+        
     </div>
 
-    <MenuStatusPlayer class="flex-grow-1"/>
+    @if (SelectedStatus == 0)
+    {
+        <MenuStatusPlayer Stats=@(PlayerStats)/>
+    }
+    else if (SelectedStatus == 1)
+    {
+        <MenuStatusGeneral Stats=@(Stats) Vitals=@(Vitals)/>
+    }
+    else if (SelectedStatus == 2)
+    {
+        <MenuStatusMisc Stats=@(Stats)/>
+    }
+    else 
+    {
+        <MenuStatusPlayer Stats=@(PlayerStats)/>
+    }
 </root>
 
 @code
 {
+    public CharacterStats Stats { get; set; }
+    public CharacterVitals Vitals { get; set; }
+    public PlayerStats PlayerStats { get; set; }
+    public CharacterEquipment Equipment { get; set; }
+    public CharacterInventory Inventory { get; set; }
+
+    public ItemCategory ItemSelection { get; set; }
+    public MenuItemSelection MenuIte { get; set; }
+
+    public int SelectedStatus { get; set; }
+
+    public int SelectedX { get; set; }
+    public int SelectedY { get; set; }
+
+    public Menu Parent { get; set; }
+
+    Slot[,] Slots = new Slot[3, 7];
+
+    List<(int x, int y)> invalidSlots = new List<(int x, int y)> {
+        (1, 4),
+        (0, 4)
+    };
+
+    public void HandleVertical(bool isUp)
+    {
+        if (ItemSelection == ItemCategory.None || ItemSelection == null)
+        {
+            if (isUp)
+            {
+                MoveSelection(1, 0);
+            }
+            else
+            {
+                MoveSelection(-1, 0);
+            }
+        } 
+        else
+        {
+            MenuIte.HandleVertical(isUp);
+        }
+    }
+
+    public string GetHoveredCategory()
+    {
+        if (SelectedX == 0)
+        {
+            if (SelectedY == 0) return "Head";
+            if (SelectedY == 1) return "Chest";
+            if (SelectedY == 2) return "Hands";
+            if (SelectedY == 3) return "Legs";
+            if (SelectedY == 5 || SelectedY == 6) return "Ring";
+        }
+        else if (SelectedX == 1)
+        {
+            if (SelectedY == 0 || SelectedY == 1) return "Left Hand";
+            if (SelectedY == 2 || SelectedY == 3) return "Arrow";
+            if (SelectedY == 5 || SelectedY == 6) return "Bolt";
+        }
+        else if (SelectedX == 2)
+        {
+            if (SelectedY == 0 || SelectedY == 1) return "Right Hand";
+            if (SelectedY >= 2 && SelectedY <= 6) return "Usable";
+        }
+        return "";
+    }
+
+    public void HandleSelect()
+    {
+        if (ItemSelection == ItemCategory.None || ItemSelection == null)
+        {
+            string category = GetHoveredCategory();
+
+            if (category == "Head") ItemSelection = ItemCategory.Head;
+            if (category == "Chest") ItemSelection = ItemCategory.Chest;
+            if (category == "Hands") ItemSelection = ItemCategory.Hands;
+            if (category == "Legs") ItemSelection = ItemCategory.Legs;
+
+            if (category == "Ring") ItemSelection = ItemCategory.Ring;
+
+            if (category == "Left Hand") ItemSelection = ItemCategory.LWeapon;
+            if (category == "Right Hand") ItemSelection = ItemCategory.RWeapon;
+
+            if (category == "Arrow") ItemSelection = ItemCategory.Arrow;
+
+            if (category == "Bolt") ItemSelection = ItemCategory.Bolt;
+
+            if (category == "Usable") ItemSelection = ItemCategory.Usable;
+        }
+        else
+        {
+            Parent.SetGlyphs(Menu.GlyphSet.GlyphsItemSelect);
+            MenuIte.HandleSelect(SelectedY);
+        }
+    }
+
+    public void HandleHorizontal(bool isRight)
+    {
+        if (isRight)
+        {
+            MoveSelection(0, 1);
+        }
+        else
+        {
+            MoveSelection(0, -1);
+        }
+    }
+
+    public void HandleBack()
+    {
+        if (ItemSelection != ItemCategory.None && ItemSelection != null)
+        {
+            ItemSelection = ItemCategory.None;
+        }
+    }
+
+    public void HandleSecondary()
+    {
+        if (ItemSelection == ItemCategory.None || ItemSelection == null)
+        {
+            if (SelectedX == 0)
+            {
+                if (SelectedY == 0) Equipment.SetArmor(Equipment.DefaultArmor, 0);
+                if (SelectedY == 1) Equipment.SetArmor(Equipment.DefaultArmor, 1);
+                if (SelectedY == 2) Equipment.SetArmor(Equipment.DefaultArmor, 2);
+                if (SelectedY == 3) Equipment.SetArmor(Equipment.DefaultArmor, 3);
+
+                if (SelectedY == 5) Equipment.SetRing(Equipment.DefaultRing, 0);
+                if (SelectedY == 6) Equipment.SetRing(Equipment.DefaultRing, 1);
+            }
+            else if (SelectedX == 1)
+            {
+                if (SelectedY == 0) Equipment.SetLeftHand(Equipment.DefaultWeapon, 0);
+                if (SelectedY == 1) Equipment.SetLeftHand(Equipment.DefaultWeapon, 1);
+
+                if (SelectedY == 2) Equipment.SetArrow(Equipment.DefaultArrow, 0);
+                if (SelectedY == 3) Equipment.SetArrow(Equipment.DefaultArrow, 1);
+
+                if (SelectedY == 5) Equipment.SetBolt(Equipment.DefaultArrow, 0);
+                if (SelectedY == 6) Equipment.SetBolt(Equipment.DefaultArrow, 1);
+            }
+            else if (SelectedX == 2)
+            {
+                if (SelectedY == 0) Equipment.SetRightHand(Equipment.DefaultWeapon, 0);
+                if (SelectedY == 1) Equipment.SetRightHand(Equipment.DefaultWeapon, 1);
+
+                if (SelectedY == 2) Equipment.SetUsable(Equipment.DefaultUsable, 0);
+                if (SelectedY == 3) Equipment.SetUsable(Equipment.DefaultUsable, 1);
+                if (SelectedY == 4) Equipment.SetUsable(Equipment.DefaultUsable, 2);
+                if (SelectedY == 5) Equipment.SetUsable(Equipment.DefaultUsable, 3);
+                if (SelectedY == 6) Equipment.SetUsable(Equipment.DefaultUsable, 4);
+            }
+            StateHasChanged();
+        } else 
+        {
+            MenuIte.HandleSecondary();
+        }
+    }
+
+    public Item GetHoveredItem()
+    {
+        if (SelectedX == 0)
+        {
+            if (SelectedY == 0) return Equipment.GetArmor(0);
+            if (SelectedY == 1) return Equipment.GetArmor(1);
+            if (SelectedY == 2) return Equipment.GetArmor(2);
+            if (SelectedY == 3) return Equipment.GetArmor(3);
+
+            if (SelectedY == 5) return Equipment.GetRing(0);
+            if (SelectedY == 6) return Equipment.GetRing(1);
+        }
+        else if (SelectedX == 1)
+        {
+            if (SelectedY == 0) return Equipment.GetLeftHand(0);
+            if (SelectedY == 1) return Equipment.GetLeftHand(1);
+
+            if (SelectedY == 2) return Equipment.GetArrow(0);
+            if (SelectedY == 3) return Equipment.GetArrow(1);
+
+            if (SelectedY == 5) return Equipment.GetBolt(0);
+            if (SelectedY == 6) return Equipment.GetBolt(1);
+        }
+        else if (SelectedX == 2)
+        {
+            if (SelectedY == 0) return Equipment.GetRightHand(0);
+            if (SelectedY == 1) return Equipment.GetRightHand(1);
+
+            if (SelectedY == 2) return Equipment.GetUsable(0);
+            if (SelectedY == 3) return Equipment.GetUsable(1);
+            if (SelectedY == 4) return Equipment.GetUsable(2);
+            if (SelectedY == 5) return Equipment.GetUsable(3);
+            if (SelectedY == 6) return Equipment.GetUsable(4);
+        }
+        return null;
+    }
+
+    public void MoveSelection(int deltaX, int deltaY)
+    {
+
+
+
+        int newX = (SelectedX + deltaX + Slots.GetLength(0)) % Slots.GetLength(0);
+        int newY = (SelectedY + deltaY + Slots.GetLength(1)) % Slots.GetLength(1);
+
+        while (IsInvalidSlot(newX, newY))
+        {
+            newX = (newX + deltaX + Slots.GetLength(0)) % Slots.GetLength(0);
+            newY = (newY + deltaY + Slots.GetLength(1)) % Slots.GetLength(1);
+        }
+
+        SelectedX = newX;
+        SelectedY = newY;
+
+        Log.Info(SelectedX + " " + SelectedY);
+    }
+
+    public void SetSelection(int x, int y)
+    {
+        SelectedX = x;
+        SelectedY = y;
+    }
+
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine(SelectedX, SelectedY, SelectedStatus, ItemSelection);
+    }
+
+    bool IsInvalidSlot(int x, int y)
+    {
+        return invalidSlots.Contains((x, y));
+    }
+
+    public enum ItemCategory {
+        None,
+        LWeapon,
+        RWeapon,
+        Usable,
+        Arrow,
+        Bolt,
+        Head,
+        Chest,
+        Legs,
+        Hands,
+        Ring
+    }
+
 }

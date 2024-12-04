@@ -1,6 +1,7 @@
 @using Sandbox;
 @using Sandbox.UI;
 @using SoulsBox;
+@using System;
 @inherits Panel;
 
 <root class="column">
@@ -11,7 +12,7 @@
         <i class="icon stamina-icon"></i> Stamina <span class="value">@(Vitals.Stamina + "/" + Stats.MaxStamina)</span>
     </div>
     <div class="info-item">
-        <i class="icon equip-icon"></i> Equip Load <span class="value">@Stats.EquipLoad</span>
+        <i class="icon equip-icon"></i> Equip Load <span class="value">@(String.Format("{0:0.0}", Stats.EquipLoad) + "/" + String.Format("{0:0.0}", Stats.MaxEquipLoad))</span>
     </div>
     <hr>
     <div class="info-item">

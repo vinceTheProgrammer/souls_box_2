@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoulsBox
 {
-	public sealed class Shard : Component
+	public sealed class Shard : Item
 	{
 	}
 }

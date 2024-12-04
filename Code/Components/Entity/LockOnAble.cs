@@ -11,15 +11,15 @@ public sealed class LockOnAble : Component
 
 	public bool ParentIsAlive()
 	{
+		if ( GameObject == null ) return false;
 		CharacterAgent agent = GameObject.Components.Get<CharacterAgent>();
 		if ( agent != null)
 		{
-			//Log.Info("alive: " + agent.IsDead);
 			return !agent.IsDead;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 }

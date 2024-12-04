@@ -1,0 +1,17 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using SoulsBox;
+@inherits Panel;
+
+<root>
+    <div>
+        <img class="inventory-icon" src=@($"items/icons/{Item.ID}.png") />
+        <p>@Item.Name</p>
+        <p>@Item.Description</p>
+    </div>
+</root>
+
+@code
+{
+    public Item Item { get; set; }
+}

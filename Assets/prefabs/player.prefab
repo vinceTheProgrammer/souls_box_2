@@ -34,6 +34,18 @@
           "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
           "component_type": "CharacterDefenseController"
         },
+        "CharacterEquipment": {
+          "_type": "component",
+          "component_id": "7913eff5-b0d7-44d9-a297-833109427054",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "CharacterEquipment"
+        },
+        "CharacterInventory": {
+          "_type": "component",
+          "component_id": "4fb61d9d-5f38-4546-b4b6-5a73e5d3a8f5",
+          "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
+          "component_type": "CharacterInventory"
+        },
         "CharacterMovementController": {
           "_type": "component",
           "component_id": "00a08db7-f046-4835-82a0-ac34a2e85beb",
@@ -52,7 +64,6 @@
           "go": "8cf178e8-63f5-4fd5-bd84-87ca7fac5f18",
           "component_type": "CharacterVitals"
         },
-        "MenuOpen": false,
         "PlayerInteraction": {
           "_type": "component",
           "component_id": "0f601f75-e5b0-4518-b0de-bb4d684524f6",
@@ -98,7 +109,7 @@
         "Bounciness": 0.3,
         "GroundAngle": 55,
         "Height": 72,
-        "IgnoreLayers": "",
+        "IgnoreLayers": "ragdoll",
         "Radius": 8.81,
         "StepHeight": 18,
         "UseCollisionRules": false
@@ -106,7 +117,7 @@
       {
         "__type": "SoulsBox.CharacterMovementController",
         "__guid": "00a08db7-f046-4835-82a0-ac34a2e85beb",
-        "CreationModeSpeed": 10,
+        "CreationModeSpeed": 500,
         "TerminalVelocity": 1000,
         "Agent": {
           "_type": "component",
@@ -207,7 +218,16 @@
       },
       {
         "__type": "SoulsBox.PlayerStats",
-        "__guid": "d03123e1-c3c9-4180-a06f-223ff83ef44a"
+        "__guid": "d03123e1-c3c9-4180-a06f-223ff83ef44a",
+        "Attunement": 10,
+        "Dexterity": 11,
+        "Endurance": 10,
+        "Faith": 11,
+        "Intelligence": 9,
+        "Level": 5,
+        "Resistance": 10,
+        "Strength": 11,
+        "Vitality": 14
       },
       {
         "__type": "Sandbox.ModelPhysics",
@@ -244,6 +264,14 @@
           "component_type": "AgentPlayer"
         },
         "Size": "5,5,72"
+      },
+      {
+        "__type": "SoulsBox.CharacterEquipment",
+        "__guid": "7913eff5-b0d7-44d9-a297-833109427054"
+      },
+      {
+        "__type": "SoulsBox.CharacterInventory",
+        "__guid": "4fb61d9d-5f38-4546-b4b6-5a73e5d3a8f5"
       }
     ],
     "Children": [

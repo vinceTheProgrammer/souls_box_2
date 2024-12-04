@@ -3,7 +3,10 @@
     "__guid": "e900ccff-1372-4439-a8b6-48afc9afb2e7",
     "Flags": 0,
     "Name": "enemy",
+    "Tags": "character",
     "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkOrphaned": 2,
     "Components": [
       {
         "__type": "Sandbox.SkinnedModelRenderer",
@@ -37,7 +40,7 @@
         "Bounciness": 0.3,
         "GroundAngle": 45,
         "Height": 72,
-        "IgnoreLayers": "",
+        "IgnoreLayers": "ragdoll",
         "Radius": 8.81,
         "StepHeight": 18,
         "UseCollisionRules": false
@@ -1031,6 +1034,29 @@
             "Position": "-0.884093,4.427404,3.807924",
             "Rotation": "0.650896,0.276287,-0.2762894,0.6508948",
             "Enabled": true
+          }
+        ]
+      },
+      {
+        "__guid": "a430c61f-59ff-405f-9bdb-891e536e8b59",
+        "Flags": 0,
+        "Name": "Object",
+        "Position": "0,0,80",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "f2cf7044-0a78-44bd-973a-f98deaa114c2",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": true,
+            "PanelSize": "640,512",
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "EnemyHealth",
+            "__guid": "46ccf764-6f0e-4699-b108-f8cd9144d0ae"
           }
         ]
       }

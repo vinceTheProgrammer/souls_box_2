@@ -44,10 +44,10 @@ Menu {
 
 	.bottom-row {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		margin-top: 20px;
 		background-color: #444;
-		padding: 20px;
+		padding: 10px;
 		color: #fff;
 	}
 
@@ -79,13 +79,14 @@ Menu {
 		transition: background-color 0.1s ease;
 	}
 
-	.info-item:hover {
+	.info-item.selected {
 		background-color: #444;
 	}
 
 	.equipment-row {
 		display: flex;
 		flex: 0 0 25%;
+		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
 		margin-bottom: 5px;
@@ -93,6 +94,26 @@ Menu {
 		background-color: #222;
 		border-radius: 5px;
 		color: #fff;
+		text-align: left;
+	}
+
+	.equipment-row-selection-info {
+		display: flex;
+		flex: 0;
+		align-items: center;
+		margin-bottom: 5px;
+		padding: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+		text-align: left;
+	}
+
+	.inner-equipment-row-selection-info {
+		display: flex;
+		flex-direction: row;
+		align-content: flex-start;
+		width: 100%;
 	}
 
 	.displayname {
@@ -187,36 +208,145 @@ Menu {
 		background-color: #222;
 		border-radius: 5px;
 		color: #fff;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+
+	.category-bar-inventory {
+		flex: 0 0 25%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+
+	.category-bar-menu {
+		margin-left: 75px;
+		margin-right: 75px;
+		height: 90px;
+		gap: 10px;
 	}
 
 	.category-icon {
-		padding: 10px;
+		//padding: 10px;
 		height: 100%;
 		flex: 1;
+		display: flex;
+		justify-content: space-evenly;
+		align-content: center;
 		cursor: pointer;
-		background-color: firebrick;
+		background-color: black;
 		transition: background-color 0.2s ease;
+		font-size: 6.25em;
+		align-self: center;
+		text-align: center;
+	}
+
+	.category-icon-inventory {
+		//padding: 10px;
+		height: 100%;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-content: center;
+		cursor: pointer;
+		background-color: black;
+		transition: background-color 0.2s ease;
+		font-size: 7.25em;
+		align-self: center;
+		text-align: center;
+	}
+
+	.category-icon-inventory.selected {
+		//color: aquamarine;
+		filter: sepia(1) saturate(1000%) hue-rotate(180deg);
+	}
+
+
+	.category-icon-spaced {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.category-icon-fix {
+		margin-right: -3px;
 	}
 
 	.category-icon.selected {
-		background-color: blue;
+		filter: sepia(1) saturate(1000%) hue-rotate(180deg);
 	}
 
 	.category-icon img {
-		height: 50px;
-		width: 50px;
+		height: 90%;
+		width: 90%;
+	}
+
+	i {
+		margin-left: 3px;
 	}
 
 	.inventory {
 		flex: 0 0 80%;
 		display: flex;
-		justify-content: flex-start;
-		align-items: center;
+		flex-direction: column;
 		margin-bottom: 5px;
 		padding: 5px;
 		background-color: #222;
 		border-radius: 5px;
 		color: #fff;
+		overflow-y: hidden;
+		overflow-x: hidden;
+	}
+
+	.inventory-selection {
+		flex: 0 0 100%;
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 5px;
+		padding: 5px;
+		background-color: #222;
+		border-radius: 5px;
+		color: #fff;
+		overflow-y: hidden;
+		overflow-x: hidden;
+	}
+
+
+	.inventory-item {
+		flex-shrink: 0;
+		height: 25%;
+		border-bottom: 1px solid #ccc;
+		border-top: 1px solid #ccc;
+		background-color: #111;
+		cursor: pointer;
+	}
+
+	.inventory-selection-item {
+		flex-shrink: 0;
+		height: 20%;
+		border-bottom: 1px solid #ccc;
+		border-top: 1px solid #ccc;
+		background-color: #111;
+		cursor: pointer;
+	}
+
+	.inventory-selection-item.selected {
+		background-color: #444;
+	}
+
+	.inventory-item.inventory-first-item {
+		margin-top: -140.625px;
+	}
+
+	.inventory-item.selected {
+		background-color: #444;
 	}
 
 	.options-box {
@@ -264,7 +394,127 @@ Menu {
 		transition: background-color 0.1s ease;
 	}
 
-	.option-item:hover {
+	.option-item.selected {
 		background-color: #444;
+	}
+
+	.rh-column, .usable-column {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.slot, .equipment-icon, .usable-icon {
+		flex: 1 1 0;
+		min-width: 100px;
+		min-height: 100px;
+		background-color: #111;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		font-size: 6.25em;
+	}
+
+	.slot {
+		cursor: pointer;
+		transition: background-color 0.1s ease;
+	}
+
+	.slot.selected {
+		background-color: #444;
+	}
+
+	.rh-column {
+		flex: 3;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-right: 20px; /* Adds margin between columns */
+		border-width: 3px;
+		border-color: #777;
+	}
+
+	.usable-column {
+		flex: 6;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		border-width: 3px;
+		border-color: #777;
+	}
+
+	.lh-column {
+		flex: 3;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-right: 20px; /* Adds margin between columns */
+		border-width: 3px;
+		border-color: #777;
+	}
+
+	.arrow-column {
+		flex: 3;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-right: 20px; /* Adds margin between columns */
+		border-width: 3px;
+		border-color: #777;
+	}
+
+	.bolt-column {
+		flex: 3;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		border-width: 3px;
+		border-color: #777;
+	}
+
+	.armor-column {
+		flex: 5;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		margin-right: 20px; /* Adds margin between columns */
+		border-width: 3px;
+		border-color: #777;
+	}
+
+	.ring-column {
+		flex: 3;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		border-width: 3px;
+		border-color: #777;
+	}
+
+	.glyph {
+		margin-right: 10px;
+	}
+
+	.glyph-div {
+		margin-right: 100px;
+	}
+
+	.options-icon {
+		margin-right: 5px;
+	}
+
+	.wip {
+		color: #555;
+	}
+
+	.inventory-icon {
+		height: 100%px;
+		width: 125px;
+	}
+
+	.equipment-item-icon {
+		height: 100px;
+		width: 125px;
 	}
 }

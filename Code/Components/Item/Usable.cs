@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace SoulsBox
 {
-	public sealed class Usable : Component
+	public sealed class Usable : Item
     {
+		public Action UseAction { get; set; }
+
+		public void Use()
+		{
+			UseAction?.Invoke();
+		}
+
     }
 }

@@ -5,6 +5,8 @@ using System;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Channels;
+using SoulsBox;
+using static Sandbox.PhysicsContact;
 
 namespace SoulsBox
 {
@@ -93,32 +95,43 @@ namespace SoulsBox
 			}
 		}
 
-		private bool IsWithinView(GameTransform gameTransform)
+		private bool LockOnAbleIsWithinView(LockOnAble lockOnAble)
 		{
 			float leftBound = 0f;
 			float rightBound = 1f;
 			float topBound = 0f;
 			float bottomBound = 1f;
-			Vector3 screenCoords = gameTransform.Position.ToScreen();
-			return screenCoords.x >= leftBound && screenCoords.x <= rightBound && screenCoords.y >= topBound && screenCoords.y <= bottomBound;
+			Vector3 screenCoords = lockOnAble.Transform.Position.ToScreen();
+			Vector3 toTarget = (lockOnAble.Transform.Position + lockOnAble.LockOnOffset) - CameraController.Camera.Transform.Position;
+			return screenCoords.x >= leftBound && screenCoords.x <= rightBound && screenCoords.y >= topBound && screenCoords.y <= bottomBound && !(Vector3.Dot( CameraController.Camera.Transform.Rotation.Forward, toTarget.Normal ) < 0.0f);
 		}	
 
 		protected override void OnFixedUpdate()
 		{
 			if ( Network.IsProxy ) return;
 			UpdateLockOnAbles();
+			//Log.Info( "isDead: " + IsDead );
+			//Log.Info("isRespawning: " + IsRespawning );
 		}
 
 		protected override void OnStart()
 		{
 			if ( Network.IsProxy ) return;
 			OctreeManager.Instance.DestroyAndReInit();
+			GiveDebugItems2();
+			//GiveDebugItems();
+			CharacterStats.CalculateStats( PlayerStats );
 		}
 
 		public void UpdateLockOnAbles()
 		{
 			LockOnAbles.Clear();
 			OctreeManager.Instance.Clear();
+
+			if ( CurrentLockOnAble != null && !CurrentLockOnAble.ParentIsAlive() ) {
+				CurrentLockOnAble = GetClosestLockOnAbleInView();
+				if ( CurrentLockOnAble == null ) LockedOn = false;
+			}
 
 			IEnumerable<LockOnAble> allLockOnAbles = Scene.GetAllComponents<LockOnAble>();
 			foreach ( var lockOnAble in allLockOnAbles )
@@ -166,7 +179,7 @@ namespace SoulsBox
 			foreach ( var lockOnAble in LockOnAbles )
 			{
 				float distance = Vector3.DistanceBetween( Transform.Position, (lockOnAble.Transform.Position + lockOnAble.LockOnOffset) );
-				if ( distance < closestDistance && IsWithinView( lockOnAble.Transform ))
+				if ( distance < closestDistance && LockOnAbleIsWithinView( lockOnAble ))
 				{
 					closest = lockOnAble;
 					closestDistance = distance;
@@ -178,8 +191,6 @@ namespace SoulsBox
 
 		public void SwitchTarget( bool isLeft )
 		{
-			if ( CurrentLockOnAble == null ) return;
-
 			LockOnAble bestTarget = null;
 			float bestAngle = float.MaxValue;
 
@@ -187,10 +198,14 @@ namespace SoulsBox
 			{
 				if ( lockOnAble == CurrentLockOnAble ) continue;
 
-				Vector3 toTarget = (lockOnAble.Transform.Position + lockOnAble.LockOnOffset) - Transform.Position;
-				Vector3 toCurrentTarget = CurrentLockOnAblePosition - Transform.Position;
+				Vector3 toTarget = (lockOnAble.Transform.Position + lockOnAble.LockOnOffset) - CameraController.Camera.Transform.Position;
+				Vector3 toCurrentTarget = CurrentLockOnAblePosition - CameraController.Camera.Transform.Position;
 
 				float angle = toCurrentTarget.SignedAngle( toTarget );
+
+				// Ignore targets behind the player
+				if ( Vector3.Dot( CameraController.Camera.Transform.Rotation.Forward, toTarget.Normal ) < 0.0f ) continue;
+
 				if ( !isLeft && angle < 0 && angle > -bestAngle )
 				{
 					bestAngle = -angle;
@@ -227,7 +242,15 @@ namespace SoulsBox
 			IsRespawning = true;
 
 			CharacterVitals.ResetVitals();
-			PlayerStats.Souls = 10;
+			PlayerStats.Souls = 0;
+
+			Arrow testArrow = new Arrow();
+			testArrow.Name = "Cool Arrow";
+
+			Arrow testArrow2 = new Arrow { Name = "testy arrow" };
+
+			CharacterInventory.Arrows.Add( testArrow );
+			CharacterInventory.Arrows.Add( testArrow2 );
 		}
 
 		private Bonfire GetLastRestedOrRandomBonfire()
@@ -262,7 +285,7 @@ namespace SoulsBox
 			{
 				MenuEnabled = true;
 				menu.Enabled = true;
-				Sandbox.Mouse.Position = new Vector2 ( Screen.Width / 2, Screen.Height / 2 );
+				Sandbox.Mouse.Position = new Vector2 ( 0, 0 );
 			}
 		}
 
@@ -283,6 +306,90 @@ namespace SoulsBox
 				menu.Enabled = true;
 				menu.CurrentScreen = Menu.MenuScreen.Bonfire;
 			}
+		}
+
+		private void GiveDebugItems2()
+		{
+			Usable steamFlask = new Usable 
+			{ 
+				ID = "steam_flask",
+				Name = "Steam Flask",
+				ShortDescription = "Replenish life force.",
+				UseAction = () =>
+				{
+					CharacterVitals.Heal( 300 );
+				}
+			};
+			CharacterInventory.Usables.Add( steamFlask );
+
+			Weapon stingSword = new Weapon
+			{
+				ID = "sting_sword",
+				Name = "Sting Sword",
+				ShortDescription = "Basic strait sword.",
+
+			};
+		}
+
+			private void GiveDebugItems()
+		{
+			Arrow testArrow = new Arrow { Name = "nice arrow bro" };
+			CharacterInventory.Arrows.Add( testArrow );
+			Arrow testArrow2 = new Arrow { Name = "cool arrow" };
+			CharacterInventory.Arrows.Add( testArrow2 );
+			Arrow testArrow3 = new Arrow { Name = "hot arrow" };
+			CharacterInventory.Arrows.Add( testArrow3 );
+
+			Weapon testWeapon = new Weapon { Name = "epic sword" };
+			Weapon testWeapon2 = new Weapon { Name = "epic sword 2" };
+			Weapon testWeapon3 = new Weapon { Name = "epic sword 3" };
+			Weapon testWeapon4 = new Weapon { Name = "epic sword 4" };
+			CharacterInventory.Weapons.Add(testWeapon);
+			CharacterInventory.Weapons.Add(testWeapon2);
+			CharacterInventory.Weapons.Add(testWeapon3);
+			CharacterInventory.Weapons.Add(testWeapon4);
+
+
+			Ring testRing = new Ring { Name = "ring of epicness" };
+			Ring testRing2 = new Ring { Name = "ring of coolness" };
+			CharacterInventory.Rings.Add(testRing);
+			CharacterInventory.Rings.Add(testRing2);
+
+			Armor armor = new Armor { Name = "test armor" };
+			Armor armor2 = new Armor { Name = "Bronze armor" };
+			Armor armor1 = new Armor { Name = "Golden Armor" };
+			CharacterInventory.Armors.Add(armor);
+			CharacterInventory.Armors.Add(armor2);
+			CharacterInventory.Armors.Add(armor1);
+
+			Sorcery sorcery = new Sorcery { Name = "Spell of cool" };
+			Sorcery sorcery2 = new Sorcery { Name = "Spell of joy" };
+			Sorcery sorcery3 = new Sorcery { Name = "Spell of mad" };
+			Sorcery sorcery4 = new Sorcery { Name = "Spell of sad" };
+			CharacterInventory.Sorceries.Add(sorcery);
+			CharacterInventory.Sorceries.Add(sorcery2);
+			CharacterInventory.Sorceries.Add( sorcery3 );
+			CharacterInventory.Sorceries.Add( sorcery4 );
+			CharacterInventory.Sorceries.Add( sorcery4 );
+			CharacterInventory.Sorceries.Add( sorcery4 );
+			CharacterInventory.Sorceries.Add( sorcery4 );
+			CharacterInventory.Sorceries.Add( sorcery4 );
+			CharacterInventory.Sorceries.Add( sorcery4 );
+
+
+			Usable usable = new Usable { Name = "salt" };
+			Usable usable2 = new Usable { Name = "flask" };
+			Usable usable3 = new Usable { Name = "soul" };
+			CharacterInventory.Usables.Add( usable );
+			CharacterInventory.Usables.Add ( usable2 );
+			CharacterInventory.Usables.Add( usable3 );
+
+			Key key1 = new Key { Name = "key1" };
+			Key key2 = new Key { Name = "key2" };
+			Key key3 = new Key { Name = "key3" };
+			CharacterInventory.Keys.Add( key1 );
+			CharacterInventory.Keys.Add( key2 );
+			CharacterInventory.Keys.Add( key3 );
 		}
 	}
 }

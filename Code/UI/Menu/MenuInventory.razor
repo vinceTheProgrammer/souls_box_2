@@ -1,27 +1,100 @@
 @using Sandbox;
 @using Sandbox.UI;
 @using SoulsBox
-@namespace SoulsBox;
 @inherits Panel;
 
 <root class="columns">
     <div class="column flex-grow-2">
-        <div class="category-bar">
+        <div class="category-bar-inventory">
             @foreach (var category in CategoriesComponent.Categories)
             {
-                <div class="category-icon @(category == CategoriesComponent.SelectedCategory ? "selected" : "")" @onclick="() => CategoriesComponent.SelectCategory(category)">
-                    <img src="@category.Icon" alt="@category.Name" />
+                <div class="category-icon-inventory category-icon-fix @(category == CategoriesComponent.SelectedCategory ? "selected" : "")" @onclick=@(() => CategoriesComponent.SelectCategory(category))>
+                    @if (category.UseSVG)
+                    {
+                        <img src=@(category.Icon)/>
+                    } else 
+                    {
+                        <i>@category.Icon</i>
+                    }
                 </div>
             }
         </div>
-        <div class="inventory">
-            <i class="icon souls-icon"></i> items <span class="value"></span>
+        <div class="inventory" style=@(LastWasButton ? "overflow-y: hidden;" : "overflow-y: scroll;")>
+            @foreach (var item in Inventory.GetList(Category).Select((item, index) => new { Item = item, Index = index }))
+            {
+                <MenuInventoryItem @onmouseover=@(() => SetSelectedItemFromMouseOver(item.Index))  Item=@(item.Item) class=@((SelectedIndex == item.Index ? "selected" : "") + " " + "inventory-item") style=@(GetNegativeMargin(item.Index)) />
+            }
         </div>
     </div>
 
-    <MenuStatusPlayer class="flex-grow-1"/>
+    @if (SelectedStatus == 0)
+    {
+        <MenuStatusPlayer Stats=@(PlayerStats)/>
+    }
+    else if (SelectedStatus == 1)
+    {
+        <MenuStatusGeneral Stats=@(Stats) Vitals=@(Vitals)/>
+    }
+    else if (SelectedStatus == 2)
+    {
+        <MenuStatusMisc Stats=@(Stats)/>
+    }
+    else 
+    {
+        <MenuStatusPlayer Stats=@(PlayerStats)/>
+    }
 </root>
 
 @code {
     public CategoriesComponent CategoriesComponent { get; set; }
+    public CharacterStats Stats { get; set; }
+    public CharacterVitals Vitals { get; set; }
+    public PlayerStats PlayerStats { get; set; }
+    public CharacterInventory Inventory { get; set; }
+    public Item.ItemCategory Category { get; set; }
+    public int SelectedIndex { get; set; }
+    public bool LastWasButton { get; set; }
+    public bool LastMoveUp { get; set; }
+
+    public int SelectedStatus { get; set; }
+
+
+    private string GetNegativeMargin(int index)
+    {
+        if (!LastWasButton) return "";
+        string style = "";
+        if (index == 0) {
+            float itemHeight = 135f;
+
+            int factor = -1;
+            if (LastMoveUp) factor = 0;
+            float negativeMargin = (SelectedIndex + (3 * factor)) * -itemHeight;
+            bool isPastDownThreshold = !LastMoveUp && SelectedIndex > 3;
+            bool isPastUpThreshold = LastMoveUp && SelectedIndex < Inventory.GetList(Category).Count - 4;
+            if (isPastDownThreshold || isPastUpThreshold)
+            {
+                style = $"margin-top: {negativeMargin};";
+            } 
+            else if (LastMoveUp && Inventory.GetList(Category).Count > 4)
+            {
+                style = $"margin-top: {(Inventory.GetList(Category).Count - 4) * -itemHeight};";
+            }
+            else 
+            {
+                style = "margin-top: 0";
+            }
+        }
+        return style;
+    }
+
+    private void SetSelectedItemFromMouseOver(int index)
+    {
+        SelectedIndex = index;
+        LastWasButton = false;
+    }
+
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine(Category, SelectedIndex, LastWasButton, LastMoveUp, SelectedStatus);
+    }
 }

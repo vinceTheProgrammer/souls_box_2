@@ -1,0 +1,51 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using SoulsBox;
+@inherits Panel;
+
+<root class="column flex-grow-1">
+    <div class="displayname">
+        <span class="name">@Stats.Displayname</span>
+    </div>
+    <hr />
+    <div class="info-item">
+        <i class="icon level-icon"></i> Level <span class="value">@Stats.Level</span>
+    </div>
+    <div class="info-item">
+        <i class="icon souls-icon"></i> Souls <span class="value">@Stats.Souls</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon vitality-icon"></i> Vitality <span class="value">@Stats.Vitality</span>
+    </div>
+    <div class="info-item">
+        <i class="icon attunement-icon"></i> Attunement <span class="value">@Stats.Attunement</span>
+    </div>
+    <div class="info-item">
+        <i class="icon endurance-icon"></i> Endurance <span class="value">@Stats.Endurance</span>
+    </div>
+    <div class="info-item">
+        <i class="icon strength-icon"></i> Strength <span class="value">@Stats.Strength</span>
+    </div>
+    <div class="info-item">
+        <i class="icon dexterity-icon"></i> Dexterity <span class="value">@Stats.Dexterity</span>
+    </div>
+    <div class="info-item">
+        <i class="icon resistance-icon"></i> Resistance <span class="value">@Stats.Resistance</span>
+    </div>
+    <div class="info-item">
+        <i class="icon intelligence-icon"></i> Intelligence <span class="value">@Stats.Intelligence</span>
+    </div>
+    <div class="info-item">
+        <i class="icon faith-icon"></i> Faith <span class="value">@Stats.Faith</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon humanity-icon"></i> Humanity <span class="value">@Stats.Humanity</span>
+    </div>
+</root>
+
+@code
+{
+    public PlayerStats Stats { get; set; }
+}

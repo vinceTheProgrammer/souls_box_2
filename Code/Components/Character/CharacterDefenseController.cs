@@ -16,24 +16,30 @@ namespace SoulsBox
 		[Broadcast]
 		public void TryReceiveDamage(SBDamage damage, Vector3 hitPosition)
 		{
+			if ( Agent == null || Agent.CharacterAnimationController == null || Agent.CharacterVitals == null )
+				return;
+
 			if ( Agent.CharacterAnimationController.IsTagActive( "SB_Invincible")) return;
-			if ( Agent.IsGuarding )
+			if ( Agent.IsGuarding && !Agent.CharacterAnimationController.IsTagActive( "SB_Staggered" ) && !Agent.CharacterAnimationController.IsTagActive("SB_Attacking"))
 			{
 				ReceiveGuardedDamage( damage, hitPosition );
 				return;
 			}
-			Agent.CharacterVitals.Hurt( damage.Value, GameObject );
+			var attacker = Scene.Directory.FindByGuid( damage.Attacker );
+			Agent.CharacterVitals.Hurt( damage.Value, attacker );
+			Agent.CharacterVitals.decreasePoise( 20 );
 			Sound.Play( "knife-stab", hitPosition );
 			SpawnParticle( "\\prefabs\\particles\\blood.prefab", hitPosition );
 		}
 
-		protected override void OnFixedUpdate()
-		{
-			//Log.Info( Agent.IsGuarding );
-		}
-
 		private void ReceiveGuardedDamage(SBDamage damage, Vector3 hitPosition)
 		{
+			if ( Agent == null || Agent.CharacterVitals == null ) return;
+			Agent.CharacterVitals.DrainStamina( 20 );
+			if (Agent.CharacterVitals.Stamina <= 0 )
+			{
+				Agent.CharacterVitals.decreasePoise(9999999);
+			}
 			Sound.Play( "swords-clash", hitPosition );
 			SpawnParticle( "\\prefabs\\particles\\sparks.prefab", hitPosition );
 		}

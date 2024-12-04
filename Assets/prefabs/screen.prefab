@@ -2,8 +2,7 @@
   "RootObject": {
     "__guid": "ee495875-3baf-4ca9-8ed2-fafbbc2e63e2",
     "Flags": 0,
-    "Name": "Screen",
-    "Position": "489.9308,345.8908,170.1688",
+    "Name": "screen",
     "Enabled": true,
     "NetworkMode": 0,
     "Components": [
@@ -13,22 +12,25 @@
         "AutoScreenScale": true,
         "Opacity": 1,
         "Scale": 1,
+        "ScaleStrategy": "ConsistentHeight",
         "ZIndex": 100
-      },
-      {
-        "__type": "Facepunch.Arena.Chat",
-        "__guid": "62878682-4922-460a-a0c5-634d1a1bd222"
       },
       {
         "__type": "LockOnIndicator",
         "__guid": "84bb76f9-86c4-41e4-ac65-ecccb0b6fae1"
       },
       {
+        "__type": "HUD",
+        "__guid": "2ea2e1fa-84c7-489c-a348-2b0069f4cb57"
+      },
+      {
         "__type": "Menu",
-        "__guid": "6a62bdbf-befb-4165-bc64-676b34cc07e8",
+        "__guid": "38394732-c21d-4c40-b1c0-7464bfb694e7",
         "__enabled": false
       }
-    ]
+    ],
+    "Children": [],
+    "__variables": []
   },
   "ShowInMenu": false,
   "MenuPath": null,

@@ -21,11 +21,19 @@ namespace SoulsBox
 
 		public int Stamina { get; private set; }
 
+		public int Poise { get; private set; }
+
 		private TimeSince StaminaLastRecovered { get; set; }
-		private float StaminaRecoveryPeriod { get; set; } = 0.01f;
+		private float CurrentStaminaRecoveryPeriod { get; set; } = 0.022f;
+		private float StaminaRecoveryPeriod { get; set; } = 0.022f;
 		private int StaminaRecoveryAmount { get; set; } = 1;
 		private TimeSince StaminaLastDrained { get; set; }
 		private float StaminaStartRecoveryPeriod { get; set; } = 2f;
+
+		private TimeSince LastHit { get; set; }
+		private float PoiseRecoveryPeriod { get; set; } = 5f;
+
+
 
 		protected override void OnUpdate()
 		{
@@ -33,7 +41,7 @@ namespace SoulsBox
 			{
 				if (!Network.IsProxy)
 				{
-					Gizmo.Draw.ScreenText( $"Health: {Health}\nStamina: {Stamina}", new Vector2(0, 0) );
+					Gizmo.Draw.ScreenText( $"Poise: {Poise}", new Vector2(0, 300) );
 				}
 			}
 		}
@@ -42,11 +50,25 @@ namespace SoulsBox
 		{
 
 			RegenerateStamina();
+			RegeneratePoise();
 		}
 
 		protected override void OnStart()
 		{
 			ResetVitals();
+		}
+
+		public void decreasePoise(int amount)
+		{
+			Poise = Math.Clamp( Poise - Math.Abs( amount ), 0, Agent.CharacterStats.MaxPoise );
+			LastHit = 0;
+
+			if ( Poise <= 0 )
+			{
+				Agent.IsStaggered = true;
+				Poise = Agent.CharacterStats.MaxPoise;
+			}
+
 		}
 
 		public void Heal (int amount)
@@ -58,7 +80,7 @@ namespace SoulsBox
 		{
 			Health = Math.Clamp( Health - Math.Abs( amount ), 0, Agent.CharacterStats.MaxHealth );
 
-			if (Health <= 0)
+			if (Health <= 0 && !Agent.IsDead)
 			{
 				CharacterAgent agent = attacker.Components.Get<CharacterAgent>();
 				if ( agent != null ) Die( agent );
@@ -85,31 +107,54 @@ namespace SoulsBox
 		{
 			Health = Stats.MaxHealth;
 			Stamina = Stats.MaxStamina;
+			Poise = Stats.MaxPoise;
 		}
 
 		// maybe put somewhere else?
 		public void Die(CharacterAgent killer)
 		{
 			Agent.IsDead = true;
-			if (killer is AgentPlayer player && Agent is AgentPlayer thisPlayer)
+			if (killer is AgentPlayer player)
 			{
-				player.PlayerStats.GiveSouls( thisPlayer.PlayerStats.Souls );
-				thisPlayer.PlayerStats.Souls = 0;
-				GameObject seekingSoul = CharacterCombatController.SpawnParticle( "\\prefabs\\souls_seeking.prefab", thisPlayer.Transform.Position );
-				seekingSoul.Components.Get<SeekingSoul>().Target = player;
+				//Log.Info( "GGG" );
+				if ( Agent is AgentPlayer thisPlayer )
+				{
+					player.PlayerStats.GiveSouls( thisPlayer.PlayerStats.Souls );
+					thisPlayer.PlayerStats.Souls = 0;
+					GameObject seekingSoul = CharacterCombatController.SpawnParticle( "\\prefabs\\souls_seeking.prefab", thisPlayer.Transform.Position );
+					seekingSoul.Components.Get<SeekingSoul>().Target = player;
+				} else
+				{
+					player.PlayerStats.GiveSouls( 100 );
+					GameObject seekingSoul = CharacterCombatController.SpawnParticle( "\\prefabs\\souls_seeking.prefab", Transform.Position );
+					seekingSoul.Components.Get<SeekingSoul>().Target = player;
+				}
+
 			}
 		}
 
 		public void Die()
 		{
+			//Log.Info( "f" );
 			Agent.IsDead = true;
+		}
+
+		private void RegeneratePoise()
+		{
+			if (Poise < Agent.CharacterStats.MaxPoise && LastHit > PoiseRecoveryPeriod)
+			{
+				Poise = Agent.CharacterStats.MaxPoise;
+			}
 		}
 
 		private void RegenerateStamina()
 		{
 			if (StaminaLastDrained > StaminaStartRecoveryPeriod)
 			{
-				if ( StaminaLastRecovered > StaminaRecoveryPeriod )
+				float staminaRecoveryPeriodGuard = StaminaRecoveryPeriod * 5;
+				if ( Agent.IsGuarding ) CurrentStaminaRecoveryPeriod = staminaRecoveryPeriodGuard;
+				else CurrentStaminaRecoveryPeriod = StaminaRecoveryPeriod;
+				if ( StaminaLastRecovered > CurrentStaminaRecoveryPeriod )
 				{
 					Stamina = Math.Clamp( Stamina + StaminaRecoveryAmount, 0, Agent.CharacterStats.MaxStamina );
 					StaminaLastRecovered = 0;

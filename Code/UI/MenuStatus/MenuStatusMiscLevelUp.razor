@@ -1,0 +1,32 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using SoulsBox
+@inherits Panel;
+
+<root class="column">
+    <div class="info-item">
+        <i class="icon poise-icon"></i> Poise <span class="value">@Stats.MaxPoise</span>
+    </div>
+    <div class="info-item">
+        <i class="icon bleed-resist-icon"></i> Bleed Resist <span class="value">@Stats.BleedResist</span>
+    </div>
+    <div class="info-item">
+        <i class="icon poison-resist-icon"></i> Poison Resist <span class="value">@Stats.PoisonResist</span>
+    </div>
+    <div class="info-item">
+        <i class="icon curse-resist-icon"></i> Curse Resist <span class="value">@Stats.CurseResist</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon item-discovery-icon"></i> Item Discovery <span class="value">@Stats.ItemDiscovery</span>
+    </div>
+    <hr>
+    <div class="info-item">
+        <i class="icon attunement-slots-icon"></i> Attunement Slots <span class="value">@Stats.AttunementSlots</span>
+    </div>
+</root>
+
+@code
+{
+    public CharacterStats Stats { get; set; }
+}

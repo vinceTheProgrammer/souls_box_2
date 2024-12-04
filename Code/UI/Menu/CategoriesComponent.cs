@@ -40,15 +40,25 @@ namespace SoulsBox
 		{
 			public string Name { get; set; }
 			public string Icon { get; set; }
+
+			public bool UseSVG { get; set; }
 		}
 
-		public void Add(string name, string icon)
+		public void Add( string name, string icon, bool useSVG)
 		{
 			Categories.Add( new Category()
 			{
 				Name = name,
-				Icon = icon
+				Icon = icon,
+				UseSVG = useSVG
 			} );
+		}
+
+		public override int GetHashCode()
+		{
+			HashCode c = new HashCode();
+			c.Add( SelectedCategory );
+			return c.ToHashCode();
 		}
 	}
 }

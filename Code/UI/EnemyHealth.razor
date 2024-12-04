@@ -1,0 +1,67 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using SoulsBox;
+@using System;
+@inherits PanelComponent
+
+<root>
+    <div class="healthbar-container">
+        <div class="healthbar">
+            <div class="inner">
+                <div class="fill" style="width: @(( (float) Agent.CharacterVitals.Health / (float) Agent.CharacterStats.MaxHealth) * 100f)%"></div>
+                <div class="fill-laggy" style="width: @(( ((float) laggyHealth - (float) Agent.CharacterVitals.Health) / (float) Agent.CharacterStats.MaxHealth) * 100f)%"></div>
+            </div>
+        </div>
+            <div class="damage-display" style=@((timeSinceHealthLag < lagDelay) ? "color: white;" : "color: #00000000;")>
+                @(MathF.Round((laggyHealth - Agent.CharacterVitals.Health).Clamp(0, Agent.CharacterStats.MaxHealth)))
+            </div>
+    </div>
+</root>
+
+@code
+{
+
+    CharacterAgent Agent { get; set; }
+    float laggyHealth = 0;
+    float healthTransitionSpeed = 400f;
+    float damageAmount = 0;
+    TimeSince timeSinceHealthLag { get; set; }
+    bool laggyHealthSynced { get; set; }
+
+    float lagDelay = 2.0f;
+
+    protected override void OnUpdate()
+    {
+        if (Agent == null) 
+        {
+            Agent = GameObject.Parent.Components.Get<CharacterAgent>();
+        }
+
+        if (Agent.IsDead) Enabled = false;
+
+        if (Agent == null) return;
+
+        if (laggyHealthSynced && Agent.CharacterVitals.Health < laggyHealth)
+        {
+            laggyHealthSynced = false;
+            timeSinceHealthLag = 0;
+        }
+
+        if (timeSinceHealthLag > lagDelay)
+        {
+            if (laggyHealth > Agent.CharacterVitals.Health)
+            {
+                laggyHealth = (laggyHealth - healthTransitionSpeed * Time.Delta).Clamp(0, Agent.CharacterStats.MaxHealth);
+            }
+            else
+            {
+                laggyHealth = Agent.CharacterVitals.Health;
+                laggyHealthSynced = true;
+            }
+        }
+
+    }
+
+
+	protected override int BuildHash() => System.HashCode.Combine( laggyHealth, Agent.CharacterVitals.Health, damageAmount);
+}

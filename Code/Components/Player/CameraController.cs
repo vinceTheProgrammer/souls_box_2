@@ -32,6 +32,10 @@ namespace SoulsBox
 		private Angles ForwardAngles;
 		private Transform InitialCameraTransform;
 
+		private bool stickReleased = true;
+		private float lastMouseX = 0f;
+		private const float mouseThreshold = 300f;
+
 		protected override void OnStart()
 		{
 			if ( Network.IsProxy ) return;
@@ -45,11 +49,14 @@ namespace SoulsBox
 		{
 			if ( Network.IsProxy ) return;
 
+			//Log.Info(Player.LockedOn);
+
 
 			if (Player.CreationMode == true)
 			{
 				HandleFreeCamera();
-				Gizmo.Draw.ScreenText( $"Free Cam Speed: {MathF.Round(Player.CharacterMovementController.CreationModeSpeed)}", new Vector2( Screen.Width - 200, 25 ) );
+				Gizmo.Draw.ScreenText( $"Free Cam Speed (Mouse Wheel): {MathF.Round(Player.CharacterMovementController.CreationModeSpeed)}", new Vector2( Screen.Width - 300, 25 ) );
+				Gizmo.Draw.ScreenText( ".", new Vector2( Screen.Width /2, Screen.Height / 2 ) );
 				return;
 			}
 
@@ -57,10 +64,13 @@ namespace SoulsBox
 
 			if ( Player.LockedOn && Player.CurrentLockOnAble != null )
 			{
+				//Log.Info( "Handle lock on" );
 				HandleLockOnCamera();
 			}
 			else
 			{
+
+				//Log.Info( "Handle normal" );
 				HandleNormalCamera();
 			}
 
@@ -91,7 +101,11 @@ namespace SoulsBox
 			ForwardAngles = ForwardAngles.WithPitch( MathX.Clamp( ForwardAngles.pitch, -30.0f, 60.0f ) );
 
 			InitialCameraTransform.Position = (rotateAround + CameraOffset).WithZ( rotateAround.z );
+			//Log.Info( ForwardAngles );
+
 			Camera.Transform.World = InitialCameraTransform.RotateAround( rotateAround, ForwardAngles );
+
+			HandleTargetSwitching();
 
 			AdjustCameraAngles();
 			CorrectCameraPosition( rotateAround );
@@ -132,18 +146,21 @@ namespace SoulsBox
 		private void AdjustYawTowards( float threshold, float screenX, float lerpSpeed )
 		{
 			float distanceToThreshold = MathF.Abs( threshold - screenX );
+
 			ForwardAngles.yaw += Math.Sign( threshold - screenX ) * 0.1f * distanceToThreshold * lerpSpeed;
+
+			ForwardAngles.yaw = (ForwardAngles.yaw + 360.0f) % 360.0f;
 		}
 
 		private void AdjustPitchTowards( float threshold, float screenY, float lerpSpeed )
 		{
 			float distanceToThreshold = MathF.Abs( threshold - screenY );
-			ForwardAngles.pitch -= Math.Sign( threshold - screenY ) * 0.1f * distanceToThreshold * lerpSpeed;
+			ForwardAngles.pitch = (ForwardAngles.pitch - Math.Sign( threshold - screenY ) * 0.1f * distanceToThreshold * lerpSpeed).Clamp(-30f, 60f);
 		}
 
 		private void CorrectCameraPosition( Vector3 rotateAround )
 		{
-			var cameraTrace = Scene.Trace.Ray( rotateAround, Camera.Transform.World.Position ).Size( 5f ).WithoutTags( "player" ).Run();
+			var cameraTrace = Scene.Trace.Ray( rotateAround, Camera.Transform.World.Position ).Size( 5f ).WithoutTags( "player" ).WithoutTags("character").Run();
 			Camera.Transform.Position = cameraTrace.EndPosition;
 		}
 
@@ -158,6 +175,8 @@ namespace SoulsBox
 			ForwardAngles = ForwardAngles.WithPitch( MathX.Clamp( ForwardAngles.pitch, -30.0f, 60.0f ) );
 
 			InitialCameraTransform.Position = (rotateAround + CameraOffset).WithZ( rotateAround.z );
+			//Log.Info( ForwardAngles );
+
 			Camera.Transform.World = InitialCameraTransform.RotateAround( rotateAround, ForwardAngles );
 
 			CorrectCameraPosition( rotateAround );
@@ -186,6 +205,7 @@ namespace SoulsBox
 			{
 				// Adjust yaw based on the player's movement input
 				Angles targetAngles = ForwardAngles.WithYaw( ForwardAngles.yaw + Player.MoveVector.y );
+				//Log.Info( "Yaw for movement" );
 				ForwardAngles = ForwardAngles.LerpTo( targetAngles, 0.1f );
 			}
 		}
@@ -211,7 +231,9 @@ namespace SoulsBox
 			if ( cameraToPointTrace.Hit && !playerToPointTrace.Hit )
 			{
 				float yawAdjustment = isFacingRight ? -1f : 1f;
-				ForwardAngles.yaw += yawAdjustment;
+				Angles targetAngles = ForwardAngles.WithYaw( ForwardAngles.yaw + yawAdjustment );
+				//Log.Info( "Yaw for obstructions" );
+				ForwardAngles = ForwardAngles.LerpTo( targetAngles, 0.1f );
 			}
 		}
 
@@ -238,8 +260,51 @@ namespace SoulsBox
 		private void HandleFreeCamera()
 		{
 			ForwardAngles += Input.AnalogLook;
-			ForwardAngles = ForwardAngles.WithPitch( MathX.Clamp( ForwardAngles.pitch, -30.0f, 60.0f ) );
+			ForwardAngles = ForwardAngles.WithPitch( MathX.Clamp( ForwardAngles.pitch, -90.0f, 90.0f ) );
 			Camera.Transform.Rotation = ForwardAngles;
+		}
+
+		private void HandleTargetSwitching()
+		{
+			//Log.Info( "HandleSwitching" );
+			if ( Input.UsingController )
+			{
+				float yaw = Input.AnalogLook.yaw;
+
+				if ( stickReleased && yaw > 0.5f )
+				{
+					Player.SwitchTarget( true );
+					stickReleased = false;
+				}
+				else if ( stickReleased && yaw < -0.5f )
+				{
+					Player.SwitchTarget( false );
+					stickReleased = false;
+				}
+
+				// Check if the stick is released
+				if ( yaw > -0.1f && yaw < 0.1f )
+				{
+					stickReleased = true;
+				}
+			}
+			else // Using mouse
+			{
+				float mouseX = Mouse.Position.x;
+
+				float deltaX = mouseX - lastMouseX;
+
+				if ( deltaX > mouseThreshold )
+				{
+					Player.SwitchTarget( false );
+					lastMouseX = mouseX;
+				}
+				else if ( deltaX < -mouseThreshold )
+				{
+					Player.SwitchTarget( true );
+					lastMouseX = mouseX;
+				}
+			}
 		}
 	}
 }

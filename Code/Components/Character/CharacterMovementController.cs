@@ -44,6 +44,12 @@ namespace SoulsBox
 
 		private Vector3 CreationModeCurrentVelocity { get; set; } = Vector3.Zero;
 
+		private float FallStartingZ { get; set; }
+
+		private TimeSince TimeSinceFallStarted { get; set; }
+		private bool StartedFalling { get; set; }
+
+
 		protected override void OnUpdate()
 		{
 			if ( Network.IsProxy ) return;
@@ -60,17 +66,45 @@ namespace SoulsBox
 		protected override void OnFixedUpdate()
 		{
 			if ( Network.IsProxy) return;
-			if ( Agent.CharacterAnimationController.IsTagActive( "SB_Stationary" ) ) return;
 
-			if (Agent is AgentPlayer player)
+			if ( !CharacterController.IsOnGround )
+			{
+				if (!StartedFalling)
+				{
+					StartedFalling = true;
+					TimeSinceFallStarted = 0;
+					FallStartingZ = CharacterController.Transform.Position.z;
+				}
+				if ( StartedFalling && TimeSinceFallStarted > 10 )
+				{
+					Agent.CharacterVitals.Die();
+					FallStartingZ = 0;
+					StartedFalling = false;
+				}
+			}
+			else
+			{
+				float fallHeight = FallStartingZ - CharacterController.Transform.Position.z;
+				if ( StartedFalling && fallHeight > 1000 )
+				{
+					Agent.CharacterVitals.Die();
+					//Log.Info( $"{FallStartingZ} - {CharacterController.Transform.Position.z} = {fallHeight}" );
+				}
+				FallStartingZ = 0;
+				StartedFalling = false;
+			}
+
+			if ( Agent is AgentPlayer player )
 			{
 				if ( player.IsUsingBonfire ) return;
-				if (player.CreationMode)
+				if ( player.CreationMode )
 				{
 					HandleCreationModeMovement( player );
 					return;
 				}
 			}
+
+			if ( Agent.CharacterAnimationController.IsTagActive( "SB_Stationary" ) ) return;
 
 			//Log.Info(GameObject.Name + " " + Agent.IsDead );
 
@@ -92,11 +126,11 @@ namespace SoulsBox
 				return;
 			}
 
-			if ( Agent.IsRolling )
+			if ( Agent.IsRolling)
 			{
 				HandleRolling();
 			}
-			else if ( Agent.IsJumping )
+			else if ( Agent.IsJumping)
 			{
 				HandleJumping();
 			}
@@ -107,10 +141,12 @@ namespace SoulsBox
 			else if ( CharacterAnimationController.IsTagActive("SB_Full_Attack") )
 			{
 				HandleAttacking();
+				if (CharacterAnimationController.IsTagActive("SB_Can_Rotate")) HandleDefaultRotation(0.3f);
 			}
 			else
 			{
 				HandleDefaultMovement();
+				HandleDefaultRotation();
 			}
 		}
 
@@ -171,6 +207,23 @@ namespace SoulsBox
 			CharacterController.MoveTo( Transform.Position + CharacterAnimationController.AnimationHelper.Target.RootMotion.Position.Length * Transform.Rotation.Forward.Normal * 3.0f, true );
 		}
 
+		private void HandleDefaultRotation(float lerp = 0.1f)
+		{
+			if ( Agent is AgentPlayer player_ )
+			{
+				if ( !player_.LockedOn || player_.IsSprinting )
+				{
+					Transform.Rotation = Rotation.Lerp( Transform.Rotation, player_.LastMoveDirectionRotation, lerp );
+				}
+				else
+				{
+					Vector3 targetToPlayerDisplacement = (player_.CurrentLockOnAblePosition - Transform.Position);
+					Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
+					Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );
+				}
+			}
+		}
+
 		private void HandleDefaultMovement()
 		{
 			LerpControllerHeight( 72f );
@@ -189,20 +242,6 @@ namespace SoulsBox
 			CharacterController.Acceleration = 10.0f;
 			CharacterController.ApplyFriction( 5.0f );
 			CharacterController.Move();
-
-			if (Agent is AgentPlayer player_)
-			{
-				if ( !player_.LockedOn || player_.IsSprinting)
-				{
-					Transform.Rotation = Rotation.Lerp( Transform.Rotation, player_.LastMoveDirectionRotation, 0.1f );
-				}
-				else
-				{
-					Vector3 targetToPlayerDisplacement = (player_.CurrentLockOnAblePosition - Transform.Position);
-					Rotation faceDirection = Rotation.FromYaw( targetToPlayerDisplacement.Normal.EulerAngles.yaw );
-					Transform.Rotation = Rotation.Lerp( Transform.Rotation, faceDirection, 0.5f );
-				}
-			}
 		}
 
 		private void HandleMovement( Vector3 targetDirection, float lerpFactor, float baseSpeed )

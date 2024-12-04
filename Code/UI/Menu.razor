@@ -16,7 +16,14 @@
                     <p class="menu-subheading">@GetMenuScreenDescription(CurrentScreen)</p>
                 </div>
                 <div class="top-row-right">
-                    <p>Right Section (20%)</p>
+                    <div class="category-bar category-bar-menu">
+                        @foreach (var category in MenuCategories)
+                        {
+                            <div class="category-icon category-icon-fix @(category == CurrentScreen ? "selected" : "")" @onclick=@(() => SetCurrentScreen(category))>
+                                <i>@GetMenuScreenIcon(category)</i>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
 
@@ -26,18 +33,24 @@
                     <MenuStatus Stats=@(Player.CharacterStats) Vitals=@(Player.CharacterVitals) PlayerStats=@(Player.PlayerStats)/>
                 } else if (CurrentScreen == MenuScreen.Settings)
                 {
-                    <MenuSettings/>
+                    <MenuSettings @ref=MenuSet Parent=@(this) />
                 } else if (CurrentScreen == MenuScreen.Equipment)
                 {
-                    <MenuEquipment/>
+                    <MenuEquipment @ref=MenuEqu Parent=@(this) Stats=@(Player.CharacterStats) Vitals=@(Player.CharacterVitals) PlayerStats=@(Player.PlayerStats) Equipment=@(Player.CharacterEquipment) Inventory=@(Player.CharacterInventory)/>
                 } else if (CurrentScreen == MenuScreen.Inventory)
                 {
-                    <MenuInventory CategoriesComponent=@(InventoryCategories)/>
+                    <MenuInventory @ref=MenuInv CategoriesComponent=@(InventoryCategories) Stats=@(Player.CharacterStats) Vitals=@(Player.CharacterVitals) PlayerStats=@(Player.PlayerStats) Inventory=@(Player.CharacterInventory) Category=@(GetItemCategory(InventoryCategories.SelectedCategory)) SelectedIndex=@(InventoryItemIndex) LastMoveUp=@(InventoryLastMoveUp)/>
                 }
             </div>
 
             <div class="bottom-row">
-                <p>Select    Enter    Close</p>
+                @foreach (var action in AvailableActions)
+                {
+                    <div class="glyph-div">
+                        <Image class="glyph" Texture=@action.GetTexture() />
+                        <label>:@action.DisplayText</label>
+                    </div>
+                }
             </div>
         </div>
     }
@@ -45,7 +58,7 @@
 
 @code
 {
-    [Property] AgentPlayer Player { get; set; }
+    [Property] public AgentPlayer Player { get; set; }
 
     public enum MenuScreen
     {
@@ -64,6 +77,72 @@
 
     public CategoriesComponent InventoryCategories = new();
 
+    public List<SBAction> AvailableActions = new();
+
+    public MenuInventory MenuInv { get; set; }
+    public MenuSettings MenuSet { get; set; }
+    public MenuEquipment MenuEqu { get; set; }
+
+    public List<SBAction> GlyphsStatus = new List<SBAction>
+    {
+        new SBAction { ActionString = "sb_menu_thirdly", DisplayText = "Toggle Display" },
+        new SBAction { ActionString = "sb_menu_back", DisplayText = "Close" },
+        //new SBAction { ActionString = "sb_menu_info", DisplayText = "Explanation" }
+    };
+
+    public List<SBAction> GlyphsEquipment = new List<SBAction>
+    {
+        new SBAction { ActionString = "sb_menu_select", DisplayText = "Enter" },
+        new SBAction { ActionString = "sb_menu_back", DisplayText = "Close" },
+        new SBAction { ActionString = "sb_menu_secondary", DisplayText = "Unequip Item" },
+        new SBAction { ActionString = "sb_menu_thirdly", DisplayText = "Toggle Status" }
+    };
+
+    public List<SBAction> GlyphsItemSelect = new List<SBAction>
+    {
+        new SBAction { ActionString = "sb_menu_select", DisplayText = "Equip" },
+        new SBAction { ActionString = "sb_menu_back", DisplayText = "Close" },
+        new SBAction { ActionString = "sb_menu_secondary", DisplayText = "Toggle Display" },
+        new SBAction { ActionString = "sb_menu_thirdly", DisplayText = "Toggle Status" }
+    };
+
+    public List<SBAction> GlyphsInventory = new List<SBAction>
+    {
+        new SBAction { ActionString = "sb_menu_select", DisplayText = "Item Menu" },
+        new SBAction { ActionString = "sb_menu_back", DisplayText = "Close" },
+        new SBAction { ActionString = "sb_menu_secondary", DisplayText = "Toggle Display" },
+        new SBAction { ActionString = "sb_menu_thirdly", DisplayText = "Toggle Status" }
+    };
+
+    public List<SBAction> GlyphsItemMenu = new List<SBAction>
+    {
+        new SBAction { ActionString = "sb_menu_select", DisplayText = "Enter" },
+        new SBAction { ActionString = "sb_menu_back", DisplayText = "Close" }
+    };
+
+    public List<SBAction> GlyphsSettings = new List<SBAction>
+    {
+        new SBAction { ActionString = "sb_menu_select", DisplayText = "Enter" },
+        new SBAction { ActionString = "sb_menu_back", DisplayText = "Close" }
+    };
+
+    public List<SBAction> GlyphsEmpty = new();
+
+    public int InventoryItemIndex = 0;
+    public bool InventoryLastMoveUp { get; set; }
+
+    public enum GlyphSet {
+        None,
+        GlyphsStatus,
+        GlyphsEquipment,
+        GlyphsItemSelect,
+        GlyphsInventory,
+        GlyphsItemMenu,
+        GlyphsSettings,
+        GlyphsEmpty
+    }
+
+
     protected override void OnStart()
     {
         MenuCategories.Add(MenuScreen.Inventory);
@@ -71,21 +150,30 @@
         MenuCategories.Add(MenuScreen.Status);
         MenuCategories.Add(MenuScreen.Settings);
 
-        InventoryCategories.Add("Usable", "usable.png");
-        InventoryCategories.Add("Shards", "shards.png");
-        InventoryCategories.Add("Keys", "keys.png");
-        InventoryCategories.Add("Sorceries", "sorceries.png");
-        InventoryCategories.Add("Weapons", "weapons.png");
-        InventoryCategories.Add("Arrows", "arrows.png");
-        InventoryCategories.Add("Armor", "armor.png");
-        InventoryCategories.Add("Rings", "rings.png");
+        InventoryCategories.Add("Usable", "science", false);
+        InventoryCategories.Add("Shards", "diamond", false);
+        InventoryCategories.Add("Keys", "vpn_key", false);
+        InventoryCategories.Add("Sorceries", "auto_fix_high", false);
+        InventoryCategories.Add("Weapons", "icons/sword.svg", true);
+        InventoryCategories.Add("Arrows", "icons/arrow.svg", true);
+        InventoryCategories.Add("Armor", "icons/helmet.svg", true);
+        InventoryCategories.Add("Rings", "icons/ring.svg", true);
         InventoryCategories.SelectedCategory = InventoryCategories.Categories[0];
+
+        GlyphSet glyphSet = GetGlyphSet(CurrentScreen);
+        SetGlyphs(glyphSet);
     }
 
     protected override int BuildHash()
     {
         if (Player == null) return 1;
-        return System.HashCode.Combine(CurrentScreen, Player.CharacterStats, Player.CharacterVitals, Player.PlayerStats, Player.CharacterInventory, Player.CharacterEquipment, InventoryCategories.SelectedCategory);
+        HashCode playerHashCode = new HashCode();
+        playerHashCode.Add(Player.CharacterStats);
+        playerHashCode.Add(Player.CharacterVitals);
+        playerHashCode.Add(Player.PlayerStats);
+        playerHashCode.Add(Player.CharacterInventory);
+        playerHashCode.Add(Player.CharacterEquipment);
+        return System.HashCode.Combine(CurrentScreen, playerHashCode.ToHashCode(), InventoryCategories, InventoryItemIndex, AvailableActions);
     }
 
     protected override void OnUpdate()
@@ -101,6 +189,8 @@
 
         if (Input.Pressed("sb_menu_thirdly")) HandleThirdly();
 
+        if (Input.Pressed("sb_menu_back")) HandleBack();
+
         if (Input.Pressed("sb_menu_cycle_left") || Input.Pressed("sb_menu_cycle_left_alt")) HandleCycle(false);
         else if (Input.Pressed("sb_menu_cycle_right")) HandleCycle(true);
 
@@ -112,25 +202,79 @@
 
     private void HandleSelect()
     {
+        if (CurrentScreen == MenuScreen.Equipment)
+        {
+            MenuEqu.HandleSelect();
+        }
+    }
 
+    private void HandleBack()
+    {
+        if (CurrentScreen == MenuScreen.Equipment)
+        {
+            MenuEqu.HandleBack();
+        }
     }
 
     private void HandleSecondary()
     {
-
+        if (CurrentScreen == MenuScreen.Equipment)
+        {
+            MenuEqu.HandleSecondary();
+        }
 
     }
 
     private void HandleThirdly()
     {
-
+        if (CurrentScreen == MenuScreen.Inventory)
+        {
+            if (MenuInv.SelectedStatus == 2) MenuInv.SelectedStatus = 0;
+            else MenuInv.SelectedStatus += 1;
+        }
+        if (CurrentScreen == MenuScreen.Equipment)
+        {
+            if (MenuEqu.SelectedStatus == 2) MenuEqu.SelectedStatus = 0;
+            else MenuEqu.SelectedStatus += 1;
+        }
 
     }
 
     private void HandleVertical(bool isUp)
     {
+        if (CurrentScreen == MenuScreen.Inventory)
+        {
+            InventoryItemIndex = MenuInv.SelectedIndex;
+            Item.ItemCategory category = GetItemCategory(InventoryCategories.SelectedCategory);
+            if (isUp) 
+            {
+                if (InventoryItemIndex == 0) InventoryItemIndex = Player.CharacterInventory.GetList(category).Count - 1;
+                else InventoryItemIndex -= 1;
+                InventoryLastMoveUp = true;
+            } else 
+            {
+                if (InventoryItemIndex == Player.CharacterInventory.GetList(category).Count - 1) InventoryItemIndex = 0;
+                else InventoryItemIndex += 1;
+                InventoryLastMoveUp = false;
+            }
+            MenuInv.LastWasButton = true;
+        }
 
-
+        if (CurrentScreen == MenuScreen.Settings)
+        {
+            if (isUp)
+            {
+                MenuSet.SelectedIndex -= 1;
+            }
+            else
+            {
+                MenuSet.SelectedIndex += 1;
+            }
+        }
+        if (CurrentScreen == MenuScreen.Equipment)
+        {
+            MenuEqu.HandleVertical(isUp);
+        }
     }
 
     private void HandleHorizontal(bool isRight)
@@ -139,6 +283,12 @@
         {
             if (isRight) InventoryCategories.CycleRight();
             else InventoryCategories.CycleLeft();
+        }
+        Item.ItemCategory category = GetItemCategory(InventoryCategories.SelectedCategory);
+        InventoryItemIndex = 0;
+        if (CurrentScreen == MenuScreen.Equipment)
+        {
+            MenuEqu.HandleHorizontal(isRight);
         }
     }
 
@@ -153,7 +303,66 @@
             if (CurrentMenuCategoryIndex == 0) CurrentMenuCategoryIndex = 3;
             else CurrentMenuCategoryIndex -= 1;
         }
-        CurrentScreen = MenuCategories[CurrentMenuCategoryIndex];
+        MenuScreen screen = MenuCategories[CurrentMenuCategoryIndex];
+        SetCurrentScreen(screen);
+        GlyphSet glyphSet = GetGlyphSet(screen);
+        SetGlyphs(glyphSet);
+    }
+
+    public void SetCurrentScreen(MenuScreen screen)
+    {
+        CurrentScreen = screen;
+        GlyphSet glyphSet = GetGlyphSet(screen);
+        SetGlyphs(glyphSet);
+    }
+
+    private GlyphSet GetGlyphSet(MenuScreen screen)
+    {
+        switch (screen)
+        {
+            case MenuScreen.Status:
+                return GlyphSet.GlyphsStatus;
+                break;
+            case MenuScreen.Equipment:
+                return GlyphSet.GlyphsEquipment;
+                break;
+            case MenuScreen.Inventory:
+                return GlyphSet.GlyphsInventory;
+                break;
+            case MenuScreen.Settings:
+                return GlyphSet.GlyphsSettings;
+                break;
+            default:
+                return GlyphSet.GlyphsEmpty;
+        }
+    }
+
+    public void SetGlyphs(GlyphSet set)
+    {
+        switch (set)
+        {
+            case GlyphSet.GlyphsStatus:
+                AvailableActions = GlyphsStatus;
+                break;
+            case GlyphSet.GlyphsEquipment:
+                AvailableActions = GlyphsEquipment;
+                break;
+            case GlyphSet.GlyphsItemSelect:
+                AvailableActions = GlyphsItemSelect;
+                break;
+            case GlyphSet.GlyphsInventory:
+                AvailableActions = GlyphsInventory;
+                break;
+            case GlyphSet.GlyphsItemMenu:
+                AvailableActions = GlyphsItemMenu;
+                break;
+            case GlyphSet.GlyphsSettings:
+                AvailableActions = GlyphsSettings;
+                break;
+            default:
+                AvailableActions = GlyphsEmpty;
+                return;
+        }
     }
 
     private string GetMenuScreenDescription(MenuScreen screen)
@@ -174,6 +383,81 @@
                 break;
             default:
                 return "missing description :(";
+        }
+    }
+
+    private string GetMenuScreenName(MenuScreen screen)
+    {
+        switch (screen)
+        {
+            case MenuScreen.Status:
+                return "man";
+                break;
+            case MenuScreen.Equipment:
+                return "shield";
+                break;
+            case MenuScreen.Inventory:
+                return "inventory";
+                break;
+            case MenuScreen.Settings:
+                return "settings";
+                break;
+            default:
+                return "missing name :(";
+        }
+    }
+
+    private string GetMenuScreenIcon(MenuScreen screen)
+    {
+        switch (screen)
+        {
+            case MenuScreen.Status:
+                return "man";
+                break;
+            case MenuScreen.Equipment:
+                return "shield";
+                break;
+            case MenuScreen.Inventory:
+                return "inventory";
+                break;
+            case MenuScreen.Settings:
+                return "settings";
+                break;
+            default:
+                return "missing";
+        }
+    }
+
+    private Item.ItemCategory GetItemCategory(CategoriesComponent.Category category)
+    {
+        switch (category.Name)
+        {
+            case "Usable":
+                return Item.ItemCategory.Usable;
+                break;
+            case "Shards":
+                return Item.ItemCategory.Shard;
+                break;
+            case "Keys":
+                return Item.ItemCategory.Key;
+                break;
+            case "Sorceries":
+                return Item.ItemCategory.Sorcery;
+                break;
+            case "Weapons":
+                return Item.ItemCategory.Weapon;
+                break;
+            case "Arrows":
+                return Item.ItemCategory.Arrow;
+                break;
+            case "Armor":
+                return Item.ItemCategory.Armor;
+                break;
+            case "Rings":
+                return Item.ItemCategory.Ring;
+                break;
+            default:
+                return Item.ItemCategory.Usable;
         }
     }
 }

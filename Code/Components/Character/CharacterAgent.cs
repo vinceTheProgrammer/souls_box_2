@@ -41,6 +41,9 @@ namespace SoulsBox
 		public bool IsBackstepping { get; set; }
 
 		[Sync]
+		public bool IsStaggered { get; set; }
+
+		[Sync]
 		public bool IsLightAttacking { get; set; }
 
 		[Sync]

@@ -1,0 +1,145 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using SoulsBox;
+@using System;
+@inherits PanelComponent
+
+<root>
+    <div class="vitals">
+        <div class="healthbar" style="width: @((Player.CharacterStats.MaxHealth / 200) * 200)px">
+            <div class="inner">
+                <div class="fill" style="width: @(( (float) Player.CharacterVitals.Health / (float) Player.CharacterStats.MaxHealth) * 100f)%"></div>
+                <div class="fill-laggy" style="width: @(( ((float) laggyHealth - (float) Player.CharacterVitals.Health) / (float) Player.CharacterStats.MaxHealth) * 100f)%"></div>
+            </div>
+        </div>
+        <div class="staminabar" style="width: @((Player.CharacterStats.MaxStamina / 50) * 200)px">
+            <div class="inner">
+                <div class="fill" style="width: @(( (float) Player.CharacterVitals.Stamina / (float) Player.CharacterStats.MaxStamina) * 100f)%"></div>
+                <div class="fill-laggy" style="width: @(( ((float) laggyStamina - (float) Player.CharacterVitals.Stamina) / (float) Player.CharacterStats.MaxStamina) * 100f)%"></div>
+            </div>
+        </div>
+    </div>
+        <div class="item-slots">
+            <div class="slot-left">
+                <div class="item-slot active">
+                @if (Player.CharacterEquipment.GetSelectedLeftHand() != null)
+                    {
+                    <img src=@($"items/icons/{Player.CharacterEquipment.GetSelectedLeftHand().ID}.png")>
+                    }
+                </div>
+            </div>
+            <div class="slots-middle">
+                <div class="item-slot">
+                @if (Player.CharacterEquipment.GetSelectedMagic() != null)
+                {
+                    <img src=@($"items/icons/{Player.CharacterEquipment.GetSelectedMagic().ID}.png")>
+                }
+                </div>
+                <div class="item-slot">
+                
+                @if (Player.CharacterEquipment.GetSelectedUsable() != null)
+                {
+                    <img src=@($"items/icons/{Player.CharacterEquipment.GetSelectedUsable().ID}.png")>
+                }
+                </div>
+            </div>
+            <div class="slot-right">
+                <div class="item-slot">
+                @if (Player.CharacterEquipment.GetSelectedRightHand() != null)
+                    {
+                    <img src=@($"items/icons/{Player.CharacterEquipment.GetSelectedRightHand().ID}.png")>
+                }
+                </div>
+            </div>
+        </div>
+
+    <div class="souls-box">
+        <div class="souls">
+            <p>@(Player.PlayerStats.Souls)</p>
+        </div>
+    </div>
+</root>
+
+@code
+{
+
+    [Property] AgentPlayer Player { get; set; }
+
+    float laggyHealth = 0;
+    float healthTransitionSpeed = 400f;
+    float laggyStamina = 0;
+    float staminaTransitionSpeed = 100f;
+
+    bool laggyHealthSynced { get; set; }
+    bool laggyStaminaSynced { get; set; }
+
+    TimeSince timeSinceStaminaLag { get; set; }
+    TimeSince timeSinceHealthLag { get; set; }
+
+    float lagDelay = 2.0f;
+
+    protected override void OnUpdate()
+    {
+        if (Player == null)
+        {
+            Player = Game.ActiveScene.GetAllComponents<AgentPlayer>().FirstOrDefault(x => !x.Network.IsProxy);
+        }
+
+        if (Player == null) return;
+
+        if (laggyHealthSynced && Player.CharacterVitals.Health < laggyHealth)
+        {
+            laggyHealthSynced = false;
+            timeSinceHealthLag = 0;
+        }
+
+        if (laggyStaminaSynced && Player.CharacterVitals.Stamina < laggyStamina)
+        {
+            laggyStaminaSynced = false;
+            timeSinceStaminaLag = 0;
+        }
+
+        if (timeSinceStaminaLag > lagDelay)
+        {
+            if (laggyStamina > Player.CharacterVitals.Stamina)
+            {
+                laggyStamina = (laggyStamina - staminaTransitionSpeed * Time.Delta).Clamp(0, Player.CharacterStats.MaxStamina);
+            }
+            else
+            {
+                laggyStamina = Player.CharacterVitals.Stamina;
+                laggyStaminaSynced = true;
+            }
+        }
+
+        if (timeSinceHealthLag > lagDelay)
+        {
+            if (laggyHealth > Player.CharacterVitals.Health)
+            {
+                laggyHealth = (laggyHealth - healthTransitionSpeed * Time.Delta).Clamp( 0, Player.CharacterStats.MaxHealth);
+            }
+            else
+            {
+                laggyHealth = Player.CharacterVitals.Health;
+                laggyHealthSynced = true;
+            }
+        }
+    }
+    protected override int BuildHash()
+    {
+        if (Player.CharacterEquipment.HasEquipmentChanged)
+        {
+            return new Random().Next();
+            Player.CharacterEquipment.ResetEquipmentChangedFlag();
+        }
+
+        return System.HashCode.Combine(
+            Player.PlayerStats,
+            Player.CharacterVitals,
+            Player.CharacterStats,
+            laggyHealth,
+            laggyStamina,
+            Player.CharacterEquipment
+        );
+    }
+}

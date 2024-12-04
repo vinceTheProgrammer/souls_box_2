@@ -1,0 +1,133 @@
+HUD {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #00000000;
+
+	> .vitals {
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		flex-direction: column;
+
+		> .healthbar {
+			width: 500px;
+			height: 32px;
+			background-color: black;
+			padding: 3px;
+
+			> .inner {
+				background-color: rgba(41,41,41, 0.3);
+				flex-grow: 1;
+				flex-direction: row;
+
+				> .fill {
+					height: 100%;
+					background-color: rgba(186, 25, 25, 0.3);
+				}
+
+				> .fill-laggy {
+					height: 100%;
+					background-color: rgba(190, 150, 57, 0.3);
+				}
+			}
+		}
+
+		> .staminabar {
+			width: 500px;
+			height: 32px;
+			background-color: black;
+			padding: 3px;
+
+			> .inner {
+				background-color: rgba(41,41,41, 0.3);
+				flex-grow: 1;
+				flex-direction: row;
+
+				> .fill {
+					height: 100%;
+					background-color: rgba(52, 91, 34, 0.3);
+				}
+
+				> .fill-laggy {
+					height: 100%;
+					background-color: rgba(190, 150, 57, 0.3);
+				}
+			}
+		}
+	}
+
+	.souls-box {
+		position: absolute;
+		bottom: 50px;
+		right: 50px;
+		width: 175px;
+		height: 50px;
+		background-color: rgba(41,41,41, 0.9);
+		border-width: 3px;
+		border-color: rgba(41,41,41,1);
+		justify-content: flex-end;
+		align-content: center;
+		padding-right: 10px;
+		padding-top: 3px;
+	}
+
+	.souls {
+		color: white;
+	}
+
+	.item-slots {
+		position: absolute;
+		bottom: 50px;
+		left: 50px;
+		display: flex;
+		align-items: center;
+		display: flex;
+		flex-direction: row;
+		gap: 5px;
+	}
+
+	.slot-left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.slots-middle {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.slot-right {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.item-slot {
+		width: 100px;
+		height: 100px;
+		background-color: rgba(41,41,41, 0.9);
+		border: 2px solid black;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+	.item-slot.active {
+		border-color: gold;
+	}
+
+	.item-slot img {
+		width: 100%;
+		height: 100%;
+	}
+
+	.soul-count {
+		font-size: 24px;
+		color: white;
+	}
+}

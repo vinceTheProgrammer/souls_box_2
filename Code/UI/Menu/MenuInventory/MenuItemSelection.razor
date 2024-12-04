@@ -1,0 +1,221 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using SoulsBox;
+@inherits Panel;
+
+<root>
+     <div class="inventory-selection" style=@(LastWasButton ? "overflow-y: hidden;" : "overflow-y: scroll;")>
+        @foreach (var item in Inventory.GetList(GetCategory()).Select((item, index) => new { Item = item, Index = index }))
+        {
+            <MenuInventoryItem @onclick=@(() => HandleSelect()) @onmouseover=@(() => SetSelectedItemFromMouseOver(item.Index))  Item=@(item.Item) class=@((SelectedIndex == item.Index ? "selected" : "") + " " + "inventory-selection-item") style=@(GetNegativeMargin(item.Index)) />
+        }
+     </div>
+     <MenuItemInfo Item=@(GetSelectedItem())/>
+</root>
+
+@code
+{
+    public CharacterInventory Inventory { get; set; }
+    public int SelectedIndex { get; set; }
+    public bool LastWasButton { get; set; }
+    public bool LastMoveUp { get; set; }
+    public MenuEquipment.ItemCategory ItemSelection { get; set; }
+    public CharacterEquipment Equipment { get; set; }
+    public MenuEquipment Parent { get; set; }
+
+    public void HandleVertical(bool isUp)
+    {
+        Item.ItemCategory category = GetCategory();
+        if (isUp)
+        {
+            if (SelectedIndex == 0) SelectedIndex = Inventory.GetList(category).Count - 1;
+            else SelectedIndex -= 1;
+            LastMoveUp = true;
+        }
+        else
+        {
+            if (SelectedIndex == Inventory.GetList(category).Count - 1) SelectedIndex = 0;
+            else SelectedIndex += 1;
+            LastMoveUp = false;
+        }
+        LastWasButton = true;
+    }
+
+    public void HandleSecondary()
+    {
+    }
+
+    public void HandleSelect()
+    {
+        HandleSelect(Parent.SelectedY);
+    }
+
+    public Item GetSelectedItem()
+    {
+        List<Item> replicatedList = Inventory.GetList(GetCategory());
+        return replicatedList[SelectedIndex];
+    }
+
+    public void HandleSelect(int y)
+    {
+
+
+        if (ItemSelection == MenuEquipment.ItemCategory.LWeapon) 
+        {
+            Item item = GetSelectedItem();
+            if (item is Weapon weapon)
+            {
+                if (y == 0) Equipment.SetLeftHand(weapon, 0);
+                if (y == 1) Equipment.SetLeftHand(weapon, 1);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.RWeapon)
+        {
+            Item item = GetSelectedItem();
+            if (item is Weapon weapon)
+            {
+                if (y == 0) Equipment.SetRightHand(weapon, 0);
+                if (y == 1) Equipment.SetRightHand(weapon, 1);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.Usable)
+        {
+            Item item = GetSelectedItem();
+            if (item is Usable usable)
+            {
+                if (y == 2) Equipment.SetUsable(usable, 0);
+                else if (y == 3) Equipment.SetUsable(usable, 1);
+                else if (y == 4) Equipment.SetUsable(usable, 2);
+                else if (y == 5) Equipment.SetUsable(usable, 3);
+                else if (y == 6) Equipment.SetUsable(usable, 4);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.Arrow)
+        {
+            Item item = GetSelectedItem();
+            if (item is Arrow arrow)
+            {
+                if (y == 2) Equipment.SetArrow(arrow, 0);
+                if (y == 3) Equipment.SetArrow(arrow, 1);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.Bolt)
+        {
+            Item item = GetSelectedItem();
+            if (item is Arrow arrow)
+            {
+                if (y == 5) Equipment.SetBolt(arrow, 0);
+                if (y == 6) Equipment.SetBolt(arrow, 1);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.Head)
+        {
+            Item item = GetSelectedItem();
+            if (item is Armor armor)
+            {
+                if (y == 0) Equipment.SetArmor(armor, 0);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.Chest)
+        {
+            Item item = GetSelectedItem();
+            if (item is Armor armor)
+            {
+                if (y == 1) Equipment.SetArmor(armor, 1);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.Legs)
+        {
+            Item item = GetSelectedItem();
+            if (item is Armor armor)
+            {
+                if (y == 2) Equipment.SetArmor(armor, 2);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.Hands)
+        {
+            Item item = GetSelectedItem();
+            if (item is Armor armor)
+            {
+                if (y == 3) Equipment.SetArmor(armor, 3);
+            }
+        }
+        else if (ItemSelection == MenuEquipment.ItemCategory.Ring)
+        {
+            Item item = GetSelectedItem();
+            if (item is Ring ring)
+            {
+                if (y == 5) Equipment.SetRing(ring, 0);
+                if (y == 6) Equipment.SetRing(ring, 1);
+            }
+        }
+        Parent.ItemSelection = MenuEquipment.ItemCategory.None;
+    }
+
+    private string GetNegativeMargin(int index)
+    {
+        if (!LastWasButton) return "";
+        string style = "";
+        if (index == 0)
+        {
+            float itemHeight = 135f;
+
+            int factor = -1;
+            if (LastMoveUp) factor = 0;
+            float negativeMargin = (SelectedIndex + (3 * factor)) * -itemHeight;
+            bool isPastDownThreshold = !LastMoveUp && SelectedIndex > 3;
+            bool isPastUpThreshold = LastMoveUp && SelectedIndex < Inventory.GetList(GetCategory()).Count - 4;
+            if (isPastDownThreshold || isPastUpThreshold)
+            {
+                style = $"margin-top: {negativeMargin};";
+            }
+            else if (LastMoveUp && Inventory.GetList(GetCategory()).Count > 4)
+            {
+                style = $"margin-top: {(Inventory.GetList(GetCategory()).Count - 4) * -itemHeight};";
+            }
+            else
+            {
+                style = "margin-top: 0";
+            }
+        }
+        return style;
+    }
+
+    private void SetSelectedItemFromMouseOver(int index)
+    {
+        SelectedIndex = index;
+        LastWasButton = false;
+    }
+
+    private Item.ItemCategory GetCategory()
+    {
+        if (ItemSelection == MenuEquipment.ItemCategory.Head) return Item.ItemCategory.Armor;
+        if (ItemSelection == MenuEquipment.ItemCategory.Hands) return Item.ItemCategory.Armor;
+        if (ItemSelection == MenuEquipment.ItemCategory.Legs) return Item.ItemCategory.Armor;
+        if (ItemSelection == MenuEquipment.ItemCategory.Chest) return Item.ItemCategory.Armor;
+
+
+        if (ItemSelection == MenuEquipment.ItemCategory.Ring) return Item.ItemCategory.Ring;
+
+
+        if (ItemSelection == MenuEquipment.ItemCategory.LWeapon) return Item.ItemCategory.Weapon;
+        if (ItemSelection == MenuEquipment.ItemCategory.RWeapon) return Item.ItemCategory.Weapon;
+
+
+        if (ItemSelection == MenuEquipment.ItemCategory.Arrow) return Item.ItemCategory.Arrow;
+
+
+        if (ItemSelection == MenuEquipment.ItemCategory.Bolt) return Item.ItemCategory.Arrow;
+
+
+        if (ItemSelection == MenuEquipment.ItemCategory.Usable) return Item.ItemCategory.Usable;
+
+        return Item.ItemCategory.Usable;
+
+    }
+
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine(ItemSelection, SelectedIndex, LastWasButton, LastMoveUp);
+    }
+}

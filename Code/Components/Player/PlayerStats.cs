@@ -13,28 +13,28 @@ namespace SoulsBox
 	public sealed class PlayerStats : Component
 	{
 		public string Displayname { get; set; }
+
+		[Property]
 		public int Level { get; set; }
 		public int Souls {  get; set; }
+
+		[Property]
 		public int Vitality { get; set; }
+		[Property]
 		public int Attunement { get; set; }
+		[Property]
 		public int Endurance { get; set; }
+		[Property]
 		public int Strength { get; set; }
+		[Property]
 		public int Dexterity { get; set; }
+		[Property]
 		public int Resistance { get; set; }
+		[Property]
 		public int Intelligence { get; set; }
+		[Property]
 		public int Faith { get; set; }
 		public int Humanity { get; set; }
-
-		protected override void OnUpdate()
-		{
-			if ( GameObject.Components.Get<AgentPlayer>() != null )
-			{
-				if ( !Network.IsProxy )
-				{
-					Gizmo.Draw.ScreenText( $"Souls: {Souls}", new Vector2( Screen.Width - 100, Screen.Height - 50 ) );
-				}
-			}
-		}
 
 		protected override void OnStart()
 		{

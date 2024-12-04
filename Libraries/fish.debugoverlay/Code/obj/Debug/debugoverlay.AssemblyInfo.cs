@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("debugoverlay")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a5b5bf326ee610ed7bb37411894f5199e9a9bbe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32162ad2ace19bd16c8d973378442f34acaefd7e")]
 [assembly: System.Reflection.AssemblyProductAttribute("debugoverlay")]
 [assembly: System.Reflection.AssemblyTitleAttribute("debugoverlay")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -39,7 +39,8 @@ public sealed class Bonfire : EntityInteractable
 		{
 			particleEffect.GameObject.Enabled = false;
 		}
-		AmbientSoundHandle.Stop();
+		if (AmbientSoundHandle != null) AmbientSoundHandle.Stop();
+
 		Description = UnlitInteractDescription;
 	}
 

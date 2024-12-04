@@ -1,31 +1,88 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using Sandbox.Network;
+@using System;
 @inherits Panel;
 
 <root class="columns">
     <div class="column">
-        <div class="info-item">
-            <i class="icon level-icon"></i> Options
+        <div class=@((0 == SelectedIndex ? "selected " : "") + "info-item wip") @onmouseover=@(() => SelectedIndex = 0)>
+            <i class="options-icon">settings</i> Options
         </div>
-        <div class="info-item">
-            <i class="icon level-icon"></i> Controls
+        <div class=@((1 == SelectedIndex ? "selected " : "") + "info-item wip") @onmouseover=@(() => SelectedIndex = 1)>
+            <i class="options-icon">sports_esports</i> Controls
         </div>
-        <div class="info-item">
-            <i class="icon souls-icon"></i> Lobby Tools
+        <div class=@((2 == SelectedIndex ? "selected " : "") + "info-item wip") @onmouseover=@(() => SelectedIndex = 2)>
+            <i class="options-icon">handyman</i> Lobby Tools
         </div>
-        <div class="info-item">
-            <i class="icon vitality-icon"></i> Credits
+        <div class=@((3 == SelectedIndex ? "selected " : "") + "info-item wip") @onmouseover=@(() => SelectedIndex = 3)>
+            <i class="options-icon">info</i> Credits
         </div>
         <hr>
-        <div class="info-item">
-            <i class="icon attunement-icon"></i> Main Menu
+        <div class=@((4 == SelectedIndex ? "selected " : "") + "info-item wip") @onmouseover=@(() => SelectedIndex = 4)>
+            <i class="options-icon">restart_alt</i> Reset
         </div>
-        <div class="info-item">
-            <i class="icon attunement-icon"></i> Quit Game
+        <div class=@((5 == SelectedIndex ? "selected " : "") + "info-item") @onclick=@(() => QuitGame()) @onmouseover=@(() => SelectedIndex = 5)>
+            <i class="options-icon">logout</i> Quit Game
         </div>
     </div>
 </root>
 
 @code
 {
+
+    public Menu Parent { get; set; }
+
+    public int SelectedIndex { get; set; }
+
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine(SelectedIndex);
+    }
+
+    private void QuitGame()
+    {
+        Game.Close();
+    }
+
+    public void ResetPlayer()
+    {
+
+        Log.Info(Parent);
+
+        Connection channel = Parent.GameObject.Network.OwnerConnection;
+
+        Log.Info("here");
+
+        PrefabFile prefabFile = ResourceLibrary.Get<PrefabFile>("\\prefabs\\player.prefab");
+        PrefabScene playerPrefab = SceneUtility.GetPrefabScene(prefabFile);
+
+        if (playerPrefab is null)
+            return;
+
+        Log.Info("here 2");
+
+
+        var startLocation = FindSpawnLocation().WithScale(1);
+
+        Parent.Player.GameObject.Destroy();
+
+        var player = playerPrefab.Clone(startLocation, name: $"Player - {channel.DisplayName}");
+
+        Log.Info("here 3");
+
+        player.NetworkSpawn(channel);
+    }
+
+    Transform FindSpawnLocation()
+    {
+
+        var spawnPoints = Scene.GetAllComponents<SpawnPoint>().ToArray();
+        if (spawnPoints.Length > 0)
+        {
+            return Random.Shared.FromArray(spawnPoints).Transform.World;
+        }
+
+        return new Transform(new Vector3(0f, 0f, 0f));
+    }
 }
